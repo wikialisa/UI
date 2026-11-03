@@ -20,5 +20,8 @@ export * from './components/molecules/ToastBanner';
 // Organisms
 export * from './components/organisms/PumpKpiCard';
 
+// 390px Mobile Simulator
+export * from './simulator';
+
 // Tokens re-export
 export * from '../../../tokens/tokens';
