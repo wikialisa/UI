@@ -1,0 +1,17 @@
+{
+  "name": "@wikialisa/react-native",
+  "version": "1.0.0",
+  "description": "WikiAlisa Kit — React Native Master Components for Agriculture Solar Pump Management System",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": ["react-native", "design-system", "solar-pump", "atomic-design", "wikialisa"],
+  "author": "WikiAlisa",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.70.0"
+  }
+}

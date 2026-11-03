@@ -1,0 +1,18 @@
+name: wikialisa_ui
+description: "WikiAlisa Kit — Flutter UI Master Components for Agriculture Solar Pump Management System"
+version: 1.0.0
+homepage: https://wikialisa.github.io/UI
+repository: https://github.com/wikialisa/UI
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
