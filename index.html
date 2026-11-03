@@ -260,30 +260,91 @@
 
   <!-- Section 2: Interactive Atomic Components & Code Switcher -->
   <!-- Section 2: Interactive Atomic Components & Multi-Platform Exporter (Figma 📁 10 Components & 📁 05 Design System Parity) -->
+  <!-- Section 2: Interactive Atomic Components & Multi-Platform Exporter (Figma 📁 10 Components & 📁 05 Design System Parity) -->
   <section id="components" class="py-16 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Title & Badges -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-agri-100 dark:bg-agri-950 text-agri-700 dark:text-agri-300 text-xs font-semibold mb-2 border border-agri-200 dark:border-agri-800">
             <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-            <span>📁 10 Components & 📁 05 Design System (Figma eq0EA9dRSWfS2ivuFohJdg)</span>
+            <span>📁 10 Components & 📁 05 Design System • Prototype Logic Engine</span>
           </div>
-          <h2 class="text-2xl font-bold tracking-tight">2. Atomic Components & Multi-Platform Exporter</h2>
-          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">20 nhóm linh kiện Atomic đồng bộ chuẩn xác từ file Figma kèm mã nguồn đa nền tảng React Native, Flutter và Tailwind HTML.</p>
+          <h2 class="text-2xl font-bold tracking-tight">2. Atomic Components & Logic Communication Prototype</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Các linh kiện Atomic có prototype liên kết logic tương tác 2 chiều: thay đổi trạng thái bơm, cấu hình công suất, xác thực biểu mẫu và đồng bộ kết quả.</p>
         </div>
         
         <!-- Live Action Bar -->
         <div class="flex items-center gap-2 flex-wrap">
+          <button onclick="resetPrototypeState()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-2xs" title="Khôi phục trạng thái mặc định">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-slate-500"></i>
+            <span>Đặt lại Logic</span>
+          </button>
           <button onclick="openAtomicDialog()" class="px-3.5 py-1.5 rounded-lg bg-agri-600 hover:bg-agri-700 text-white text-xs font-semibold flex items-center gap-2 shadow-sm transition active:scale-95">
             <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
-            <span>Thử Hộp Thoại (Modal)</span>
+            <span>Hộp Thoại Bàn Giao</span>
           </button>
-          <button onclick="showAtomicToast('success', 'Hành động đã hoàn tất thành công!')" class="px-3.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-semibold flex items-center gap-2 transition active:scale-95">
-            <i data-lucide="bell-ring" class="w-3.5 h-3.5 text-agri-600"></i>
-            <span>Bật Toast Thông Báo</span>
-          </button>
+          <a href="#simulator" onclick="projectStateToSimulator()" class="px-3.5 py-1.5 rounded-lg bg-solar-500 hover:bg-solar-600 text-white text-xs font-semibold flex items-center gap-2 shadow-sm transition active:scale-95">
+            <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+            <span>Chiếu lên Simulator 390px ➔</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Reactive State Dashboard (Real-time Cross-Component Bus) -->
+      <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs mb-8">
+        <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Trạng Thái Logic Đang Kết Nối (Component Event Bus)</span>
+          </div>
+          <span class="text-[11px] text-slate-400 font-mono">Realtime Reactive Store</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 text-xs">
+          <!-- State 1: Pump & Flow -->
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700">
+            <div class="text-[11px] text-slate-500">Máy Bơm & Lưu Lượng</div>
+            <div class="font-bold text-slate-900 dark:text-white mt-0.5 flex items-center gap-1.5">
+              <span id="state-pump-power" class="text-solar-600 dark:text-solar-400 font-mono">4.8 kW</span>
+              <span class="text-slate-300">|</span>
+              <span id="state-pump-flow" class="text-sky-600 dark:text-sky-400 font-mono">18.5 m³/h</span>
+            </div>
+          </div>
+
+          <!-- State 2: Serial Number & HP -->
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700">
+            <div class="text-[11px] text-slate-500">Số Seri & Công Suất</div>
+            <div class="font-bold text-slate-900 dark:text-white mt-0.5 font-mono truncate" id="state-serial-info">
+              SPC-2024-08471 (5 HP)
+            </div>
+          </div>
+
+          <!-- State 3: Stepper Milestone -->
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700">
+            <div class="text-[11px] text-slate-500">Tiến Độ Quy Trình</div>
+            <div class="font-bold text-slate-900 dark:text-white mt-0.5 truncate" id="state-stepper-info">
+              Chặng 3/4 • Kiểm tra QA
+            </div>
+          </div>
+
+          <!-- State 4: Total Installed KPI -->
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700">
+            <div class="text-[11px] text-slate-500">Tổng Lắp Đặt Bàn Giao</div>
+            <div class="font-bold text-emerald-600 dark:text-emerald-400 mt-0.5 font-mono" id="state-installed-info">
+              247 trạm (+12%)
+            </div>
+          </div>
+
+          <!-- State 5: Offline Sync Status -->
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700">
+            <div class="text-[11px] text-slate-500">Bộ Đệm Đồng Bộ</div>
+            <div class="font-bold text-slate-900 dark:text-white mt-0.5 flex items-center gap-1.5" id="state-sync-info">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>Online (0 chờ)</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -313,24 +374,24 @@
                 <span class="text-xs font-semibold text-agri-600 uppercase tracking-wider">Group 1 • Atoms / Controls</span>
                 <h4 class="font-bold text-sm text-slate-900 dark:text-white mt-0.5">Nút bấm (5 Biến thể × 3 Kích cỡ) & Icon FAB</h4>
               </div>
-              <span class="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">h-8 / h-10 / h-12</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Interactive Hotspots</span>
             </div>
 
-            <!-- Primary Buttons (Green) -->
+            <!-- Primary Buttons (Green) with Logic Actions -->
             <div class="mb-4">
-              <div class="text-xs text-slate-400 mb-2 font-medium">Primary (Green 700 / 800 / 900)</div>
+              <div class="text-xs text-slate-400 mb-2 font-medium">Primary (Green 700 / 800 / 900) — Nhấn để kích hoạt logic</div>
               <div class="flex flex-wrap gap-2.5 items-center">
-                <button class="h-8 px-3 py-1.5 bg-green-700 hover:bg-green-800 active:bg-green-900 rounded-lg text-white text-xs font-semibold transition shadow-xs active:scale-95 flex items-center gap-1.5">
-                  <i data-lucide="check" class="w-3.5 h-3.5"></i> Nhỏ (h-8)
+                <button onclick="triggerQuickApprove()" class="h-8 px-3 py-1.5 bg-green-700 hover:bg-green-800 active:bg-green-900 rounded-lg text-white text-xs font-semibold transition shadow-xs active:scale-95 flex items-center gap-1.5" title="Duyệt nhanh bước kiểm tra">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i> Duyệt nhanh (h-8)
                 </button>
-                <button class="h-10 px-4 py-2 bg-green-700 hover:bg-green-800 active:bg-green-900 rounded-lg text-white text-sm font-semibold transition shadow-xs active:scale-95 flex items-center gap-2">
-                  <i data-lucide="play" class="w-4 h-4"></i> Vừa (h-10)
+                <button onclick="togglePumpAction()" id="btn-toggle-pump" class="h-10 px-4 py-2 bg-green-700 hover:bg-green-800 active:bg-green-900 rounded-lg text-white text-sm font-semibold transition shadow-xs active:scale-95 flex items-center gap-2">
+                  <i data-lucide="play" class="w-4 h-4"></i> <span id="label-toggle-pump">Khởi Động Bơm</span>
                 </button>
-                <button class="h-12 px-5 py-3 bg-green-700 hover:bg-green-800 active:bg-green-900 rounded-lg text-white text-base font-semibold transition shadow-xs active:scale-95 flex items-center gap-2">
-                  <i data-lucide="zap" class="w-4 h-4"></i> Lớn (h-12)
+                <button onclick="openAtomicDialog()" id="btn-confirm-handover" class="h-12 px-5 py-3 bg-green-700 hover:bg-green-800 active:bg-green-900 rounded-lg text-white text-base font-semibold transition shadow-xs active:scale-95 flex items-center gap-2">
+                  <i data-lucide="zap" class="w-4 h-4"></i> Xác Nhận Bàn Giao
                 </button>
-                <button class="h-10 px-4 py-2 opacity-40 bg-green-700 rounded-lg text-white text-sm font-semibold cursor-not-allowed">
-                  Vô hiệu hóa
+                <button id="btn-disabled-demo" disabled class="h-10 px-4 py-2 opacity-40 bg-green-700 rounded-lg text-white text-sm font-semibold cursor-not-allowed">
+                  Chưa đủ điều kiện
                 </button>
               </div>
             </div>
@@ -339,17 +400,17 @@
             <div class="mb-4">
               <div class="text-xs text-slate-400 mb-2 font-medium">Secondary Outline & Danger / Accent</div>
               <div class="flex flex-wrap gap-2.5 items-center">
-                <button class="h-10 px-4 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg outline outline-1 outline-offset-[-1px] outline-gray-200 text-sm font-semibold transition active:scale-95 flex items-center gap-1.5">
-                  <i data-lucide="file-text" class="w-4 h-4 text-gray-500"></i> Thứ cấp (Gray)
+                <button onclick="simulatePdfExport()" class="h-10 px-4 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg outline outline-1 outline-offset-[-1px] outline-gray-200 text-sm font-semibold transition active:scale-95 flex items-center gap-1.5">
+                  <i data-lucide="file-text" class="w-4 h-4 text-gray-500"></i> Xuất Biên Bản PDF
                 </button>
-                <button class="h-10 px-4 py-2 bg-white hover:bg-zinc-50 text-gray-800 rounded-lg outline outline-1 outline-offset-[-1px] outline-gray-200 text-sm font-semibold transition active:scale-95 flex items-center gap-1.5 shadow-2xs">
-                  <i data-lucide="download" class="w-4 h-4 text-gray-500"></i> Bề mặt trắng
+                <button onclick="simulateBackupDownload()" class="h-10 px-4 py-2 bg-white hover:bg-zinc-50 text-gray-800 rounded-lg outline outline-1 outline-offset-[-1px] outline-gray-200 text-sm font-semibold transition active:scale-95 flex items-center gap-1.5 shadow-2xs">
+                  <i data-lucide="download" class="w-4 h-4 text-gray-500"></i> Tải Dữ Liệu Máy
                 </button>
-                <button class="h-10 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-semibold transition active:scale-95 flex items-center gap-1.5">
-                  <i data-lucide="alert-octagon" class="w-4 h-4"></i> Ngắt khẩn cấp
+                <button onclick="triggerEmergencyShutdown()" class="h-10 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-semibold transition active:scale-95 flex items-center gap-1.5">
+                  <i data-lucide="alert-octagon" class="w-4 h-4"></i> Ngắt Khẩn Cấp
                 </button>
-                <button class="h-10 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold transition active:scale-95 flex items-center gap-1.5">
-                  <i data-lucide="check-circle" class="w-4 h-4"></i> Xác nhận
+                <button onclick="simulateQAVerify()" class="h-10 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold transition active:scale-95 flex items-center gap-1.5">
+                  <i data-lucide="check-circle" class="w-4 h-4"></i> Nghiệm Thu QA
                 </button>
               </div>
             </div>
@@ -358,24 +419,25 @@
             <div>
               <div class="text-xs text-slate-400 mb-2 font-medium">Nút biểu tượng tròn & FAB góc bo tròn 16px (rounded-2xl)</div>
               <div class="flex flex-wrap gap-3 items-center">
-                <button class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 flex items-center justify-center transition active:scale-95" title="Kích thước 32px">
+                <button onclick="focusSearchField()" class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 flex items-center justify-center transition active:scale-95" title="Tìm kiếm">
                   <i data-lucide="search" class="w-4 h-4"></i>
                 </button>
-                <button class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 flex items-center justify-center transition active:scale-95" title="Kích thước 40px">
+                <button onclick="toggleFilterMode()" class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 flex items-center justify-center transition active:scale-95" title="Bộ lọc nâng cao">
                   <i data-lucide="filter" class="w-4 h-4"></i>
                 </button>
-                <button class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 flex items-center justify-center transition active:scale-95" title="Kích thước 48px">
+                <button onclick="showAtomicToast('info', 'Bạn có 3 thông báo nghiệm thu mới từ trung tâm.')" class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 flex items-center justify-center transition active:scale-95 relative" title="Thông báo">
                   <i data-lucide="bell" class="w-5 h-5"></i>
+                  <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-600"></span>
                 </button>
                 <!-- FABs -->
                 <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-1"></div>
-                <button class="w-10 h-10 rounded-2xl bg-green-700 hover:bg-green-800 text-white flex items-center justify-center shadow-md active:scale-95 transition" title="FAB 40px">
+                <button onclick="simulatePhotoCapture()" class="w-10 h-10 rounded-2xl bg-green-700 hover:bg-green-800 text-white flex items-center justify-center shadow-md active:scale-95 transition" title="Chụp ảnh hiện trường">
                   <i data-lucide="camera" class="w-4 h-4"></i>
                 </button>
-                <button class="w-14 h-14 rounded-2xl bg-green-700 hover:bg-green-800 text-white flex items-center justify-center shadow-lg active:scale-95 transition" title="FAB 56px">
+                <button onclick="simulateQrScan()" class="w-14 h-14 rounded-2xl bg-green-700 hover:bg-green-800 text-white flex items-center justify-center shadow-lg active:scale-95 transition" title="Quét mã QR máy bơm">
                   <i data-lucide="qr-code" class="w-6 h-6"></i>
                 </button>
-                <button class="w-16 h-16 rounded-2xl bg-solar-500 hover:bg-solar-600 text-white flex items-center justify-center shadow-xl active:scale-95 transition" title="FAB 64px">
+                <button onclick="simulateAddNewTask()" class="w-16 h-16 rounded-2xl bg-solar-500 hover:bg-solar-600 text-white flex items-center justify-center shadow-xl active:scale-95 transition" title="Thêm trạm bơm mới">
                   <i data-lucide="plus" class="w-8 h-8"></i>
                 </button>
               </div>
@@ -399,70 +461,73 @@
               </div>
             </div>
 
-            <!-- Dynamic Input Box -->
+            <!-- Dynamic Input Box with Real-time Validation -->
             <div class="w-full max-w-sm mb-6">
-              <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Số Seri Máy Bơm Năng Lượng Mặt Trời</label>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Số Seri Máy Bơm Năng Lượng Mặt Trời</label>
+                <span id="serialValidationBadge" class="text-[10px] text-emerald-600 font-bold bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded-full">✓ Khớp hồ sơ</span>
+              </div>
               <div id="demoInputContainer" class="h-11 px-3 py-2.5 bg-white dark:bg-slate-800 rounded-lg outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700 flex items-center gap-2 transition">
                 <i data-lucide="cpu" class="w-4 h-4 text-slate-400"></i>
-                <input id="demoInputField" type="text" value="SPC-2024-08471" placeholder="Nhập mã số seri máy..." class="w-full bg-transparent border-none outline-none text-sm text-slate-900 dark:text-white placeholder-slate-400">
-                <button onclick="document.getElementById('demoInputField').value = ''" class="text-slate-400 hover:text-slate-600">
+                <input id="demoInputField" oninput="handleSerialInput(this.value)" type="text" value="SPC-2024-08471" placeholder="Nhập mã số seri máy..." class="w-full bg-transparent border-none outline-none text-sm text-slate-900 dark:text-white placeholder-slate-400 font-mono">
+                <button onclick="clearSerialField()" class="text-slate-400 hover:text-slate-600">
                   <i data-lucide="x" class="w-3.5 h-3.5"></i>
                 </button>
               </div>
-              <p id="demoInputHelper" class="text-xs text-slate-500 mt-1">Định dạng chuẩn 14 ký tự in hoa</p>
+              <p id="demoInputHelper" class="text-xs text-slate-500 mt-1">Định dạng chuẩn 14 ký tự in hoa: SPC-YYYY-XXXXX</p>
             </div>
 
             <!-- Checkbox, Radio & Switch Row -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
               
-              <!-- Checkboxes -->
+              <!-- Checkboxes with Form Logic -->
               <div>
-                <div class="text-xs font-semibold text-slate-400 uppercase mb-2">Hộp kiểm (Checkbox)</div>
+                <div class="text-xs font-semibold text-slate-400 uppercase mb-2">Hộp kiểm (Kiểm tra điều kiện)</div>
                 <div class="space-y-2">
-                  <div onclick="toggleAtomicCheckbox(this)" class="flex items-center gap-2.5 cursor-pointer user-select-none">
-                    <div class="w-5 h-5 rounded-sm bg-green-700 flex items-center justify-center text-white transition">
+                  <div onclick="toggleCheckCondition('pin', this)" class="flex items-center gap-2.5 cursor-pointer user-select-none">
+                    <div id="chk-box-pin" class="w-5 h-5 rounded-sm bg-green-700 flex items-center justify-center text-white transition">
                       <i data-lucide="check" class="w-3.5 h-3.5"></i>
                     </div>
-                    <span class="text-sm text-slate-700 dark:text-slate-300">Đã kiểm tra pin</span>
+                    <span class="text-sm text-slate-700 dark:text-slate-300">Đã kiểm tra tấm pin</span>
                   </div>
-                  <div onclick="toggleAtomicCheckbox(this)" class="flex items-center gap-2.5 cursor-pointer user-select-none">
-                    <div class="w-5 h-5 rounded-sm border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 flex items-center justify-center text-transparent transition">
+                  <div onclick="toggleCheckCondition('farmer', this)" class="flex items-center gap-2.5 cursor-pointer user-select-none">
+                    <div id="chk-box-farmer" class="w-5 h-5 rounded-sm border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 flex items-center justify-center text-transparent transition">
                       <i data-lucide="check" class="w-3.5 h-3.5"></i>
                     </div>
-                    <span class="text-sm text-slate-700 dark:text-slate-300">Chưa xác nhận</span>
+                    <span class="text-sm text-slate-700 dark:text-slate-300">Nông dân xác nhận</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Radio Buttons -->
+              <!-- Radio Buttons for Pump HP Configuration -->
               <div>
-                <div class="text-xs font-semibold text-slate-400 uppercase mb-2">Nút chọn (Radio)</div>
+                <div class="text-xs font-semibold text-slate-400 uppercase mb-2">Công suất máy bơm (Radio)</div>
                 <div class="space-y-2">
-                  <div onclick="setRadioSelection(this, 'opt1')" class="radio-item flex items-center gap-2.5 cursor-pointer user-select-none">
-                    <div class="w-5 h-5 rounded-full border-[6px] border-green-700 bg-white transition"></div>
-                    <span class="text-sm text-slate-700 dark:text-slate-300 font-medium">Bơm 5 HP (Chính)</span>
+                  <div onclick="setPumpHpRadio(5)" class="radio-item flex items-center gap-2.5 cursor-pointer user-select-none">
+                    <div id="radio-circle-5hp" class="w-5 h-5 rounded-full border-[6px] border-green-700 bg-white transition"></div>
+                    <span id="radio-text-5hp" class="text-sm text-slate-700 dark:text-slate-300 font-medium">Bơm 5 HP (4.8 kW)</span>
                   </div>
-                  <div onclick="setRadioSelection(this, 'opt2')" class="radio-item flex items-center gap-2.5 cursor-pointer user-select-none">
-                    <div class="w-5 h-5 rounded-full border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 transition"></div>
-                    <span class="text-sm text-slate-700 dark:text-slate-300">Bơm 3 HP (Phụ)</span>
+                  <div onclick="setPumpHpRadio(3)" class="radio-item flex items-center gap-2.5 cursor-pointer user-select-none">
+                    <div id="radio-circle-3hp" class="w-5 h-5 rounded-full border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 transition"></div>
+                    <span id="radio-text-3hp" class="text-sm text-slate-700 dark:text-slate-300">Bơm 3 HP (2.8 kW)</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Switches -->
+              <!-- Switches for Pump Operating Mode -->
               <div>
-                <div class="text-xs font-semibold text-slate-400 uppercase mb-2">Công tắc (Switch)</div>
+                <div class="text-xs font-semibold text-slate-400 uppercase mb-2">Công tắc nguồn (Switch)</div>
                 <div class="space-y-2">
-                  <div class="flex items-center justify-between max-w-[120px]">
+                  <div class="flex items-center justify-between max-w-[130px]">
                     <span class="text-xs text-slate-600 dark:text-slate-400">Bơm nước</span>
-                    <div onclick="toggleAtomicSwitch(this)" class="w-11 h-6 px-0.5 rounded-full bg-green-700 flex items-center cursor-pointer transition">
+                    <div onclick="togglePumpSwitchLogic(this)" id="switch-pump-main" class="w-11 h-6 px-0.5 rounded-full bg-green-700 flex items-center cursor-pointer transition">
                       <div class="w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-5 transition-transform"></div>
                     </div>
                   </div>
-                  <div class="flex items-center justify-between max-w-[120px]">
-                    <span class="text-xs text-slate-600 dark:text-slate-400">Định vị GPS</span>
-                    <div onclick="toggleAtomicSwitch(this)" class="w-11 h-6 px-0.5 rounded-full bg-slate-300 dark:bg-slate-700 flex items-center cursor-pointer transition">
-                      <div class="w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-0 transition-transform"></div>
+                  <div class="flex items-center justify-between max-w-[130px]">
+                    <span class="text-xs text-slate-600 dark:text-slate-400">GPS Tự động</span>
+                    <div onclick="toggleGpsSwitchLogic(this)" id="switch-gps" class="w-11 h-6 px-0.5 rounded-full bg-green-700 flex items-center cursor-pointer transition">
+                      <div class="w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-5 transition-transform"></div>
                     </div>
                   </div>
                 </div>
@@ -478,72 +543,72 @@
                 <span class="text-xs font-semibold text-agri-600 uppercase tracking-wider">Group 3 • Atoms / Status Badges</span>
                 <h4 class="font-bold text-sm text-slate-900 dark:text-white mt-0.5">13 Huy hiệu trạng thái nghiệp vụ chuẩn Figma</h4>
               </div>
-              <span class="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Pills with Color Dots</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Chạm để thử trạng thái</span>
             </div>
 
             <div class="flex flex-wrap gap-2.5">
               <!-- Delivered -->
-              <div class="px-2.5 py-1 bg-green-50 text-green-700 border border-green-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('DELIVERED', 'Đã giao', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-green-50 text-green-700 border border-green-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-green-600"></div> Đã giao
               </div>
 
               <!-- Pending -->
-              <div class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('PENDING', 'Đang chờ xử lý', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-amber-500"></div> Đang chờ xử lý
               </div>
 
               <!-- In Progress -->
-              <div class="px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('PROGRESS', 'Đang tiến hành', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-blue-600"></div> Đang tiến hành
               </div>
 
               <!-- Installed -->
-              <div class="px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('INSTALLED', 'Đã cài đặt', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-emerald-600"></div> Đã cài đặt
               </div>
 
               <!-- QA Pending -->
-              <div class="px-2.5 py-1 bg-purple-50 text-purple-700 border border-purple-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('QA_PENDING', 'QA đang chờ', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-purple-50 text-purple-700 border border-purple-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-purple-600"></div> QA đang chờ
               </div>
 
               <!-- QA Approved -->
-              <div class="px-2.5 py-1 bg-green-50 text-green-800 border border-green-300 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('QA_APPROVED', 'QA đã duyệt', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-green-50 text-green-800 border border-green-300 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div> QA đã duyệt
               </div>
 
               <!-- QA Rejected -->
-              <div class="px-2.5 py-1 bg-red-50 text-red-700 border border-red-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('QA_REJECTED', 'QA từ chối', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-red-50 text-red-700 border border-red-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-red-500"></div> QA từ chối
               </div>
 
               <!-- Complaint Open -->
-              <div class="px-2.5 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('COMPLAINT_OPEN', 'Khiếu nại mở', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-rose-50 text-rose-700 border border-rose-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-rose-500"></div> Khiếu nại mở
               </div>
 
               <!-- Complaint Closed -->
-              <div class="px-2.5 py-1 bg-slate-100 text-slate-700 border border-slate-300 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('COMPLAINT_CLOSED', 'Khiếu nại đóng', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-slate-100 text-slate-700 border border-slate-300 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-slate-500"></div> Khiếu nại đóng
               </div>
 
               <!-- Success -->
-              <div class="px-2.5 py-1 bg-teal-50 text-teal-700 border border-teal-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('SUCCESS', 'Thành công', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-teal-50 text-teal-700 border border-teal-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-teal-600"></div> Thành công
               </div>
 
               <!-- Warning -->
-              <div class="px-2.5 py-1 bg-orange-50 text-orange-700 border border-orange-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('WARNING', 'Cảnh báo', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-orange-50 text-orange-700 border border-orange-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div> Cảnh báo
               </div>
 
               <!-- Error -->
-              <div class="px-2.5 py-1 bg-red-50 text-red-800 border border-red-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('ERROR', 'Lỗi', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-red-50 text-red-800 border border-red-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-red-600"></div> Lỗi
               </div>
 
               <!-- Info -->
-              <div class="px-2.5 py-1 bg-sky-50 text-sky-700 border border-sky-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold">
+              <div onclick="selectStatusPill('INFO', 'Thông tin', this)" class="status-chip-btn cursor-pointer px-2.5 py-1 bg-sky-50 text-sky-700 border border-sky-200 rounded-full inline-flex items-center gap-1.5 text-xs font-semibold hover:scale-105 transition">
                 <div class="w-1.5 h-1.5 rounded-full bg-sky-600"></div> Thông tin
               </div>
             </div>
@@ -556,39 +621,39 @@
                 <span class="text-xs font-semibold text-agri-600 uppercase tracking-wider">Group 4 • Molecules / Cards & Metrics</span>
                 <h4 class="font-bold text-sm text-slate-900 dark:text-white mt-0.5">Thẻ Nhiệm Vụ Thực Địa & Chỉ Số KPI Năng Lượng</h4>
               </div>
-              <span class="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Figma 320px Cards</span>
+              <span class="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Phản hồi thời gian thực</span>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Task Card (Delivery) -->
-              <div class="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xs flex flex-col justify-between">
+              <!-- Task Card (Delivery) with Dynamic Status -->
+              <div id="deliveryTaskCard" class="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xs flex flex-col justify-between transition-all">
                 <div>
                   <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-bold text-slate-900 dark:text-white">Giao hàng đến làng Rajpur</span>
-                    <span class="px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded-full text-[10px] font-semibold">Đang hoạt động</span>
+                    <span class="text-xs font-bold text-slate-900 dark:text-white" id="card-task-title">Giao hàng đến làng Rajpur</span>
+                    <span id="card-task-status-pill" class="px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded-full text-[10px] font-semibold">Đang hoạt động</span>
                   </div>
-                  <p class="text-xs text-slate-500 mb-3">Đơn hàng #SP-2024-0847 • 3 Máy bơm</p>
+                  <p class="text-xs text-slate-500 mb-3" id="card-task-subtitle">Đơn hàng #SP-2024-0847 • 3 Máy bơm</p>
                   <div class="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/50 p-2 rounded-lg">
                     <i data-lucide="user" class="w-3.5 h-3.5 text-slate-400"></i>
-                    <span>Ramesh Kumar (Máy 5 HP)</span>
+                    <span id="card-farmer-info">Ramesh Kumar (Máy 5 HP • SPC-2024-08471)</span>
                   </div>
                 </div>
                 <div class="flex items-center justify-between text-[11px] text-slate-400 mt-3 pt-2 border-t border-slate-100 dark:border-slate-700">
-                  <span>Cập nhật 2 giờ trước</span>
-                  <button class="text-agri-600 font-semibold hover:underline flex items-center gap-1">Chi tiết <i data-lucide="chevron-right" class="w-3 h-3"></i></button>
+                  <span id="card-task-time">Cập nhật vừa xong</span>
+                  <button onclick="openAtomicDialog()" class="text-agri-600 font-semibold hover:underline flex items-center gap-1">Xử lý ngay <i data-lucide="chevron-right" class="w-3 h-3"></i></button>
                 </div>
               </div>
 
-              <!-- Metric KPI Card (Solar & Pumping) -->
-              <div class="p-4 rounded-xl bg-linear-to-br from-green-50/70 to-emerald-50/30 dark:from-slate-800 dark:to-slate-800/80 border border-green-100 dark:border-slate-700 shadow-xs">
+              <!-- Metric KPI Card (Solar & Pumping) with Dynamic Values -->
+              <div class="p-4 rounded-xl bg-gradient-to-br from-green-50/70 to-emerald-50/30 dark:from-slate-800 dark:to-slate-800/80 border border-green-100 dark:border-slate-700 shadow-xs">
                 <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Tổng số lượt cài đặt</span>
-                  <span class="text-[11px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-bold">+12%</span>
+                  <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Tổng số trạm hoàn thành</span>
+                  <span id="kpi-percent-badge" class="text-[11px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-bold">+12%</span>
                 </div>
-                <div class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono">247</div>
-                <div class="text-[11px] text-slate-500 mt-1">Hiệu suất giao hàng đạt <strong class="text-green-700 dark:text-green-400">94,2%</strong></div>
+                <div class="text-3xl font-extrabold text-slate-900 dark:text-white font-mono" id="kpi-installed-count">247</div>
+                <div class="text-[11px] text-slate-500 mt-1">Hiệu suất giao hàng đạt <strong id="kpi-efficiency-rate" class="text-green-700 dark:text-green-400">94,2%</strong></div>
                 <div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full mt-3 overflow-hidden">
-                  <div class="bg-green-600 h-full rounded-full" style="width: 94.2%"></div>
+                  <div id="kpi-progress-bar" class="bg-green-600 h-full rounded-full transition-all duration-500" style="width: 94.2%"></div>
                 </div>
               </div>
             </div>
@@ -599,7 +664,7 @@
             <div class="flex items-center justify-between mb-4">
               <div>
                 <span class="text-xs font-semibold text-agri-600 uppercase tracking-wider">Group 5 • Molecules / Navigation</span>
-                <h4 class="font-bold text-sm text-slate-900 dark:text-white mt-0.5">Top App Bar, Bottom Bar & Tab Phân Đoạn</h4>
+                <h4 class="font-bold text-sm text-slate-900 dark:text-white mt-0.5">Top App Bar, Bottom Bar & Tab Phân Đoạn Lọc</h4>
               </div>
             </div>
 
@@ -608,30 +673,30 @@
               <div class="text-xs text-slate-400 mb-2 font-medium">Top App Bar (Mobile 390px)</div>
               <div class="w-full h-14 bg-white dark:bg-slate-900 rounded-lg px-3 flex items-center justify-between border border-slate-200 dark:border-slate-800 shadow-xs">
                 <div class="flex items-center gap-2">
-                  <button class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-white">
+                  <button onclick="showAtomicToast('info', 'Quay lại màn hình danh sách nhiệm vụ')" class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-white">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i>
                   </button>
-                  <span class="font-bold text-sm text-slate-900 dark:text-white">Chi tiết giao hàng</span>
+                  <span id="top-bar-title" class="font-bold text-sm text-slate-900 dark:text-white">Chi tiết giao hàng #SP-2024-0847</span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <button class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center text-slate-500">
+                  <button onclick="focusSearchField()" class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center text-slate-500">
                     <i data-lucide="search" class="w-4 h-4"></i>
                   </button>
-                  <button class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center text-slate-500">
+                  <button onclick="showTopBarMenu()" class="w-8 h-8 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center text-slate-500">
                     <i data-lucide="more-vertical" class="w-4 h-4"></i>
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Segmented Filter Tabs -->
+            <!-- Segmented Filter Tabs with Live Task Filter -->
             <div class="mb-4">
-              <div class="text-xs text-slate-400 mb-2 font-medium">Tab phân đoạn trạng thái (Segmented Tabs)</div>
+              <div class="text-xs text-slate-400 mb-2 font-medium">Tab phân đoạn (Lọc thẻ nhiệm vụ thực tế)</div>
               <div class="flex p-1 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400">
-                <button onclick="setSegmentedTab(this)" class="seg-tab flex-1 py-1.5 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-2xs text-center transition">Tất cả (24)</button>
-                <button onclick="setSegmentedTab(this)" class="seg-tab flex-1 py-1.5 rounded-lg text-center hover:text-slate-900 dark:hover:text-white transition">Chờ xử lý (5)</button>
-                <button onclick="setSegmentedTab(this)" class="seg-tab flex-1 py-1.5 rounded-lg text-center hover:text-slate-900 dark:hover:text-white transition">Hoạt động (12)</button>
-                <button onclick="setSegmentedTab(this)" class="seg-tab flex-1 py-1.5 rounded-lg text-center hover:text-slate-900 dark:hover:text-white transition">Đã xong (7)</button>
+                <button onclick="handleSegmentedTabFilter('all', this)" class="seg-tab flex-1 py-1.5 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-2xs text-center transition" id="tab-all-count">Tất cả (24)</button>
+                <button onclick="handleSegmentedTabFilter('pending', this)" class="seg-tab flex-1 py-1.5 rounded-lg text-center hover:text-slate-900 dark:hover:text-white transition" id="tab-pending-count">Chờ xử lý (5)</button>
+                <button onclick="handleSegmentedTabFilter('active', this)" class="seg-tab flex-1 py-1.5 rounded-lg text-center hover:text-slate-900 dark:hover:text-white transition" id="tab-active-count">Hoạt động (12)</button>
+                <button onclick="handleSegmentedTabFilter('done', this)" class="seg-tab flex-1 py-1.5 rounded-lg text-center hover:text-slate-900 dark:hover:text-white transition" id="tab-done-count">Đã xong (7)</button>
               </div>
             </div>
 
@@ -639,24 +704,24 @@
             <div>
               <div class="text-xs text-slate-400 mb-2 font-medium">Thanh điều hướng đáy (Bottom Bar 5 Mục)</div>
               <div class="w-full h-14 bg-white dark:bg-slate-900 rounded-xl px-2 flex items-center justify-around border border-slate-200 dark:border-slate-800 shadow-xs">
-                <div class="flex flex-col items-center gap-0.5 text-green-700 cursor-pointer">
+                <div onclick="selectBottomTab('home', this)" class="bottom-tab-item flex flex-col items-center gap-0.5 text-green-700 cursor-pointer">
                   <i data-lucide="home" class="w-5 h-5"></i>
                   <span class="text-[10px] font-bold">Trang chủ</span>
                 </div>
-                <div class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-600 cursor-pointer">
+                <div onclick="selectBottomTab('tasks', this)" class="bottom-tab-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-600 cursor-pointer">
                   <i data-lucide="check-square" class="w-5 h-5"></i>
                   <span class="text-[10px]">Nhiệm vụ</span>
                 </div>
-                <div class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-600 cursor-pointer">
+                <div onclick="selectBottomTab('map', this)" class="bottom-tab-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-600 cursor-pointer">
                   <i data-lucide="map-pin" class="w-5 h-5"></i>
                   <span class="text-[10px]">Bản đồ</span>
                 </div>
-                <div class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-600 cursor-pointer relative">
+                <div onclick="selectBottomTab('alerts', this)" class="bottom-tab-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-600 cursor-pointer relative">
                   <i data-lucide="bell" class="w-5 h-5"></i>
                   <span class="text-[10px]">Cảnh báo</span>
-                  <span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-600"></span>
+                  <span id="bottom-alert-dot" class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-600"></span>
                 </div>
-                <div class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-600 cursor-pointer">
+                <div onclick="selectBottomTab('profile', this)" class="bottom-tab-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-600 cursor-pointer">
                   <i data-lucide="user" class="w-5 h-5"></i>
                   <span class="text-[10px]">Hồ sơ</span>
                 </div>
@@ -673,32 +738,35 @@
               </div>
             </div>
 
-            <!-- Toast Variants Showcase -->
+            <!-- Toast Variants Showcase with Click-to-Test -->
             <div class="space-y-2 mb-4">
-              <div class="p-3 bg-green-50 border border-green-200 rounded-xl flex items-center justify-between text-xs text-green-800 font-medium">
+              <div onclick="showAtomicToast('success', 'Thành công: Đã lưu biên bản nghiệm thu vào bộ nhớ ngoại tuyến.')" class="cursor-pointer p-3 bg-green-50 hover:bg-green-100/70 border border-green-200 rounded-xl flex items-center justify-between text-xs text-green-800 font-medium transition">
                 <div class="flex items-center gap-2">
                   <i data-lucide="check-circle" class="w-4 h-4 text-green-600"></i>
                   <span>Thành công: Đã lưu biên bản nghiệm thu vào bộ nhớ ngoại tuyến.</span>
                 </div>
-                <span class="text-[10px] text-green-600 font-bold">2s</span>
+                <span class="text-[10px] text-green-600 font-bold">Chạm để thử ➔</span>
               </div>
-              <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-between text-xs text-amber-800 font-medium">
+              <div onclick="showAtomicToast('warning', 'Cảnh báo: Bức xạ mặt trời yếu (< 300 W/m²), lưu lượng bơm giảm.')" class="cursor-pointer p-3 bg-amber-50 hover:bg-amber-100/70 border border-amber-200 rounded-xl flex items-center justify-between text-xs text-amber-800 font-medium transition">
                 <div class="flex items-center gap-2">
                   <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600"></i>
                   <span>Cảnh báo: Bức xạ mặt trời yếu (< 300 W/m²), lưu lượng bơm giảm.</span>
                 </div>
+                <span class="text-[10px] text-amber-600 font-bold">Chạm để thử ➔</span>
               </div>
-              <div class="p-3 bg-red-50 border border-red-200 rounded-xl flex items-center justify-between text-xs text-red-800 font-medium">
+              <div onclick="showAtomicToast('error', 'Lỗi: Tọa độ GPS lệch > 500m so với vị trí đăng ký của nông dân.')" class="cursor-pointer p-3 bg-red-50 hover:bg-red-100/70 border border-red-200 rounded-xl flex items-center justify-between text-xs text-red-800 font-medium transition">
                 <div class="flex items-center gap-2">
                   <i data-lucide="alert-circle" class="w-4 h-4 text-red-600"></i>
                   <span>Lỗi: Tọa độ GPS lệch > 500m so với vị trí đăng ký của nông dân.</span>
                 </div>
+                <span class="text-[10px] text-red-600 font-bold">Chạm để thử ➔</span>
               </div>
-              <div class="p-3 bg-sky-50 border border-sky-200 rounded-xl flex items-center justify-between text-xs text-sky-800 font-medium">
+              <div onclick="showAtomicToast('info', 'Thông tin: Bản cập nhật firmware biến tần v2.4 đã sẵn sàng.')" class="cursor-pointer p-3 bg-sky-50 hover:bg-sky-100/70 border border-sky-200 rounded-xl flex items-center justify-between text-xs text-sky-800 font-medium transition">
                 <div class="flex items-center gap-2">
                   <i data-lucide="info" class="w-4 h-4 text-sky-600"></i>
                   <span>Thông tin: Bản cập nhật firmware biến tần v2.4 đã sẵn sàng.</span>
                 </div>
+                <span class="text-[10px] text-sky-600 font-bold">Chạm để thử ➔</span>
               </div>
             </div>
           </div>
@@ -712,33 +780,35 @@
               </div>
             </div>
 
-            <!-- Offline Bars -->
+            <!-- Offline Bars with Toggle Action -->
             <div class="space-y-2 mb-4">
-              <div class="p-3 rounded-xl bg-red-50 border border-red-200 text-red-800 flex items-center justify-between text-xs">
+              <div id="bar-offline-warning" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-800 flex items-center justify-between text-xs">
                 <div class="flex items-center gap-2 font-medium">
                   <i data-lucide="wifi-off" class="w-4 h-4 text-red-600"></i>
                   <span>Không có kết nối internet. Dữ liệu thực địa đang lưu tại thiết bị.</span>
                 </div>
-                <span class="px-2 py-0.5 rounded-full bg-red-200 font-bold text-[10px]">OFFLINE</span>
+                <span class="px-2 py-0.5 rounded-full bg-red-200 font-bold text-[10px]" id="offline-pending-badge">OFFLINE • 1 CHỜ</span>
               </div>
-              <div class="p-3 rounded-xl bg-sky-50 border border-sky-200 text-sky-800 flex items-center justify-between text-xs">
+              <div id="bar-sync-info" class="p-3 rounded-xl bg-sky-50 border border-sky-200 text-sky-800 flex items-center justify-between text-xs">
                 <div class="flex items-center gap-2 font-medium">
-                  <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-600 animate-spin"></i>
-                  <span>Đang đồng bộ hóa dữ liệu lên máy chủ trung tâm...</span>
+                  <i data-lucide="refresh-cw" class="w-4 h-4 text-sky-600"></i>
+                  <span id="bar-sync-text">Hệ thống đã đồng bộ toàn bộ dữ liệu lên máy chủ trung tâm.</span>
                 </div>
-                <span class="px-2 py-0.5 rounded-full bg-sky-200 font-bold text-[10px]">SYNCING</span>
+                <button onclick="triggerImmediateSync()" class="px-2 py-0.5 rounded bg-sky-200 hover:bg-sky-300 font-bold text-[10px] transition">
+                  ĐỒNG BỘ NGAY
+                </button>
               </div>
             </div>
 
             <!-- Empty State Card -->
-            <div class="p-6 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/40 text-center flex flex-col items-center">
+            <div id="atomicEmptyStateBox" class="hidden p-6 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/40 text-center flex flex-col items-center">
               <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400 mb-2">
                 <i data-lucide="inbox" class="w-6 h-6"></i>
               </div>
-              <h5 class="font-bold text-sm text-slate-900 dark:text-white">Chưa có nhiệm vụ nào</h5>
-              <p class="text-xs text-slate-500 dark:text-slate-400 max-w-xs mt-1 mb-3">Nhiệm vụ kiểm tra chất lượng (QA) mới sẽ xuất hiện ở đây ngay khi được phân công cho bạn.</p>
-              <button class="px-3.5 py-1.5 rounded-lg bg-green-700 hover:bg-green-800 text-white text-xs font-semibold transition">
-                Tải lại danh sách
+              <h5 class="font-bold text-sm text-slate-900 dark:text-white">Không có mục nào phù hợp</h5>
+              <p class="text-xs text-slate-500 dark:text-slate-400 max-w-xs mt-1 mb-3">Hiện không có nhiệm vụ nào thuộc bộ lọc này.</p>
+              <button onclick="handleSegmentedTabFilter('all')" class="px-3.5 py-1.5 rounded-lg bg-green-700 hover:bg-green-800 text-white text-xs font-semibold transition">
+                Xem tất cả nhiệm vụ
               </button>
             </div>
           </div>
@@ -752,9 +822,12 @@
               </div>
             </div>
 
-            <!-- Stepper Progress Timeline -->
+            <!-- Stepper Progress Timeline with Dynamic Progress Step -->
             <div class="mb-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-              <div class="text-xs text-slate-400 mb-3 font-medium">Tiến trình bàn giao hệ thống pin mặt trời</div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs text-slate-400 font-medium">Tiến trình bàn giao hệ thống pin mặt trời</span>
+                <button onclick="advanceStepperStep()" class="text-xs font-semibold text-agri-600 hover:underline">Tiếp bước kế tiếp ➔</button>
+              </div>
               <div class="space-y-3">
                 <div class="flex items-center gap-3">
                   <div class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">✓</div>
@@ -764,24 +837,24 @@
                   <div class="w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">✓</div>
                   <div class="text-xs"><span class="font-bold text-slate-900 dark:text-white">Lắp đặt:</span> Tấm pin mặt trời đã cố định trên giá đỡ</div>
                 </div>
-                <div class="flex items-center gap-3">
-                  <div class="w-6 h-6 rounded-full bg-solar-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">3</div>
-                  <div class="text-xs"><span class="font-bold text-slate-900 dark:text-white">Kiểm tra QA:</span> Đang đo lưu lượng nước và điện áp biến tần</div>
+                <div class="flex items-center gap-3" id="stepper-step3-row">
+                  <div id="stepper-step3-bullet" class="w-6 h-6 rounded-full bg-solar-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">3</div>
+                  <div class="text-xs" id="stepper-step3-text"><span class="font-bold text-slate-900 dark:text-white">Kiểm tra QA:</span> Đang đo lưu lượng nước và điện áp biến tần</div>
                 </div>
-                <div class="flex items-center gap-3 opacity-50">
-                  <div class="w-6 h-6 rounded-full bg-slate-300 dark:bg-slate-600 text-slate-700 dark:text-slate-300 text-xs font-bold flex items-center justify-center flex-shrink-0">4</div>
-                  <div class="text-xs text-slate-500">Chữ ký điện tử của hộ nông dân & Hoàn thành</div>
+                <div class="flex items-center gap-3" id="stepper-step4-row">
+                  <div id="stepper-step4-bullet" class="w-6 h-6 rounded-full bg-slate-300 dark:bg-slate-600 text-slate-700 dark:text-slate-300 text-xs font-bold flex items-center justify-center flex-shrink-0">4</div>
+                  <div class="text-xs text-slate-500" id="stepper-step4-text">Chữ ký điện tử của hộ nông dân & Hoàn thành</div>
                 </div>
               </div>
             </div>
 
-            <!-- Upload Dropzones & GPS Route -->
+            <!-- Upload Dropzones & GPS Route with Interactive Preview -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Upload Box -->
-              <div class="p-4 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-green-600 dark:hover:border-green-500 text-center cursor-pointer transition flex flex-col items-center justify-center">
-                <i data-lucide="camera" class="w-6 h-6 text-green-700 mb-1"></i>
-                <div class="text-xs font-bold text-slate-900 dark:text-white">Chụp ảnh hiện trường</div>
-                <div class="text-[10px] text-slate-400 mt-0.5">Nhấn để tải lên • Tối đa 10 MB</div>
+              <!-- Upload Box with Interactive Success -->
+              <div onclick="simulatePhotoCapture()" class="p-4 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-green-600 dark:hover:border-green-500 text-center cursor-pointer transition flex flex-col items-center justify-center">
+                <i data-lucide="camera" id="upload-icon-preview" class="w-6 h-6 text-green-700 mb-1"></i>
+                <div class="text-xs font-bold text-slate-900 dark:text-white" id="upload-label-preview">Chụp ảnh hiện trường</div>
+                <div class="text-[10px] text-slate-400 mt-0.5" id="upload-sub-preview">Nhấn để tải lên • Tối đa 10 MB</div>
               </div>
 
               <!-- GPS Row -->
@@ -794,7 +867,7 @@
                   <div class="text-[11px] font-mono text-slate-500 mt-1">26.8467° N, 80.9462° E</div>
                   <div class="text-[11px] text-slate-500">Lộ trình: 12.5 km (~25 phút)</div>
                 </div>
-                <button class="mt-2 text-left text-xs font-semibold text-green-700 hover:underline flex items-center gap-1">
+                <button onclick="showAtomicToast('info', 'Đã chuyển hướng tọa độ sang Google Maps dẫn đường.')" class="mt-2 text-left text-xs font-semibold text-green-700 hover:underline flex items-center gap-1">
                   Mở chỉ đường Google Maps <i data-lucide="external-link" class="w-3 h-3"></i>
                 </button>
               </div>
@@ -988,6 +1061,37 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
       </div>
     </div>
   </section>
+
+  <!-- Interactive Dialog Modal Prototype (Hidden by default) -->
+  <div id="atomicDialogModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4">
+    <div class="w-full max-w-sm bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-2xl border border-slate-200 dark:border-slate-800 animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-950/60 text-green-700 flex items-center justify-center flex-shrink-0">
+          <i data-lucide="help-circle" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-base text-slate-900 dark:text-white">Xác nhận bàn giao thiết bị</h4>
+          <p class="text-xs text-slate-500" id="dialog-order-code">Đơn hàng: #SP-2024-0847</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-600 dark:text-slate-300 mb-6 leading-relaxed" id="dialog-order-desc">
+        Xác nhận bàn giao hệ thống pin năng lượng mặt trời cho hộ nông dân Ramesh Kumar với số sê-ri máy SPC-2024-08471. Dữ liệu sẽ được lưu vào cơ sở dữ liệu và chuyển sang trạng thái ĐÃ GIAO.
+      </p>
+      <div class="flex items-center justify-end gap-2.5">
+        <button onclick="closeAtomicDialog()" class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-xs font-semibold text-slate-700 dark:text-slate-300 transition">
+          Hủy bỏ
+        </button>
+        <button onclick="confirmHandoverAction()" class="px-4 py-2 rounded-lg bg-green-700 hover:bg-green-800 text-xs font-semibold text-white transition shadow-xs flex items-center gap-1.5">
+          <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          <span>Xác nhận & Cập nhật</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Toast Banner Floating Container -->
+  <div id="atomicToastContainer" class="fixed bottom-6 right-6 z-50 space-y-2 pointer-events-none"></div>
+
 
   <!-- Interactive Dialog Modal Prototype (Hidden by default) -->
   <div id="atomicDialogModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4">
@@ -1527,8 +1631,8 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
 
       if (state === 'normal') {
         container.className += 'bg-white dark:bg-slate-800 outline outline-1 outline-offset-[-1px] outline-slate-200 dark:outline-slate-700';
-        input.value = 'SPC-2024-08471';
-        helper.textContent = 'Định dạng chuẩn 14 ký tự in hoa';
+        input.value = WikiAlisaState.serial || 'SPC-2024-08471';
+        helper.textContent = 'Định dạng chuẩn 14 ký tự in hoa: SPC-YYYY-XXXXX';
         helper.className = 'text-xs text-slate-500 mt-1';
       } else if (state === 'error') {
         container.className += 'bg-white dark:bg-slate-800 outline outline-1 outline-offset-[-1px] outline-red-500';
@@ -1548,49 +1652,6 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
       }
     }
 
-    function toggleAtomicCheckbox(el) {
-      const box = el.querySelector('div');
-      const isChecked = box.classList.contains('bg-green-700');
-      if (isChecked) {
-        box.className = 'w-5 h-5 rounded-sm border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 flex items-center justify-center text-transparent transition';
-      } else {
-        box.className = 'w-5 h-5 rounded-sm bg-green-700 flex items-center justify-center text-white transition';
-      }
-      if (window.lucide) lucide.createIcons();
-    }
-
-    function setRadioSelection(el, optId) {
-      const parent = el.parentElement;
-      parent.querySelectorAll('.radio-item').forEach(item => {
-        const circle = item.querySelector('div');
-        circle.className = 'w-5 h-5 rounded-full border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 transition';
-        item.querySelector('span').classList.remove('font-medium');
-      });
-      const activeCircle = el.querySelector('div');
-      activeCircle.className = 'w-5 h-5 rounded-full border-[6px] border-green-700 bg-white transition';
-      el.querySelector('span').classList.add('font-medium');
-    }
-
-    function toggleAtomicSwitch(el) {
-      const thumb = el.querySelector('div');
-      const isActive = el.classList.contains('bg-green-700');
-      if (isActive) {
-        el.className = 'w-11 h-6 px-0.5 rounded-full bg-slate-300 dark:bg-slate-700 flex items-center cursor-pointer transition';
-        thumb.className = 'w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-0 transition-transform';
-      } else {
-        el.className = 'w-11 h-6 px-0.5 rounded-full bg-green-700 flex items-center cursor-pointer transition';
-        thumb.className = 'w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-5 transition-transform';
-      }
-    }
-
-    function setSegmentedTab(btn) {
-      const container = btn.parentElement;
-      container.querySelectorAll('.seg-tab').forEach(b => {
-        b.className = 'seg-tab flex-1 py-1.5 rounded-lg text-center hover:text-slate-900 dark:hover:text-white transition';
-      });
-      btn.className = 'seg-tab flex-1 py-1.5 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-2xs text-center transition';
-    }
-
     function openAtomicDialog() {
       const modal = document.getElementById('atomicDialogModal');
       if (modal) modal.classList.remove('hidden');
@@ -1607,8 +1668,8 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
       if (!container) return;
       const toast = document.createElement('div');
       toast.className = 'pointer-events-auto px-4 py-3 rounded-xl shadow-lg border text-xs font-semibold flex items-center gap-2.5 animate-in slide-in-from-bottom duration-200 ' + 
-        (type === 'success' ? 'bg-green-50 border-green-200 text-green-800' : 'bg-slate-900 text-white border-slate-800');
-      toast.innerHTML = `<span class="w-2 h-2 rounded-full ${type === 'success' ? 'bg-green-600' : 'bg-agri-400'}"></span><span>${msg}</span>`;
+        (type === 'success' ? 'bg-green-50 border-green-200 text-green-800' : type === 'warning' ? 'bg-amber-50 border-amber-200 text-amber-800' : type === 'error' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-slate-900 text-white border-slate-800');
+      toast.innerHTML = `<span class="w-2 h-2 rounded-full ${type === 'success' ? 'bg-green-600' : type === 'warning' ? 'bg-amber-500' : type === 'error' ? 'bg-red-600' : 'bg-sky-400'}"></span><span>${msg}</span>`;
       container.appendChild(toast);
       setTimeout(() => {
         toast.classList.add('opacity-0', 'transition-opacity');
@@ -1616,97 +1677,485 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
       }, 3000);
     }
 
-        /**
- * WikiAlisa UI — Complete Prototype State Machine
- * Covering all 5 User Flows, 11 Modules and Edge Cases on 390px Mockup Frame
- */
+    /**
+     * =========================================================================
+     * WikiAlisa UI — Realtime Atomic Component Logic & Prototype Event Bus
+     * =========================================================================
+     */
+    const WikiAlisaState = {
+      pumpRunning: true,
+      pumpHp: 5,
+      pumpPower: 4.8,
+      pumpFlow: 18.5,
+      serial: 'SPC-2024-08471',
+      isValidSerial: true,
+      checkPin: true,
+      checkFarmer: false,
+      stepperStep: 3,
+      installedCount: 247,
+      orderStatus: 'ACTIVE',
+      isOffline: false,
+      pendingOfflineSyncCount: 0,
+      activeSegmentFilter: 'all',
+    };
 
-let currentRole = 'delivery';
-let currentStep = 1;
-let currentScenario = 'happy'; // 'happy', 'error', 'offline', 'empty', 'loading'
-let otpEntered = '';
-let installChecks = { check1: true, check2: false, check3: false };
-let pumpIsOn = true;
-let qaDecision = null; // null, 'approved', 'rejected', 'rework'
-let sparePartsUsed = ['Cảm biến mực nước ngầm 50m (Chống cạn E-04)'];
-let complaintSubmitted = false;
+    function syncAllComponents() {
+      const powerEl = document.getElementById('state-pump-power');
+      const flowEl = document.getElementById('state-pump-flow');
+      const serialInfoEl = document.getElementById('state-serial-info');
+      const stepperInfoEl = document.getElementById('state-stepper-info');
+      const installedInfoEl = document.getElementById('state-installed-info');
+      const syncInfoEl = document.getElementById('state-sync-info');
 
-function setScenario(sc) {
-  currentScenario = sc;
-  ['happy', 'error', 'offline'].forEach(s => {
-    const btn = document.getElementById('btn-scenario-' + s);
-    if (btn) {
-      if (s === sc) {
-        btn.className = 'px-3 py-1 rounded-full text-xs font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow transition';
+      if (powerEl) powerEl.textContent = WikiAlisaState.pumpRunning ? `${WikiAlisaState.pumpPower} kW` : '0.0 kW';
+      if (flowEl) flowEl.textContent = WikiAlisaState.pumpRunning ? `${WikiAlisaState.pumpFlow} m³/h` : '0.0 m³/h';
+      if (serialInfoEl) serialInfoEl.textContent = `${WikiAlisaState.serial} (${WikiAlisaState.pumpHp} HP)`;
+      if (stepperInfoEl) {
+        if (WikiAlisaState.stepperStep === 1) stepperInfoEl.textContent = 'Chặng 1/4 • Xuất kho';
+        else if (WikiAlisaState.stepperStep === 2) stepperInfoEl.textContent = 'Chặng 2/4 • Lắp đặt pin';
+        else if (WikiAlisaState.stepperStep === 3) stepperInfoEl.textContent = 'Chặng 3/4 • Kiểm tra QA';
+        else stepperInfoEl.textContent = 'Chặng 4/4 • Đã hoàn thành';
+      }
+      if (installedInfoEl) installedInfoEl.textContent = `${WikiAlisaState.installedCount} trạm (+${WikiAlisaState.installedCount > 247 ? '13%' : '12%'})`;
+      if (syncInfoEl) {
+        if (WikiAlisaState.isOffline) {
+          syncInfoEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span><span class="text-red-600 font-bold">Ngoại tuyến (${WikiAlisaState.pendingOfflineSyncCount} chờ)</span>`;
+        } else {
+          syncInfoEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span><span>Online (${WikiAlisaState.pendingOfflineSyncCount} chờ)</span>`;
+        }
+      }
+
+      const kpiCount = document.getElementById('kpi-installed-count');
+      const kpiBadge = document.getElementById('kpi-percent-badge');
+      const kpiProgress = document.getElementById('kpi-progress-bar');
+      if (kpiCount) kpiCount.textContent = WikiAlisaState.installedCount;
+      if (kpiBadge) kpiBadge.textContent = WikiAlisaState.installedCount > 247 ? '+13%' : '+12%';
+      if (kpiProgress) kpiProgress.style.width = WikiAlisaState.installedCount > 247 ? '96%' : '94.2%';
+
+      const cardFarmer = document.getElementById('card-farmer-info');
+      const cardPill = document.getElementById('card-task-status-pill');
+
+      if (cardFarmer) {
+        cardFarmer.textContent = `Ramesh Kumar (Máy ${WikiAlisaState.pumpHp} HP • ${WikiAlisaState.serial})`;
+      }
+
+      if (cardPill) {
+        if (WikiAlisaState.orderStatus === 'DELIVERED') {
+          cardPill.className = 'px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded-full text-[10px] font-semibold';
+          cardPill.textContent = 'Đã giao / Hoàn tất';
+        } else if (!WikiAlisaState.pumpRunning) {
+          cardPill.className = 'px-2 py-0.5 bg-slate-100 text-slate-700 border border-slate-300 rounded-full text-[10px] font-semibold';
+          cardPill.textContent = 'Tạm ngắt hoạt động';
+        } else {
+          cardPill.className = 'px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded-full text-[10px] font-semibold';
+          cardPill.textContent = 'Đang hoạt động';
+        }
+      }
+
+      const diagDesc = document.getElementById('dialog-order-desc');
+      if (diagDesc) {
+        diagDesc.textContent = `Xác nhận bàn giao hệ thống pin năng lượng mặt trời cho hộ nông dân Ramesh Kumar với số sê-ri máy ${WikiAlisaState.serial} (${WikiAlisaState.pumpHp} HP). Dữ liệu sẽ được lưu vào cơ sở dữ liệu và chuyển sang trạng thái ĐÃ GIAO.`;
+      }
+
+      const btnHandover = document.getElementById('btn-confirm-handover');
+      const isReadyToHandover = WikiAlisaState.checkPin && WikiAlisaState.checkFarmer && WikiAlisaState.isValidSerial;
+
+      if (btnHandover) {
+        if (isReadyToHandover) {
+          btnHandover.className = 'h-12 px-5 py-3 bg-green-700 hover:bg-green-800 active:bg-green-900 rounded-lg text-white text-base font-semibold transition shadow-md active:scale-95 flex items-center gap-2 ring-2 ring-green-500/50';
+        } else {
+          btnHandover.className = 'h-12 px-5 py-3 bg-green-700 hover:bg-green-800 active:bg-green-900 rounded-lg text-white text-base font-semibold transition shadow-xs active:scale-95 flex items-center gap-2 opacity-60';
+        }
+      }
+
+      const step3Bullet = document.getElementById('stepper-step3-bullet');
+      const step4Bullet = document.getElementById('stepper-step4-bullet');
+      const step4Text = document.getElementById('stepper-step4-text');
+
+      if (WikiAlisaState.stepperStep >= 4) {
+        if (step3Bullet) {
+          step3Bullet.className = 'w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0';
+          step3Bullet.textContent = '✓';
+        }
+        if (step4Bullet) {
+          step4Bullet.className = 'w-6 h-6 rounded-full bg-green-700 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 animate-bounce';
+          step4Bullet.textContent = '✓';
+        }
+        if (step4Text) {
+          step4Text.className = 'text-xs text-slate-900 dark:text-white font-bold';
+        }
       } else {
-        btn.className = 'px-3 py-1 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300 transition';
+        if (step3Bullet) {
+          step3Bullet.className = 'w-6 h-6 rounded-full bg-solar-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0';
+          step3Bullet.textContent = '3';
+        }
+        if (step4Bullet) {
+          step4Bullet.className = 'w-6 h-6 rounded-full bg-slate-300 dark:bg-slate-600 text-slate-700 dark:text-slate-300 text-xs font-bold flex items-center justify-center flex-shrink-0';
+          step4Bullet.textContent = '4';
+        }
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function togglePumpSwitchLogic(el) {
+      WikiAlisaState.pumpRunning = !WikiAlisaState.pumpRunning;
+      const thumb = el.querySelector('div');
+      if (!WikiAlisaState.pumpRunning) {
+        el.className = 'w-11 h-6 px-0.5 rounded-full bg-slate-300 dark:bg-slate-700 flex items-center cursor-pointer transition';
+        thumb.className = 'w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-0 transition-transform';
+        showAtomicToast('warning', '⚠️ Đã ngắt máy bơm. Lưu lượng nước trở về 0.0 m³/h.');
+      } else {
+        el.className = 'w-11 h-6 px-0.5 rounded-full bg-green-700 flex items-center cursor-pointer transition';
+        thumb.className = 'w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-5 transition-transform';
+        showAtomicToast('success', `⚡ Trạm bơm đã hoạt động! Lưu lượng đạt ${WikiAlisaState.pumpFlow} m³/h.`);
+      }
+      
+      const pumpBtnLabel = document.getElementById('label-toggle-pump');
+      if (pumpBtnLabel) {
+        pumpBtnLabel.textContent = WikiAlisaState.pumpRunning ? 'Ngắt Máy Bơm' : 'Khởi Động Bơm';
+      }
+
+      syncAllComponents();
+    }
+
+    function togglePumpAction() {
+      const sw = document.getElementById('switch-pump-main');
+      if (sw) togglePumpSwitchLogic(sw);
+    }
+
+    function setPumpHpRadio(hp) {
+      WikiAlisaState.pumpHp = hp;
+      if (hp === 5) {
+        WikiAlisaState.pumpPower = 4.8;
+        WikiAlisaState.pumpFlow = 18.5;
+        WikiAlisaState.serial = 'SPC-2024-08471';
+        document.getElementById('radio-circle-5hp').className = 'w-5 h-5 rounded-full border-[6px] border-green-700 bg-white transition';
+        document.getElementById('radio-text-5hp').className = 'text-sm text-slate-700 dark:text-slate-300 font-medium';
+        document.getElementById('radio-circle-3hp').className = 'w-5 h-5 rounded-full border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 transition';
+        document.getElementById('radio-text-3hp').className = 'text-sm text-slate-700 dark:text-slate-300';
+      } else {
+        WikiAlisaState.pumpPower = 2.8;
+        WikiAlisaState.pumpFlow = 11.2;
+        WikiAlisaState.serial = 'SPC-2024-08392';
+        document.getElementById('radio-circle-3hp').className = 'w-5 h-5 rounded-full border-[6px] border-green-700 bg-white transition';
+        document.getElementById('radio-text-3hp').className = 'text-sm text-slate-700 dark:text-slate-300 font-medium';
+        document.getElementById('radio-circle-5hp').className = 'w-5 h-5 rounded-full border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 transition';
+        document.getElementById('radio-text-5hp').className = 'text-sm text-slate-700 dark:text-slate-300';
+      }
+
+      const input = document.getElementById('demoInputField');
+      if (input) input.value = WikiAlisaState.serial;
+
+      showAtomicToast('info', `Đã chuyển cấu hình: Bơm ${hp} HP (${WikiAlisaState.pumpPower} kW, ${WikiAlisaState.pumpFlow} m³/h)`);
+      syncAllComponents();
+    }
+
+    function handleSerialInput(val) {
+      WikiAlisaState.serial = val.trim();
+      const container = document.getElementById('demoInputContainer');
+      const badge = document.getElementById('serialValidationBadge');
+      const helper = document.getElementById('demoInputHelper');
+
+      if (/^SPC-\d{4}-\d{5}$/i.test(WikiAlisaState.serial)) {
+        WikiAlisaState.isValidSerial = true;
+        if (container) container.className = 'h-11 px-3 py-2.5 bg-white dark:bg-slate-800 rounded-lg outline outline-2 outline-offset-[-1px] outline-green-600 flex items-center gap-2 transition';
+        if (badge) {
+          badge.className = 'text-[10px] text-emerald-600 font-bold bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded-full';
+          badge.textContent = '✓ Khớp hồ sơ xuất kho';
+        }
+        if (helper) {
+          helper.className = 'text-xs text-emerald-600 mt-1 font-medium';
+          helper.textContent = 'Số sê-ri hợp lệ: Máy bơm năng lượng mặt trời chính hãng';
+        }
+      } else {
+        WikiAlisaState.isValidSerial = false;
+        if (container) container.className = 'h-11 px-3 py-2.5 bg-white dark:bg-slate-800 rounded-lg outline outline-1 outline-offset-[-1px] outline-red-500 flex items-center gap-2 transition';
+        if (badge) {
+          badge.className = 'text-[10px] text-red-600 font-bold bg-red-50 dark:bg-red-950 px-2 py-0.5 rounded-full';
+          badge.textContent = '✕ Định dạng không hợp lệ';
+        }
+        if (helper) {
+          helper.className = 'text-xs text-red-500 mt-1 font-medium';
+          helper.textContent = 'Vui lòng nhập định dạng chuẩn 14 ký tự: SPC-YYYY-XXXXX';
+        }
+      }
+
+      syncAllComponents();
+    }
+
+    function clearSerialField() {
+      const input = document.getElementById('demoInputField');
+      if (input) {
+        input.value = '';
+        handleSerialInput('');
+        input.focus();
       }
     }
-  });
-  renderPrototype();
-}
 
-function setRole(role) {
-  currentRole = role;
-  currentStep = 1;
-  otpEntered = '';
-  qaDecision = null;
-  complaintSubmitted = false;
+    function toggleCheckCondition(type, el) {
+      if (type === 'pin') {
+        WikiAlisaState.checkPin = !WikiAlisaState.checkPin;
+        const box = document.getElementById('chk-box-pin');
+        if (WikiAlisaState.checkPin) {
+          box.className = 'w-5 h-5 rounded-sm bg-green-700 flex items-center justify-center text-white transition';
+          showAtomicToast('info', '✓ Đã xác nhận kiểm tra tấm pin mặt trời');
+        } else {
+          box.className = 'w-5 h-5 rounded-sm border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 flex items-center justify-center text-transparent transition';
+        }
+      } else if (type === 'farmer') {
+        WikiAlisaState.checkFarmer = !WikiAlisaState.checkFarmer;
+        const box = document.getElementById('chk-box-farmer');
+        if (WikiAlisaState.checkFarmer) {
+          box.className = 'w-5 h-5 rounded-sm bg-green-700 flex items-center justify-center text-white transition';
+          showAtomicToast('success', '✓ Hộ nông dân đã ký xác nhận biên bản');
+        } else {
+          box.className = 'w-5 h-5 rounded-sm border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 flex items-center justify-center text-transparent transition';
+        }
+      }
+      syncAllComponents();
+    }
 
-  ['auth', 'delivery', 'install', 'qa', 'service', 'farmer'].forEach(r => {
-    const btn = document.getElementById('btn-role-' + r);
-    if (btn) {
-      if (r === role) {
-        btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-agri-600 text-white shadow-sm transition';
+    function confirmHandoverAction() {
+      closeAtomicDialog();
+      WikiAlisaState.orderStatus = 'DELIVERED';
+      WikiAlisaState.stepperStep = 4;
+      WikiAlisaState.installedCount = 248;
+      WikiAlisaState.checkFarmer = true;
+
+      const chkFarmer = document.getElementById('chk-box-farmer');
+      if (chkFarmer) chkFarmer.className = 'w-5 h-5 rounded-sm bg-green-700 flex items-center justify-center text-white transition';
+
+      const tabPending = document.getElementById('tab-pending-count');
+      const tabDone = document.getElementById('tab-done-count');
+      if (tabPending) tabPending.textContent = 'Chờ xử lý (4)';
+      if (tabDone) tabDone.textContent = 'Đã xong (8)';
+
+      if (WikiAlisaState.isOffline) {
+        WikiAlisaState.pendingOfflineSyncCount++;
+        const offBadge = document.getElementById('offline-pending-badge');
+        if (offBadge) offBadge.textContent = `OFFLINE • ${WikiAlisaState.pendingOfflineSyncCount} CHỜ`;
+      }
+
+      showAtomicToast('success', '🎉 Chúc mừng! Đã hoàn tất biên bản bàn giao trạm bơm #SP-2024-0847!');
+      syncAllComponents();
+    }
+
+    function triggerQuickApprove() {
+      openAtomicDialog();
+    }
+
+    function advanceStepperStep() {
+      if (WikiAlisaState.stepperStep < 4) {
+        WikiAlisaState.stepperStep++;
+        if (WikiAlisaState.stepperStep === 4) {
+          WikiAlisaState.orderStatus = 'DELIVERED';
+          WikiAlisaState.installedCount = 248;
+        }
+        showAtomicToast('info', `Đã chuyển sang chặng ${WikiAlisaState.stepperStep}/4`);
+        syncAllComponents();
       } else {
-        btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition';
+        showAtomicToast('success', 'Toàn bộ 4 bước quy trình bàn giao đã hoàn tất xuất sắc!');
       }
     }
-  });
-  renderPrototype();
-}
 
-function goToStep(step) {
-  currentStep = step;
-  renderPrototype();
-}
+    function resetPrototypeState() {
+      WikiAlisaState.pumpRunning = true;
+      WikiAlisaState.pumpHp = 5;
+      WikiAlisaState.pumpPower = 4.8;
+      WikiAlisaState.pumpFlow = 18.5;
+      WikiAlisaState.serial = 'SPC-2024-08471';
+      WikiAlisaState.isValidSerial = true;
+      WikiAlisaState.checkPin = true;
+      WikiAlisaState.checkFarmer = false;
+      WikiAlisaState.stepperStep = 3;
+      WikiAlisaState.installedCount = 247;
+      WikiAlisaState.orderStatus = 'ACTIVE';
 
-function enterOtp(digit) {
-  if (otpEntered.length < 6) {
-    otpEntered += digit;
-    renderPrototype();
-  }
-}
+      const input = document.getElementById('demoInputField');
+      if (input) input.value = WikiAlisaState.serial;
 
-function clearOtp() {
-  otpEntered = '';
-  renderPrototype();
-}
+      const sw = document.getElementById('switch-pump-main');
+      if (sw) {
+        sw.className = 'w-11 h-6 px-0.5 rounded-full bg-green-700 flex items-center cursor-pointer transition';
+        sw.querySelector('div').className = 'w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-5 transition-transform';
+      }
 
-function toggleCheckItem(id) {
-  installChecks[id] = !installChecks[id];
-  renderPrototype();
-}
+      const chkFarmer = document.getElementById('chk-box-farmer');
+      if (chkFarmer) chkFarmer.className = 'w-5 h-5 rounded-sm border-2 border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 flex items-center justify-center text-transparent transition';
 
-function togglePumpPower() {
-  pumpIsOn = !pumpIsOn;
-  renderPrototype();
-}
+      setPumpHpRadio(5);
+      showAtomicToast('info', 'Đã đặt lại toàn bộ trạng thái prototype về mặc định.');
+      syncAllComponents();
+    }
 
-function makeQaDecision(decision) {
-  qaDecision = decision;
-  renderPrototype();
-}
+    function projectStateToSimulator() {
+      if (typeof setRole === 'function') setRole('delivery');
+      if (typeof goToStep === 'function') {
+        goToStep(WikiAlisaState.orderStatus === 'DELIVERED' ? 7 : 3);
+      }
+      showAtomicToast('success', 'Đã đồng bộ trạng thái sang Khung Mobile Simulator 390px!');
+    }
 
-function resetPrototype() {
-  currentStep = 1;
-  otpEntered = '';
-  qaDecision = null;
-  complaintSubmitted = false;
-  installChecks = { check1: false, check2: false, check3: false };
-  pumpIsOn = true;
-  renderPrototype();
-}
+    function handleSegmentedTabFilter(filter, btn) {
+      WikiAlisaState.activeSegmentFilter = filter;
+      if (btn) {
+        const parent = btn.parentElement;
+        parent.querySelectorAll('.seg-tab').forEach(b => {
+          b.className = 'seg-tab flex-1 py-1.5 rounded-lg text-center hover:text-slate-900 dark:hover:text-white transition';
+        });
+        btn.className = 'seg-tab flex-1 py-1.5 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-2xs text-center transition';
+      }
+
+      const taskCard = document.getElementById('deliveryTaskCard');
+      const emptyState = document.getElementById('atomicEmptyStateBox');
+
+      if (filter === 'all') {
+        if (taskCard) taskCard.classList.remove('hidden');
+        if (emptyState) emptyState.classList.add('hidden');
+      } else if (filter === 'pending') {
+        if (WikiAlisaState.orderStatus === 'DELIVERED') {
+          if (taskCard) taskCard.classList.add('hidden');
+          if (emptyState) emptyState.classList.remove('hidden');
+        } else {
+          if (taskCard) taskCard.classList.remove('hidden');
+          if (emptyState) emptyState.classList.add('hidden');
+        }
+      } else if (filter === 'active') {
+        if (taskCard) taskCard.classList.remove('hidden');
+        if (emptyState) emptyState.classList.add('hidden');
+      } else if (filter === 'done') {
+        if (WikiAlisaState.orderStatus === 'DELIVERED') {
+          if (taskCard) taskCard.classList.remove('hidden');
+          if (emptyState) emptyState.classList.add('hidden');
+        } else {
+          if (taskCard) taskCard.classList.add('hidden');
+          if (emptyState) emptyState.classList.remove('hidden');
+        }
+      }
+    }
+
+    function selectStatusPill(code, label, el) {
+      document.querySelectorAll('.status-chip-btn').forEach(btn => btn.classList.remove('ring-2', 'ring-agri-500', 'ring-offset-1'));
+      el.classList.add('ring-2', 'ring-agri-500', 'ring-offset-1');
+      
+      const cardPill = document.getElementById('card-task-status-pill');
+      if (cardPill) {
+        cardPill.textContent = label;
+      }
+      showAtomicToast('info', `Huy hiệu: ${label} (${code})`);
+    }
+
+    function triggerEmergencyShutdown() {
+      WikiAlisaState.pumpRunning = false;
+      const sw = document.getElementById('switch-pump-main');
+      if (sw) {
+        sw.className = 'w-11 h-6 px-0.5 rounded-full bg-slate-300 dark:bg-slate-700 flex items-center cursor-pointer transition';
+        sw.querySelector('div').className = 'w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-0 transition-transform';
+      }
+      showAtomicToast('error', '🚨 NGẮT KHẨN CẤP: Rơ-le quá dòng đã kích hoạt ngắt trạm bơm!');
+      syncAllComponents();
+    }
+
+    function simulatePdfExport() {
+      showAtomicToast('info', '📄 Đang tạo biên bản kiểm tra kỹ thuật PDF (Kèm chữ ký điện tử và tọa độ GPS)...');
+      setTimeout(() => {
+        showAtomicToast('success', '✓ Đã xuất thành công: Bien_ban_nghiem_thu_SP_2024_0847.pdf');
+      }, 1200);
+    }
+
+    function simulateBackupDownload() {
+      showAtomicToast('success', '💾 Đã sao lưu dữ liệu điện năng 30 ngày qua vào bộ nhớ thiết bị.');
+    }
+
+    function simulateQAVerify() {
+      WikiAlisaState.checkPin = true;
+      const chkPin = document.getElementById('chk-box-pin');
+      if (chkPin) chkPin.className = 'w-5 h-5 rounded-sm bg-green-700 flex items-center justify-center text-white transition';
+      showAtomicToast('success', '✓ Kiểm tra QA hoàn tất: Tấm pin & biến tần đạt chuẩn TCVN.');
+      syncAllComponents();
+    }
+
+    function simulatePhotoCapture() {
+      const uploadLabel = document.getElementById('upload-label-preview');
+      const uploadSub = document.getElementById('upload-sub-preview');
+      if (uploadLabel) uploadLabel.textContent = 'IMG_20261104_143022.jpg';
+      if (uploadSub) uploadSub.textContent = '✓ 4.2 MB • Đã gắn tọa độ EXIF GPS';
+      showAtomicToast('success', '📷 Chụp ảnh hiện trường thành công! Đã lưu cục bộ.');
+    }
+
+    function simulateQrScan() {
+      showAtomicToast('info', '📷 Đang quét mã QR trên vỏ động cơ máy bơm...');
+      setTimeout(() => {
+        const input = document.getElementById('demoInputField');
+        if (input) {
+          input.value = 'SPC-2024-08471';
+          handleSerialInput('SPC-2024-08471');
+        }
+        showAtomicToast('success', '✓ Quét QR thành công: SPC-2024-08471 (5 HP)');
+      }, 800);
+    }
+
+    function simulateAddNewTask() {
+      showAtomicToast('info', 'Đang kết nối trung tâm điều phối để nhận nhiệm vụ mới...');
+    }
+
+    function focusSearchField() {
+      const input = document.getElementById('demoInputField');
+      if (input) input.focus();
+    }
+
+    function toggleFilterMode() {
+      showAtomicToast('info', 'Đang mở bộ lọc trạm bơm theo công suất (3 HP / 5 HP / 7.5 HP)');
+    }
+
+    function showTopBarMenu() {
+      showAtomicToast('info', 'Menu: 1. Xem lịch sử đo • 2. Gửi báo cáo sự cố • 3. Hướng dẫn sử dụng');
+    }
+
+    function selectBottomTab(tabName, el) {
+      document.querySelectorAll('.bottom-tab-item').forEach(item => {
+        item.className = 'bottom-tab-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-slate-600 cursor-pointer';
+        const span = item.querySelector('span');
+        if (span) span.className = 'text-[10px]';
+      });
+      el.className = 'bottom-tab-item flex flex-col items-center gap-0.5 text-green-700 cursor-pointer';
+      const activeSpan = el.querySelector('span');
+      if (activeSpan) activeSpan.className = 'text-[10px] font-bold';
+      showAtomicToast('info', `Đã chuyển sang tab: ${tabName.toUpperCase()}`);
+    }
+
+    function toggleGpsSwitchLogic(el) {
+      const thumb = el.querySelector('div');
+      const isActive = el.classList.contains('bg-green-700');
+      if (isActive) {
+        el.className = 'w-11 h-6 px-0.5 rounded-full bg-slate-300 dark:bg-slate-700 flex items-center cursor-pointer transition';
+        thumb.className = 'w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-0 transition-transform';
+        showAtomicToast('warning', 'Đã tắt GPS tự động. Chuyển sang nhập tọa độ thủ công.');
+      } else {
+        el.className = 'w-11 h-6 px-0.5 rounded-full bg-green-700 flex items-center cursor-pointer transition';
+        thumb.className = 'w-5 h-5 rounded-full bg-white shadow-sm transform translate-x-5 transition-transform';
+        showAtomicToast('success', 'Đã bật định vị GPS thời gian thực (Độ chính xác ±3m).');
+      }
+    }
+
+    function triggerImmediateSync() {
+      showAtomicToast('info', '🔄 Đang đồng bộ dữ liệu ngoại tuyến lên đám mây...');
+      setTimeout(() => {
+        WikiAlisaState.pendingOfflineSyncCount = 0;
+        const offBadge = document.getElementById('offline-pending-badge');
+        if (offBadge) offBadge.textContent = 'OFFLINE • 0 CHỜ';
+        showAtomicToast('success', '✓ Toàn bộ bản ghi hiện trường đã được đồng bộ an toàn.');
+        syncAllComponents();
+      }, 1000);
+    }
+
+    // Initialize logic on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      syncAllComponents();
+    });
+    // Call once immediately if DOM already parsed
+    setTimeout(() => { syncAllComponents(); }, 100);
 
 /**
  * WikiAlisa UI — Prototype State Machine with Figma Hi-Fi Image Projections
