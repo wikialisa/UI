@@ -1,7 +1,7 @@
 # WikiAlisa Kit — Dự án Lộ Trình Phát Triển (Project Roadmap)
 
 Lộ trình phát triển chính thức của **WikiAlisa Kit & Agriculture Solar Pump Management System**.
-Theo dõi trực tuyến tại: **[`https://github.com/wikialisa/UI/projects`](https://github.com/wikialisa/UI/projects)** và **[`https://github.com/wikialisa/UI/milestones`](https://github.com/wikialisa/UI/milestones)**.
+Theo dõi trực tuyến tại: **[`https://github.com/users/wikialisa/projects/3`](https://github.com/users/wikialisa/projects/3)** và **[`https://github.com/wikialisa/UI/milestones`](https://github.com/wikialisa/UI/milestones)**.
 
 ---
 
