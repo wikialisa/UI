@@ -8,20 +8,24 @@ Bộ công cụ thiết kế và phát triển giao diện đa nền tảng do *
 
 ---
 
-## 📁 Cấu trúc Bộ Công cụ
+## 📁 Cấu trúc 12 Pages Chuẩn Hệ Thống
 
 ```text
 wikialisa/kit/
 ├── index.html                   # Showcase Website SPA tương tác trực tiếp (GitHub Pages)
-├── .github/
-│   └── workflows/
-│       └── deploy.yml           # CI/CD tự động xuất bản lên GitHub Pages
-├── docs/
-│   ├── 01_PRODUCT_DISCOVERY.md  # Giai đoạn 01: Khám phá sản phẩm & 5 vai trò
-│   ├── 02_PRODUCT_OVERVIEW.md   # Giai đoạn 02: Tài liệu sáu giai đoạn Tiếng Việt
-│   ├── 03_DESIGN_SYSTEM.md      # Giai đoạn 03: Hệ thống Tokens, Spacing 8pt, Inter
-│   ├── 04_MOBILE_ARCHITECTURE.md# Giai đoạn 04: 11 Mô-đun & Offline-First Pattern
-│   └── 05_PROTOTYPE_AND_HANDOFF.md # Giai đoạn 05 & 06: Kịch bản kiểm thử & Handoff
+├── pages/                       # 12 Trang tài liệu chuẩn hóa tương ứng Figma
+│   ├── 01-Cover.md              # 📁 01: Bìa & Metadata dự án
+│   ├── 02-Product-Overview.md   # 📁 02: Tài liệu sáu giai đoạn Tiếng Việt
+│   ├── 03-Documentation.md      # 📁 03: Hướng dẫn kỹ thuật & chuẩn WCAG 2.1 AA
+│   ├── 04-User-Flow.md          # 📁 04: Chuỗi quy trình 20 bước & 5 vai trò
+│   ├── 05-Design-System.md      # 📁 05: Tokens màu sắc, lưới 8pt, typography Inter
+│   ├── 06-High-Fidelity-UI.md   # 📁 06: 49 Màn hình di động 390px (Auth, 5 Roles)
+│   ├── 07-Admin-Panel.md        # 📁 07: Bảng điều khiển Quản trị Desktop Web
+│   ├── 08-Prototype.md          # 📁 08: Kịch bản kiểm thử nguyên mẫu tương tác
+│   ├── 09-Developer-Handoff.md  # 📁 09: Quy chuẩn bàn giao cho kỹ sư lập trình
+│   ├── 10-Components.md         # 📁 10: 27 Bộ Master Components chuẩn Atomic
+│   ├── 11-Icons.md              # 📁 11: Hệ thống Icon Material Symbols Rounded
+│   └── 12-Changelog-Roadmap.md  # 📁 12: Nhật ký phát hành & Lộ trình v2.0
 ├── tokens/
 │   ├── tokens.json              # Chuẩn W3C / Figma Tokens Studio
 │   ├── tokens.css               # Biến CSS (Light / Dark Mode)
@@ -29,7 +33,7 @@ wikialisa/kit/
 │   └── tokens.dart              # Flutter ThemeData & Consts
 ├── scripts/
 │   └── update_figma_02_overview.js # Script tự động hóa cho Figma Console
-├── CONTRIBUTING.md              # Hướng dẫn đóng góp
+├── CONTRIBUTING.md              # Hướng dẫn đóng góp mã nguồn
 └── LICENSE                      # MIT License - Bản quyền thuộc WikiAlisa
 ```
 
@@ -56,13 +60,3 @@ wikialisa/kit/
    - `QA Inspector`: Biên bản đo kiểm Voc/Imp, phê duyệt/từ chối.
    - `Service Tech`: Cảnh báo cạn nước, nhật ký sửa chữa.
    - `Farmer`: Điều khiển máy bơm, theo dõi tiền tiết kiệm.
-
----
-
-## 🛠 Hướng Dẫn Đẩy Mã Nguồn Lên GitHub
-
-```bash
-git add .
-git commit -m "feat: update project identity to WikiAlisa Kit"
-git push -u origin main
-```
