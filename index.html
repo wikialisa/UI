@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WikiAlisa — All-in-One Atomic Design System & UI Kits</title>
+  <link rel="icon" href="https://api.iconify.design/lucide:sun-medium.svg?color=%231B873F">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            solar: {
+              50: '#FFF9E6',
+              100: '#FFF1B8',
+              500: '#E59800',
+              600: '#C68200',
+              700: '#9E6400',
+            },
+            agri: {
+              50: '#EBF7EE',
+              100: '#C8EBD0',
+              500: '#1B873F',
+              600: '#146830',
+              700: '#0F4E24',
+            },
+            sky: {
+              50: '#F0F9FF',
+              500: '#0284C7',
+              600: '#0369A1',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="./tokens/tokens.css">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .code-scroll::-webkit-scrollbar { height: 6px; }
+    .code-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    [data-theme="dark"] .code-scroll::-webkit-scrollbar-thumb { background: #475569; }
+    .phone-mockup {
+      width: 390px;
+      height: 844px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 12px #1e293b, 0 0 0 14px #475569;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 transition-colors duration-200 dark:bg-slate-950 dark:text-slate-100 min-h-screen">
+
+  <!-- Top Sticky Nav -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-agri-600 to-solar-500 flex items-center justify-center text-white shadow-md shadow-agri-500/20">
+          <i data-lucide="sun-medium" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-agri-600 to-solar-500 bg-clip-text text-transparent">WikiAlisa UI</span>
+          <span class="text-xs ml-2 px-2 py-0.5 rounded-full bg-agri-50 text-agri-600 border border-agri-200 dark:bg-agri-950 dark:text-agri-400 dark:border-agri-800 font-medium">v1.0.0</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="#overview" class="hover:text-agri-600 transition">6 Giai Đoạn</a>
+        <a href="#tokens" class="hover:text-agri-600 transition">Design Tokens</a>
+        <a href="#components" class="hover:text-agri-600 transition">Atomic Components</a>
+        <a href="#simulator" class="hover:text-agri-600 transition">390px Simulator</a>
+        <a href="#export" class="hover:text-agri-600 transition">Export Codes</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- Theme Switcher -->
+        <button id="themeToggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Toggle Theme">
+          <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+        </button>
+
+        <!-- Deploy Target Indicator -->
+        <a href="https://wikialisa.github.io/UI" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-agri-500 hover:bg-agri-600 text-white text-xs font-semibold shadow-sm transition">
+          <i data-lucide="globe" class="w-4 h-4"></i>
+          <span>wikialisa.github.io/UI</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-b from-agri-50/50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-agri-100 dark:bg-agri-950 text-agri-700 dark:text-agri-300 text-xs font-semibold mb-6 border border-agri-200 dark:border-agri-800">
+        <i data-lucide="sprout" class="w-4 h-4"></i>
+        <span>Agriculture Solar Pump Design System</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-4xl mx-auto">
+        All-in-One Atomic Design System & UI Kits
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+        Bộ thư viện linh kiện di động đa nền tảng tối ưu cho <span class="font-semibold text-agri-600 dark:text-agri-400">React Native</span>, <span class="font-semibold text-sky-500">Flutter</span> và <span class="font-semibold text-solar-500">HTML/CSS</span>. Chuẩn WCAG 2.1 AA, lưới 8pt Grid, hỗ trợ Offline-First cho 5 nhóm người dùng thực địa.
+      </p>
+
+      <!-- Key Metrics Badges -->
+      <div class="mt-10 flex flex-wrap justify-center gap-4 text-xs font-medium">
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-solar-500"></span>
+          <span>48 Design Tokens</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-agri-500"></span>
+          <span>27 Master Components</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
+          <span>5 User Roles Matrix</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <span>390px Mobile First</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Design Tokens Explorer -->
+  <section id="tokens" class="py-16 border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <h2 class="text-2xl font-bold tracking-tight">1. Design Tokens Explorer</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Nền tảng biến số (Variables) đồng bộ tự động giữa Figma và Code.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="./tokens/tokens.json" download class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold flex items-center gap-2 hover:bg-slate-50 transition">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i> JSON Tokens
+          </a>
+          <a href="./tokens/tokens.css" download class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold flex items-center gap-2 hover:bg-slate-50 transition">
+            <i data-lucide="code" class="w-3.5 h-3.5"></i> CSS Vars
+          </a>
+        </div>
+      </div>
+
+      <!-- Color Tokens Grid -->
+      <h3 class="text-base font-semibold mb-4 flex items-center gap-2">
+        <i data-lucide="palette" class="w-4 h-4 text-solar-500"></i>
+        <span>Brand & Semantic Color Palettes (48 Tokens)</span>
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
+        <!-- Solar Gold -->
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="h-14 rounded-lg bg-solar-500 mb-2 shadow-inner"></div>
+          <div class="font-bold text-xs">Solar Gold 500</div>
+          <div class="text-[11px] text-slate-500 font-mono">#E59800</div>
+          <div class="text-[10px] text-solar-600 font-medium mt-1">Solar Năng Lượng</div>
+        </div>
+        <!-- Agri Green -->
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="h-14 rounded-lg bg-agri-500 mb-2 shadow-inner"></div>
+          <div class="font-bold text-xs">Agri Green 500</div>
+          <div class="text-[11px] text-slate-500 font-mono">#1B873F</div>
+          <div class="text-[10px] text-agri-600 font-medium mt-1">Nông Nghiệp Chính</div>
+        </div>
+        <!-- Sky Blue -->
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="h-14 rounded-lg bg-sky-500 mb-2 shadow-inner"></div>
+          <div class="font-bold text-xs">Sky Blue 500</div>
+          <div class="text-[11px] text-slate-500 font-mono">#0284C7</div>
+          <div class="text-[10px] text-sky-600 font-medium mt-1">Lưu Lượng Nước</div>
+        </div>
+        <!-- Success -->
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="h-14 rounded-lg bg-emerald-600 mb-2 shadow-inner"></div>
+          <div class="font-bold text-xs">QA Approved</div>
+          <div class="text-[11px] text-slate-500 font-mono">#16A34A</div>
+          <div class="text-[10px] text-emerald-600 font-medium mt-1">Đạt Chuẩn</div>
+        </div>
+        <!-- Warning -->
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="h-14 rounded-lg bg-amber-600 mb-2 shadow-inner"></div>
+          <div class="font-bold text-xs">Solar Weak</div>
+          <div class="text-[11px] text-slate-500 font-mono">#D97706</div>
+          <div class="text-[10px] text-amber-600 font-medium mt-1">Nắng Yếu / Bụi</div>
+        </div>
+        <!-- Danger -->
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="h-14 rounded-lg bg-red-600 mb-2 shadow-inner"></div>
+          <div class="font-bold text-xs">Fault / Overheat</div>
+          <div class="text-[11px] text-slate-500 font-mono">#DC2626</div>
+          <div class="text-[10px] text-red-600 font-medium mt-1">Quá Nhiệt / Cạn Nước</div>
+        </div>
+      </div>
+
+      <!-- Spacing Scale 8pt Grid -->
+      <h3 class="text-base font-semibold mb-4 flex items-center gap-2">
+        <i data-lucide="ruler" class="w-4 h-4 text-agri-500"></i>
+        <span>Spacing Scale (Chuẩn 8pt Grid từ 4px đến 80px)</span>
+      </h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-mono font-bold">4px</div>
+          <div class="text-[10px] text-slate-400">spacing-4</div>
+          <div class="mt-2 h-3 bg-agri-500 rounded" style="width: 4px;"></div>
+        </div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-mono font-bold">8px</div>
+          <div class="text-[10px] text-slate-400">spacing-8</div>
+          <div class="mt-2 h-3 bg-agri-500 rounded" style="width: 8px;"></div>
+        </div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-mono font-bold">16px</div>
+          <div class="text-[10px] text-slate-400">spacing-16 (Base)</div>
+          <div class="mt-2 h-3 bg-agri-500 rounded" style="width: 16px;"></div>
+        </div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-mono font-bold">24px</div>
+          <div class="text-[10px] text-slate-400">spacing-24</div>
+          <div class="mt-2 h-3 bg-agri-500 rounded" style="width: 24px;"></div>
+        </div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-mono font-bold">32px</div>
+          <div class="text-[10px] text-slate-400">spacing-32</div>
+          <div class="mt-2 h-3 bg-agri-500 rounded" style="width: 32px;"></div>
+        </div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-mono font-bold">48px</div>
+          <div class="text-[10px] text-slate-400">spacing-48 (Touch)</div>
+          <div class="mt-2 h-3 bg-agri-500 rounded" style="width: 48px;"></div>
+        </div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-mono font-bold">64px</div>
+          <div class="text-[10px] text-slate-400">spacing-64</div>
+          <div class="mt-2 h-3 bg-agri-500 rounded" style="width: 64px;"></div>
+        </div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <div class="text-xs font-mono font-bold">80px</div>
+          <div class="text-[10px] text-slate-400">spacing-80</div>
+          <div class="mt-2 h-3 bg-agri-500 rounded" style="width: 80px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Interactive Atomic Components & Code Switcher -->
+  <section id="components" class="py-16 border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10">
+        <h2 class="text-2xl font-bold tracking-tight">2. Atomic Components & Code Exporter</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Linh kiện tương tác trực tiếp kèm mã nguồn đa nền tảng (React Native, Flutter, HTML).</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <!-- Interactive Preview Column -->
+        <div class="space-y-6">
+          
+          <!-- Component 1: Action Buttons & FAB -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-semibold text-agri-600 dark:text-agri-400 uppercase tracking-wider">Atoms / Controls</span>
+              <span class="text-xs text-slate-400">Touch Target 48px</span>
+            </div>
+            <div class="flex flex-wrap gap-3 items-center">
+              <button class="px-5 py-3 rounded-full bg-agri-500 hover:bg-agri-600 active:scale-95 text-white font-semibold text-sm transition shadow-sm flex items-center gap-2">
+                <i data-lucide="play" class="w-4 h-4"></i> Khởi Động Bơm
+              </button>
+              <button class="px-5 py-3 rounded-full bg-solar-500 hover:bg-solar-600 text-white font-semibold text-sm transition shadow-sm flex items-center gap-2">
+                <i data-lucide="sun" class="w-4 h-4"></i> Đo Pin Nắng
+              </button>
+              <button class="px-5 py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold text-sm transition shadow-sm flex items-center gap-2">
+                <i data-lucide="alert-octagon" class="w-4 h-4"></i> Ngắt Khẩn Cấp
+              </button>
+              <!-- FAB -->
+              <button class="w-12 h-12 rounded-full bg-agri-600 text-white flex items-center justify-center shadow-lg hover:bg-agri-700 transition" title="Quét mã QR">
+                <i data-lucide="qr-code" class="w-5 h-5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Component 2: Domain Status Chips (14 States) -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <span class="text-xs font-semibold text-agri-600 dark:text-agri-400 uppercase tracking-wider block mb-3">Atoms / Status Chips</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> ACTIVE_PUMPING
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950 dark:text-blue-300">
+                <i data-lucide="loader" class="w-3 h-3 animate-spin"></i> TESTING_PUMP
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-green-200 dark:bg-green-950 dark:text-green-300">
+                <i data-lucide="check-circle" class="w-3 h-3"></i> QA_APPROVED
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950 dark:text-amber-300">
+                <i data-lucide="sun-dim" class="w-3 h-3"></i> SOLAR_INSUFFICIENT
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200 dark:bg-red-950 dark:text-red-300">
+                <i data-lucide="flame" class="w-3 h-3"></i> FAULT_OVERHEAT
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950 dark:text-rose-300">
+                <i data-lucide="droplet-off" class="w-3 h-3"></i> DRY_RUN_PROTECTION
+              </span>
+            </div>
+          </div>
+
+          <!-- Component 3: Offline & Sync Banner Pattern -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-semibold text-agri-600 dark:text-agri-400 uppercase tracking-wider">Molecules / Offline Pattern</span>
+              <button id="toggleOfflineBtn" class="text-xs px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 font-medium transition">
+                Mô phỏng: <span id="offlineStateLabel" class="text-emerald-600 font-bold">Online</span>
+              </button>
+            </div>
+            
+            <div id="offlineBanner" class="hidden p-3.5 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-900 text-red-800 dark:text-red-200 flex items-center justify-between gap-3 text-xs mb-3">
+              <div class="flex items-center gap-2">
+                <i data-lucide="wifi-off" class="w-4 h-4 text-red-600 flex-shrink-0"></i>
+                <span>Chế độ ngoại tuyến. Ảnh & biên bản nghiệm thu được lưu cục bộ.</span>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-red-200 dark:bg-red-900 font-bold text-[10px]">☁️ 3</span>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs">
+              <span class="text-slate-600 dark:text-slate-300 font-medium">Bản ghi chờ đồng bộ đám mây</span>
+              <span class="font-mono font-bold text-agri-600 dark:text-agri-400">0 pending</span>
+            </div>
+          </div>
+
+          <!-- Component 4: Real-time Solar Pump KPI Card -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <span class="text-xs font-semibold text-agri-600 uppercase">Organisms / KPI Card</span>
+                <h4 class="font-bold text-base mt-0.5">Trạm Bơm Số 04 — Vườn Xoài</h4>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">Đang Chạy</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="p-3 rounded-xl bg-solar-50 dark:bg-solar-950/30 border border-solar-100 dark:border-solar-900/50">
+                <div class="flex items-center gap-1.5 text-solar-700 dark:text-solar-400 text-xs font-medium">
+                  <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+                  <span>Công Suất Pin</span>
+                </div>
+                <div class="text-2xl font-extrabold text-solar-600 dark:text-solar-400 mt-1 font-mono">4.8 <span class="text-xs font-normal">kW</span></div>
+                <div class="text-[10px] text-slate-500 mt-0.5">Bức xạ: 850 W/m²</div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-sky-50 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/50">
+                <div class="flex items-center gap-1.5 text-sky-700 dark:text-sky-400 text-xs font-medium">
+                  <i data-lucide="droplet" class="w-3.5 h-3.5"></i>
+                  <span>Lưu Lượng Nước</span>
+                </div>
+                <div class="text-2xl font-extrabold text-sky-600 dark:text-sky-400 mt-1 font-mono">18.5 <span class="text-xs font-normal">m³/h</span></div>
+                <div class="text-[10px] text-slate-500 mt-0.5">Tổng hôm nay: 72 m³</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Code Snippet Switcher Column -->
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 shadow-xl">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+            <div class="flex items-center gap-2">
+              <button onclick="switchTab('rn')" id="tab-rn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-agri-600 text-white transition">React Native</button>
+              <button onclick="switchTab('flutter')" id="tab-flutter" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition">Flutter (Dart)</button>
+              <button onclick="switchTab('html')" id="tab-html" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition">HTML / Tailwind</button>
+            </div>
+            <button onclick="copyCurrentCode()" class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs font-mono text-slate-300 transition">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span id="copyLabel">Copy</span>
+            </button>
+          </div>
+
+          <!-- Code Containers -->
+          <pre id="code-rn" class="font-mono text-xs text-emerald-400 overflow-x-auto code-scroll max-h-[580px] leading-relaxed">
+<code>import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { colors, spacing, radius, typography } from './tokens';
+
+interface PumpKpiCardProps {
+  pumpName: string;
+  solarKw: number;
+  flowRate: number;
+  status: 'ACTIVE_PUMPING' | 'OFFLINE';
+  onPressAction?: () => void;
+}
+
+export const PumpKpiCard: React.FC&lt;PumpKpiCardProps&gt; = ({
+  pumpName,
+  solarKw,
+  flowRate,
+  status,
+  onPressAction,
+}) => {
+  return (
+    &lt;View style={styles.card}&gt;
+      &lt;View style={styles.header}&gt;
+        &lt;Text style={styles.title}&gt;{pumpName}&lt;/Text&gt;
+        &lt;View style={styles.badge}&gt;
+          &lt;Text style={styles.badgeText}&gt;{status}&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/View&gt;
+
+      &lt;View style={styles.metricsRow}&gt;
+        &lt;View style={styles.metricBoxSolar}&gt;
+          &lt;Text style={styles.metricLabel}&gt;Công Suất Pin&lt;/Text&gt;
+          &lt;Text style={styles.metricValueSolar}&gt;{solarKw} kW&lt;/Text&gt;
+        &lt;/View&gt;
+
+        &lt;View style={styles.metricBoxWater}&gt;
+          &lt;Text style={styles.metricLabel}&gt;Lưu Lượng&lt;/Text&gt;
+          &lt;Text style={styles.metricValueWater}&gt;{flowRate} m³/h&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/View&gt;
+
+      &lt;TouchableOpacity 
+        style={styles.actionButton} 
+        onPress={onPressAction}
+        accessible={true}
+        accessibilityLabel="Khởi động hoặc điều khiển máy bơm"
+      &gt;
+        &lt;Text style={styles.actionText}&gt;Điều Khiển Trạm Bơm&lt;/Text&gt;
+      &lt;/TouchableOpacity&gt;
+    &lt;/View&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.surface.card,
+    borderRadius: radius.md,
+    padding: spacing[16],
+    borderWidth: 1,
+    borderColor: colors.border.subtle,
+  },
+  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  title: { ...typography.heading4, color: colors.text.primary },
+  badge: { backgroundColor: colors.brand.agri[50], paddingHorizontal: 8, paddingVertical: 4, borderRadius: 999 },
+  badgeText: { fontSize: 12, fontWeight: '600', color: colors.brand.agri[500] },
+  metricsRow: { flexDirection: 'row', gap: spacing[12], marginTop: spacing[16] },
+  metricBoxSolar: { flex: 1, backgroundColor: colors.brand.solar[50], padding: 12, borderRadius: radius.sm },
+  metricBoxWater: { flex: 1, backgroundColor: colors.brand.sky[50], padding: 12, borderRadius: radius.sm },
+  metricLabel: { ...typography.caption, color: colors.text.secondary },
+  metricValueSolar: { ...typography.displayL, color: colors.brand.solar[500], marginTop: 4 },
+  metricValueWater: { ...typography.displayL, color: colors.brand.sky[500], marginTop: 4 },
+  actionButton: {
+    marginTop: spacing[16],
+    backgroundColor: colors.brand.agri[500],
+    paddingVertical: 14,
+    borderRadius: radius.full,
+    alignItems: 'center',
+    minHeight: 48,
+  },
+  actionText: { ...typography.button, color: '#FFFFFF' },
+});</code></pre>
+
+          <pre id="code-flutter" class="hidden font-mono text-xs text-sky-400 overflow-x-auto code-scroll max-h-[580px] leading-relaxed">
+<code>import 'package:flutter/material.dart';
+import 'tokens.dart';
+
+class PumpKpiCard extends StatelessWidget {
+  final String pumpName;
+  final double solarKw;
+  final double flowRate;
+  final bool isPumping;
+  final VoidCallback? onControlPressed;
+
+  const PumpKpiCard({
+    Key? key,
+    required this.pumpName,
+    required this.solarKw,
+    required this.flowRate,
+    this.isPumping = true,
+    this.onControlPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(SolarPumpSpacing.space16),
+      decoration: BoxDecoration(
+        color: SolarPumpColors.surfaceCard,
+        borderRadius: SolarPumpRadius.md,
+        border: Border.all(color: SolarPumpColors.neutral200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.between,
+            children: [
+              Text(pumpName, style: SolarPumpTypography.heading1.copyWith(fontSize: 18)),
+              Chip(
+                backgroundColor: SolarPumpColors.agri50,
+                label: Text(
+                  isPumping ? 'ĐANG CHẠY' : 'DỪNG',
+                  style: const TextStyle(color: SolarPumpColors.agri500, fontSize: 11, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: SolarPumpSpacing.space16),
+          Row(
+            children: [
+              Expanded(
+                child: _buildMetricTile(
+                  label: 'Công Suất Pin',
+                  value: '${solarKw.toStringAsFixed(1)} kW',
+                  bgColor: SolarPumpColors.solar50,
+                  textColor: SolarPumpColors.solar500,
+                ),
+              ),
+              const SizedBox(width: SolarPumpSpacing.space12),
+              Expanded(
+                child: _buildMetricTile(
+                  label: 'Lưu Lượng',
+                  value: '${flowRate.toStringAsFixed(1)} m³/h',
+                  bgColor: SolarPumpColors.sky50,
+                  textColor: SolarPumpColors.sky500,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: SolarPumpSpacing.space16),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: SolarPumpColors.agri500,
+              minimumSize: const Size.fromHeight(48), // 48pt Touch Target
+              shape: const StadiumBorder(),
+            ),
+            onPressed: onControlPressed,
+            child: const Text('Điều Khiển Trạm Bơm', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMetricTile({required String label, required String value, required Color bgColor, required Color textColor}) {
+    return Container(
+      padding: const EdgeInsets.all(SolarPumpSpacing.space12),
+      decoration: BoxDecoration(color: bgColor, borderRadius: SolarPumpRadius.sm),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: const TextStyle(fontSize: 12, color: SolarPumpColors.neutral600)),
+          const SizedBox(height: 4),
+          Text(value, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: textColor)),
+        ],
+      ),
+    );
+  }
+}</code></pre>
+
+          <pre id="code-html" class="hidden font-mono text-xs text-amber-300 overflow-x-auto code-scroll max-h-[580px] leading-relaxed">
+<code>&lt;!-- HTML / Tailwind CSS Implementation --&gt;
+&lt;div class="p-4 rounded-xl bg-white border border-slate-200 shadow-sm"&gt;
+  &lt;div class="flex items-center justify-between mb-4"&gt;
+    &lt;h4 class="font-bold text-slate-900 text-base"&gt;Trạm Bơm Số 04&lt;/h4&gt;
+    &lt;span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200"&gt;
+      ĐANG CHẠY
+    &lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;div class="grid grid-cols-2 gap-3 mb-4"&gt;
+    &lt;div class="p-3 rounded-lg bg-amber-50 border border-amber-100"&gt;
+      &lt;div class="text-xs text-slate-500 font-medium"&gt;Công Suất Pin&lt;/div&gt;
+      &lt;div class="text-2xl font-extrabold text-amber-600 mt-1 font-mono"&gt;4.8 kW&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="p-3 rounded-lg bg-sky-50 border border-sky-100"&gt;
+      &lt;div class="text-xs text-slate-500 font-medium"&gt;Lưu Lượng&lt;/div&gt;
+      &lt;div class="text-2xl font-extrabold text-sky-600 mt-1 font-mono"&gt;18.5 m³/h&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;button class="w-full h-12 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition shadow-sm"&gt;
+    Điều Khiển Trạm Bơm
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: 📁 02 Product Overview (Tài liệu sáu giai đoạn — Tiếng Việt) -->
+  <section id="overview" class="py-16 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-agri-100 dark:bg-agri-950 text-agri-700 dark:text-agri-300 text-xs font-semibold mb-2 border border-agri-200 dark:border-agri-800">
+            <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+            <span>📁 02 Product Overview (Tiếng Việt)</span>
+          </div>
+          <h2 class="text-2xl font-bold tracking-tight">Tài liệu sáu giai đoạn — Hệ thống Pin Năng lượng Mặt trời Mái nhà</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Toàn bộ quy trình thiết kế sản phẩm qua sáu giai đoạn: từ khám phá sản phẩm đến bàn giao cho nhà phát triển.</p>
+        </div>
+        <a href="./docs/02_PRODUCT_OVERVIEW.md" download class="px-3.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold flex items-center gap-2 hover:bg-slate-50 transition">
+          <i data-lucide="download" class="w-4 h-4 text-agri-600"></i>
+          <span>Tải file Markdown</span>
+        </a>
+      </div>
+
+      <!-- Core Equipment Summary Card -->
+      <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-8">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-agri-600 dark:text-agri-400 mb-3 flex items-center gap-2">
+          <i data-lucide="cpu" class="w-4 h-4"></i>
+          <span>Bộ thiết bị chủ yếu bao gồm:</span>
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-solar-50 dark:bg-solar-950/40 border border-solar-200 dark:border-solar-900">
+            <div class="font-bold text-sm text-solar-800 dark:text-solar-300 flex items-center gap-2">
+              <i data-lucide="sun" class="w-4 h-4 text-solar-500"></i> Tấm pin mặt trời (Cốt lõi)
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Lắp trên mái nhà, thu năng lượng mặt trời chuyển thành dòng điện quang năng.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-agri-50 dark:bg-agri-950/40 border border-agri-200 dark:border-agri-900">
+            <div class="font-bold text-sm text-agri-800 dark:text-agri-300 flex items-center gap-2">
+              <i data-lucide="zap" class="w-4 h-4 text-agri-500"></i> Biến tần / Inverter (Cốt lõi)
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Điều tiết, bảo vệ quá tải và chuyển đổi điện năng cho phụ tải và lưới điện.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-900">
+            <div class="font-bold text-sm text-sky-800 dark:text-sky-300 flex items-center gap-2">
+              <i data-lucide="droplet" class="w-4 h-4 text-sky-500"></i> Máy bơm nước (Tùy chọn)
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Sử dụng điện từ hệ thống pin mặt trời phục vụ tưới tiêu nông nghiệp.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 Phases Accordion / Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Phase 1 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-agri-100 dark:bg-agri-950 text-agri-700 dark:text-agri-300">GIAI ĐOẠN 01</span>
+              <span class="text-xs text-emerald-600 font-bold flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5"></i> Hoàn thành</span>
+            </div>
+            <h4 class="font-bold text-base mb-2">Khám phá sản phẩm</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+              Mục tiêu kinh doanh, tuyên bố vấn đề, 5 nhóm vai trò thực địa, tiêu chí thành công và phạm vi MVP.
+            </p>
+            <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-agri-500"></i> 5 vai trò trên 1 app duy nhất</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-agri-500"></i> Giảm giấy tờ & theo dõi thời gian thực</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-agri-500"></i> Sẵn sàng cho chế độ ngoại tuyến</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300">GIAI ĐOẠN 02</span>
+              <span class="text-xs text-emerald-600 font-bold flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5"></i> Hoàn thành</span>
+            </div>
+            <h4 class="font-bold text-base mb-2">Lập kế hoạch UX</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+              Quy trình 20 bước từ đầu đến cuối, kiến trúc thông tin, hành trình người dùng từng vai trò và chiến lược bảng điều khiển.
+            </p>
+            <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-sky-500"></i> Chuỗi 20 bước xuyên suốt</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-sky-500"></i> 7 trạng thái trải nghiệm cốt lõi</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-sky-500"></i> Bảng điều khiển trả lời 3 câu hỏi</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-solar-100 dark:bg-solar-950 text-solar-700 dark:text-solar-300">GIAI ĐOẠN 03</span>
+              <span class="text-xs text-emerald-600 font-bold flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5"></i> Hoàn thành</span>
+            </div>
+            <h4 class="font-bold text-base mb-2">Hệ thống thiết kế</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+              Thư viện thành phần, giá trị thiết kế 8pt grid, màu sắc thương hiệu, font Inter và các mẫu dùng chung.
+            </p>
+            <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-solar-500"></i> 48 Color Tokens & 14 Spacings</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-solar-500"></i> Bảng màu trạng thái & trung tính</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-solar-500"></i> 18 mẫu thiết kế chuẩn hóa</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300">GIAI ĐOẠN 04</span>
+              <span class="text-xs text-emerald-600 font-bold flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5"></i> Hoàn thành</span>
+            </div>
+            <h4 class="font-bold text-base mb-2">Thiết kế ứng dụng di động</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+              Danh mục 11 mô-đun chi tiết bao phủ toàn bộ luồng nghiệp vụ thực địa và các trường hợp ngoại lệ.
+            </p>
+            <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-purple-500"></i> 11 Mô-đun chức năng</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-purple-500"></i> Quản lý lỗi & ngoại tuyến</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-purple-500"></i> Ước tính 60+ màn hình 390px</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between opacity-90">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300">GIAI ĐOẠN 05</span>
+              <span class="text-xs text-amber-600 font-bold">Đề xuất — Chưa bắt đầu</span>
+            </div>
+            <h4 class="font-bold text-base mb-2">Xây dựng nguyên mẫu</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+              Kế hoạch kịch bản theo vai trò: Đường đi thành công, đường đi lỗi và đường đi ngoại tuyến.
+            </p>
+            <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="circle" class="w-3.5 h-3.5 text-amber-500"></i> 5 kịch bản cốt lõi theo vai trò</li>
+              <li class="flex items-center gap-2"><i data-lucide="circle" class="w-3.5 h-3.5 text-amber-500"></i> Đánh giá nội bộ & các bên liên quan</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 6 -->
+        <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between opacity-90">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300">GIAI ĐOẠN 06</span>
+              <span class="text-xs text-rose-600 font-bold">Đề xuất — Chưa bắt đầu</span>
+            </div>
+            <h4 class="font-bold text-base mb-2">Bàn giao (Handoff)</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+              Thông số kỹ thuật, tài nguyên SVG, danh sách kiểm tra chấp nhận và các vấn đề còn mở cần giải quyết.
+            </p>
+            <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+              <li class="flex items-center gap-2"><i data-lucide="circle" class="w-3.5 h-3.5 text-rose-500"></i> Xuất tokens & tài nguyên SVG</li>
+              <li class="flex items-center gap-2"><i data-lucide="circle" class="w-3.5 h-3.5 text-rose-500"></i> Checklist chất lượng & dev review</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: 390px Mobile Simulator (5 Roles) -->
+  <section id="simulator" class="py-16 border-b border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-2xl font-bold tracking-tight">3. 390px Mobile First Simulator</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Mô phỏng thực tế trên khung màn hình chuẩn 390 × 844px cho 5 nhóm vai trò người dùng.</p>
+
+        <!-- Role Selectors -->
+        <div class="mt-6 flex flex-wrap justify-center gap-2">
+          <button onclick="setRole('delivery')" id="btn-role-delivery" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-agri-600 text-white shadow-sm transition">1. Delivery Partner</button>
+          <button onclick="setRole('install')" id="btn-role-install" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">2. Installation Team</button>
+          <button onclick="setRole('qa')" id="btn-role-qa" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">3. QA Inspector</button>
+          <button onclick="setRole('service')" id="btn-role-service" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">4. Service Tech</button>
+          <button onclick="setRole('farmer')" id="btn-role-farmer" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">5. Farmer</button>
+        </div>
+      </div>
+
+      <!-- Mobile Mockup Frame -->
+      <div class="flex justify-center">
+        <div class="phone-mockup rounded-[48px] bg-slate-900 overflow-hidden flex flex-col relative border-4 border-slate-800">
+          
+          <!-- Notch / Dynamic Island -->
+          <div class="h-11 bg-slate-950 flex items-center justify-between px-7 text-white text-xs select-none">
+            <span class="font-semibold text-[11px]">9:41</span>
+            <div class="w-24 h-4 bg-black rounded-full mx-auto"></div>
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="signal" class="w-3.5 h-3.5"></i>
+              <i data-lucide="wifi" class="w-3.5 h-3.5"></i>
+              <i data-lucide="battery-charging" class="w-3.5 h-3.5 text-emerald-400"></i>
+            </div>
+          </div>
+
+          <!-- Phone Screen Dynamic View -->
+          <div id="phone-screen-content" class="flex-1 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-y-auto p-4 space-y-4">
+            <!-- Injected by JavaScript based on active role -->
+          </div>
+
+          <!-- Bottom Home Indicator -->
+          <div class="h-6 bg-slate-50 dark:bg-slate-950 flex items-center justify-center">
+            <div class="w-32 h-1 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Export & Deployment Guide -->
+  <section id="export" class="py-16 bg-white dark:bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="p-8 rounded-3xl bg-gradient-to-tr from-agri-600 via-agri-700 to-solar-600 text-white shadow-2xl">
+        <div class="max-w-3xl">
+          <span class="px-3 py-1 rounded-full bg-white/20 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">GitHub Pages Deployment</span>
+          <h2 class="text-3xl font-extrabold mt-4">Sẵn sàng xuất bản lên wikialisa.github.io/UI</h2>
+          <p class="mt-3 text-white/90 text-sm leading-relaxed">
+            Mã nguồn đã được tổ chức nguyên khối không phụ thuộc build step phức tạp. Bạn có thể đẩy trực tiếp repository này lên nhánh <code class="bg-black/30 px-1.5 py-0.5 rounded text-white font-mono">main</code> hoặc <code class="bg-black/30 px-1.5 py-0.5 rounded text-white font-mono">gh-pages</code> để kích hoạt web trực tuyến tại:
+          </p>
+          <div class="mt-4 p-3 rounded-xl bg-black/30 font-mono text-xs flex items-center justify-between border border-white/20">
+            <span>https://wikialisa.github.io/UI</span>
+            <button onclick="navigator.clipboard.writeText('git add . && git commit -m \"Deploy UI Kits\" && git push'); alert('Đã sao chép lệnh Git!')" class="px-2.5 py-1 rounded bg-white text-agri-700 text-xs font-bold hover:bg-slate-100 transition">
+              Copy Git Push Command
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500">
+    <p>© 2026 WikiAlisa — Agriculture Solar Pump Mobile Design System & UI Kits. All rights reserved.</p>
+  </footer>
+
+  <!-- Interactive Logic Scripts -->
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    });
+
+    // Offline mode toggle
+    const toggleOfflineBtn = document.getElementById('toggleOfflineBtn');
+    const offlineBanner = document.getElementById('offlineBanner');
+    const offlineStateLabel = document.getElementById('offlineStateLabel');
+    let isOffline = false;
+
+    toggleOfflineBtn.addEventListener('click', () => {
+      isOffline = !isOffline;
+      if (isOffline) {
+        offlineBanner.classList.remove('hidden');
+        offlineStateLabel.textContent = 'Offline';
+        offlineStateLabel.className = 'text-red-600 font-bold';
+      } else {
+        offlineBanner.classList.add('hidden');
+        offlineStateLabel.textContent = 'Online';
+        offlineStateLabel.className = 'text-emerald-600 font-bold';
+      }
+    });
+
+    // Code Switcher Tab Logic
+    function switchTab(lang) {
+      ['rn', 'flutter', 'html'].forEach(t => {
+        document.getElementById('code-' + t).classList.add('hidden');
+        document.getElementById('tab-' + t).className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition';
+      });
+      document.getElementById('code-' + lang).classList.remove('hidden');
+      document.getElementById('tab-' + lang).className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-agri-600 text-white transition';
+    }
+
+    function copyCurrentCode() {
+      let codeText = '';
+      if (!document.getElementById('code-rn').classList.contains('hidden')) {
+        codeText = document.getElementById('code-rn').innerText;
+      } else if (!document.getElementById('code-flutter').classList.contains('hidden')) {
+        codeText = document.getElementById('code-flutter').innerText;
+      } else {
+        codeText = document.getElementById('code-html').innerText;
+      }
+      navigator.clipboard.writeText(codeText).then(() => {
+        const lbl = document.getElementById('copyLabel');
+        lbl.textContent = 'Copied!';
+        setTimeout(() => { lbl.textContent = 'Copy'; }, 2000);
+      });
+    }
+
+    // Role Screens Simulator
+    const rolesData = {
+      delivery: `
+        <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <h3 class="font-bold text-sm">Delivery Partner</h3>
+            <p class="text-[11px] text-slate-500">Chuyến giao kiện bơm #SP-8942</p>
+          </div>
+          <span class="p-2 rounded-full bg-agri-100 text-agri-700"><i data-lucide="truck" class="w-4 h-4"></i></span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-semibold text-slate-700 dark:text-slate-300">Điểm đến: Hộ A. Ba Phi</span>
+            <span class="text-agri-600 font-bold">2.4 km</span>
+          </div>
+          <p class="text-[11px] text-slate-500">Ấp 3, Xã Tân Lập, Huyện Tháp Mười, Đồng Tháp</p>
+          <button class="w-full py-2 rounded-lg bg-sky-500 text-white text-xs font-semibold flex items-center justify-center gap-1.5">
+            <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Mở Bản Đồ Định Vị GPS
+          </button>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+          <span class="text-xs font-bold block">Quét QR & Bàn Giao</span>
+          <div class="h-28 rounded-lg border-2 border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center text-slate-400 gap-1">
+            <i data-lucide="qr-code" class="w-6 h-6 text-agri-600"></i>
+            <span class="text-[11px]">Bấm quét mã QR trên thùng máy</span>
+          </div>
+          <button class="w-full py-2.5 rounded-full bg-agri-600 text-white text-xs font-bold">Xác Nhận Đã Giao Hàng</button>
+        </div>
+      `,
+      install: `
+        <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <h3 class="font-bold text-sm">Installation Team</h3>
+            <p class="text-[11px] text-slate-500">Biên bản lắp đặt trạm #SP-8942</p>
+          </div>
+          <span class="p-2 rounded-full bg-solar-100 text-solar-700"><i data-lucide="wrench" class="w-4 h-4"></i></span>
+        </div>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
+            <input type="checkbox" checked class="accent-agri-600 rounded">
+            <span>Khung dàn pin hướng Nam, góc nghiêng 15°</span>
+          </label>
+          <label class="flex items-center gap-2 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
+            <input type="checkbox" checked class="accent-agri-600 rounded">
+            <span>Độ sâu giếng khoan đạt 35m (Chuẩn lưu lượng)</span>
+          </label>
+          <label class="flex items-center gap-2 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs">
+            <input type="checkbox" class="accent-agri-600 rounded">
+            <span>Chụp 4 góc ảnh giếng & dàn pin nghiệm thu</span>
+          </label>
+        </div>
+        <button class="w-full py-2.5 rounded-full bg-agri-600 text-white text-xs font-bold flex items-center justify-center gap-1.5">
+          <i data-lucide="camera" class="w-4 h-4"></i> Chụp Ảnh Thực Địa (Geo-tag)
+        </button>
+      `,
+      qa: `
+        <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <h3 class="font-bold text-sm">QA Inspector</h3>
+            <p class="text-[11px] text-slate-500">Kiểm định chất lượng nghiệm thu</p>
+          </div>
+          <span class="p-2 rounded-full bg-purple-100 text-purple-700"><i data-lucide="clipboard-check" class="w-4 h-4"></i></span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 text-xs">
+          <div class="flex justify-between"><span class="text-slate-500">Điện áp hở mạch (Voc):</span><span class="font-bold">420V (Đạt)</span></div>
+          <div class="flex justify-between"><span class="text-slate-500">Dòng tải đỉnh (Imp):</span><span class="font-bold">11.2A (Đạt)</span></div>
+          <div class="flex justify-between"><span class="text-slate-500">Lưu lượng nước thực tế:</span><span class="font-bold text-agri-600">19 m³/h</span></div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <button class="py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold">Phê Duyệt QA</button>
+          <button class="py-2.5 rounded-xl bg-red-600 text-white text-xs font-bold">Từ Chối</button>
+        </div>
+      `,
+      service: `
+        <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <h3 class="font-bold text-sm">Service Technician</h3>
+            <p class="text-[11px] text-slate-500">Nhật ký bảo trì & sửa chữa</p>
+          </div>
+          <span class="p-2 rounded-full bg-amber-100 text-amber-700"><i data-lucide="shield-alert" class="w-4 h-4"></i></span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-amber-900 dark:text-amber-200 text-xs">
+          <span class="font-bold">Cảnh báo:</span> Bơm ngắt do phát hiện cạn nước (Dry-run Protection).
+        </div>
+        <button class="w-full py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold">Thay Cảm Biến Mực Nước</button>
+      `,
+      farmer: `
+        <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+          <div>
+            <h3 class="font-bold text-sm">Bác Ba Phi (Chủ Hộ)</h3>
+            <p class="text-[11px] text-slate-500">Trạm bơm năng lượng mặt trời #04</p>
+          </div>
+          <span class="p-2 rounded-full bg-agri-100 text-agri-700"><i data-lucide="user" class="w-4 h-4"></i></span>
+        </div>
+        <div class="p-4 rounded-2xl bg-gradient-to-tr from-agri-600 to-solar-500 text-white space-y-3">
+          <div class="text-xs uppercase opacity-80">Trạng Thái Bơm</div>
+          <div class="text-3xl font-extrabold font-mono">18.5 m³/h</div>
+          <div class="text-xs flex items-center gap-1"><i data-lucide="sun" class="w-3.5 h-3.5"></i> Nắng mạnh • Tiết kiệm 45.000đ điện hôm nay</div>
+        </div>
+        <button class="w-full py-3 rounded-full bg-red-600 text-white text-xs font-bold shadow-md">Tắt Bơm Khẩn Cấp</button>
+      `
+    };
+
+    function setRole(role) {
+      document.getElementById('phone-screen-content').innerHTML = rolesData[role];
+      ['delivery', 'install', 'qa', 'service', 'farmer'].forEach(r => {
+        const btn = document.getElementById('btn-role-' + r);
+        if (r === role) {
+          btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-agri-600 text-white shadow-sm transition';
+        } else {
+          btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition';
+        }
+      });
+      lucide.createIcons();
+    }
+
+    // Initial role
+    setRole('delivery');
+    lucide.createIcons();
+  </script>
+</body>
+</html>

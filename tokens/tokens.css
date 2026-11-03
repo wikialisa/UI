@@ -1,0 +1,104 @@
+/**
+ * Agriculture Solar Pump Design System
+ * CSS Design Tokens with Light / Dark Mode
+ */
+
+:root {
+  /* Brand Solar */
+  --color-solar-50: #FFF9E6;
+  --color-solar-100: #FFF1B8;
+  --color-solar-200: #FFE480;
+  --color-solar-300: #FFD347;
+  --color-solar-400: #FFC01F;
+  --color-solar-500: #E59800;
+  --color-solar-600: #C68200;
+  --color-solar-700: #9E6400;
+
+  /* Brand Agriculture */
+  --color-agri-50: #EBF7EE;
+  --color-agri-100: #C8EBD0;
+  --color-agri-200: #94D9A2;
+  --color-agri-300: #58C26E;
+  --color-agri-400: #2FA94B;
+  --color-agri-500: #1B873F;
+  --color-agri-600: #146830;
+  --color-agri-700: #0F4E24;
+
+  /* Brand Sky / Water */
+  --color-sky-50: #F0F9FF;
+  --color-sky-500: #0284C7;
+  --color-sky-600: #0369A1;
+
+  /* Neutrals */
+  --color-neutral-50: #F8FAFC;
+  --color-neutral-100: #F1F5F9;
+  --color-neutral-200: #E2E8F0;
+  --color-neutral-300: #CBD5E1;
+  --color-neutral-400: #94A3B8;
+  --color-neutral-500: #64748B;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1E293B;
+  --color-neutral-900: #0F172A;
+
+  /* Semantics */
+  --color-semantic-success: #16A34A;
+  --color-semantic-warning: #D97706;
+  --color-semantic-danger: #DC2626;
+  --color-semantic-info: #2563EB;
+
+  /* Surfaces & Typography (Light Mode Default) */
+  --color-surface-page: #F8FAFC;
+  --color-surface-card: #FFFFFF;
+  --color-surface-elevated: #FFFFFF;
+  --color-surface-offline: #FEF2F2;
+
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94A3B8;
+  --color-text-inverse: #FFFFFF;
+
+  --color-border-subtle: #E2E8F0;
+  --color-border-focus: #1B873F;
+
+  /* Spacing 8pt Grid */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-80: 80px;
+
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Font Families */
+  --font-family-base: 'Inter', 'SF Pro Display', 'Product Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+  --color-surface-page: #0B1120;
+  --color-surface-card: #1E293B;
+  --color-surface-elevated: #334155;
+  --color-surface-offline: #450A0A;
+
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #64748B;
+  --color-text-inverse: #0F172A;
+
+  --color-border-subtle: #334155;
+  --color-border-focus: #2FA94B;
+}
