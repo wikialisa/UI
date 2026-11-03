@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+.npm/
+
+# Large archive files (extracted assets are tracked in assets/)
+*.zip
+*.tar.gz
+
+# System & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
