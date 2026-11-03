@@ -1,0 +1,21 @@
+{
+  "name": "@wikialisa/offline-sync",
+  "version": "1.1.0",
+  "description": "Offline-First Synchronization Engine for Agriculture Solar Pump Field Operations",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "offline-first",
+    "sync",
+    "solar-pump",
+    "sqlite",
+    "indexeddb",
+    "field-operations",
+    "wikialisa"
+  ],
+  "author": "WikiAlisa",
+  "license": "MIT"
+}

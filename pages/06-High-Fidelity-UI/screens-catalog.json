@@ -1,0 +1,66 @@
+{
+  "version": "1.1.0",
+  "figmaFileKey": "eq0EA9dRSWfS2ivuFohJdg",
+  "canvasId": "9:78",
+  "canvasName": "📁 06 High-Fidelity UI",
+  "targetDevice": "Apple iPhone 14 / 15 (390 x 844 px)",
+  "totalScreens": 49,
+  "categories": [
+    {
+      "name": "Authentication & Session Security",
+      "screens": [
+        { "id": "19:139", "name": "auth-otp-verification", "width": 390, "height": 844, "type": "Screen", "description": "Màn hình nhập mã xác thực OTP 6 chữ số, thời gian hết hạn 5 phút, mã hóa AES-256" },
+        { "id": "19:368", "name": "auth-session-expired", "width": 390, "height": 844, "type": "Screen", "description": "Cảnh báo phiên làm việc hết hạn sau 30 phút không hoạt động vì an toàn vận hành" },
+        { "id": "19:398", "name": "auth-permission-setup", "width": 390, "height": 1078, "type": "Screen", "description": "Thiết lập 5 quyền hệ thống: Vị trí GPS, Camera quét QR, Bộ nhớ đệm ngoại tuyến, Thông báo, Bluetooth" },
+        { "id": "19:470", "name": "auth-role-detection", "width": 390, "height": 844, "type": "Screen", "description": "Tự động nhận diện vai trò người dùng thực địa sau khi đăng nhập thành công" },
+        { "id": "19:516", "name": "auth-data-sync", "width": 390, "height": 844, "type": "Screen", "description": "Màn hình đồng bộ dữ liệu ngoại tuyến lần đầu khi tải thông tin ca làm việc" },
+        { "id": "19:695", "name": "auth-success", "width": 390, "height": 855, "type": "Screen", "description": "Chào mừng người dùng vào ca trực, hiển thị tóm tắt kế hoạch trong ngày" },
+        { "id": "19:812", "name": "auth-loading-states", "width": 390, "height": 856, "type": "Screen", "description": "Các trạng thái tải dữ liệu, xoay vòng đồng bộ và skeleton placeholders" },
+        { "id": "19:994", "name": "modal-you-are-currently-offline", "width": 358, "height": 253, "type": "Modal", "description": "Hộp thoại thông báo chuyển sang chế độ ngoại tuyến và cơ chế tự lưu" },
+        { "id": "19:983", "name": "modal-session-expiring-soon", "width": 358, "height": 235, "type": "Modal", "description": "Cảnh báo phiên sắp hết hạn kèm đếm ngược 60 giây" },
+        { "id": "19:972", "name": "modal-confirm-operational-logout", "width": 358, "height": 235, "type": "Modal", "description": "Xác nhận đăng xuất, kiểm tra xem còn bản ghi chưa đồng bộ hay không" }
+      ]
+    },
+    {
+      "name": "Role Selection & Portal Switcher",
+      "screens": [
+        { "id": "22:169", "name": "card-role-delivery-partner", "width": 358, "height": 83, "type": "Component", "description": "Thẻ chọn vai trò Đối tác Giao vận & Bàn giao thiết bị" },
+        { "id": "22:190", "name": "card-role-installation-team", "width": 358, "height": 83, "type": "Component", "description": "Thẻ chọn vai trò Đội ngũ Thi công & Lắp đặt giếng/pin" },
+        { "id": "22:209", "name": "card-role-qa-inspector", "width": 358, "height": 83, "type": "Component", "description": "Thẻ chọn vai trò Chuyên viên Nghiệm thu & Kiểm định chất lượng" },
+        { "id": "22:230", "name": "card-role-service-technician", "width": 358, "height": 83, "type": "Component", "description": "Thẻ chọn vai trò Kỹ thuật viên Bảo trì & Sửa chữa sự cố" },
+        { "id": "22:249", "name": "card-role-farmer-consumer", "width": 358, "height": 83, "type": "Component", "description": "Thẻ chọn vai trò Nông dân chủ hộ sử dụng nước tưới" }
+      ]
+    },
+    {
+      "name": "Delivery Partner End-to-End Field Operations (Del 01-18)",
+      "screens": [
+        { "id": "60:63", "name": "Dash / 01 - Delivery Partner", "width": 390, "height": 1139, "type": "Screen", "description": "Bảng điều khiển trung tâm chuyến giao: Đơn cần giao, lộ trình tối ưu, trạng thái xe" },
+        { "id": "32:2489", "name": "Del / 01 - Delivery List", "width": 390, "height": 1012, "type": "Screen", "description": "Danh sách tất cả các điểm giao hàng theo thứ tự ưu tiên địa lý" },
+        { "id": "32:2620", "name": "Del / 02 - Delivery Details", "width": 390, "height": 1232, "type": "Screen", "description": "Chi tiết linh kiện máy bơm, 8 tấm pin mặt trời, inverter và số điện thoại chủ hộ" },
+        { "id": "32:2752", "name": "Del / 03 - Route Navigation", "width": 390, "height": 844, "type": "Screen", "description": "Bản đồ dẫn đường GPS thực địa qua kênh rạch nông thôn" },
+        { "id": "32:2963", "name": "Del / 04 - Farmer Contact", "width": 390, "height": 1083, "type": "Screen", "description": "Liên hệ chủ hộ, hướng dẫn chuẩn bị vị trí bốc dỡ linh kiện" },
+        { "id": "32:3062", "name": "Del / 05 - OTP Verification", "width": 390, "height": 939, "type": "Screen", "description": "Xác nhận mã bảo mật bàn giao thực địa" },
+        { "id": "32:3133", "name": "Del / 06 - Serial Verification", "width": 390, "height": 1032, "type": "Screen", "description": "Quét mã vạch / QR khớp số sê-ri máy bơm và biến tần" },
+        { "id": "32:3296", "name": "Del / 07 - Photo Upload", "width": 390, "height": 935, "type": "Screen", "description": "Chụp 4 góc ảnh bằng chứng hạ hàng an toàn có gắn watermark tọa độ GPS" },
+        { "id": "32:3376", "name": "Del / 08 - Farmer Signature", "width": 390, "height": 844, "type": "Screen", "description": "Bảng ký nhận điện tử trên màn hình cảm ứng" },
+        { "id": "32:3430", "name": "Del / 09 - GPS Verification", "width": 390, "height": 844, "type": "Screen", "description": "Khóa tọa độ địa lý bàn giao để làm căn cứ cấp bảo hành" },
+        { "id": "32:3531", "name": "Del / 10 - Delivery Remarks", "width": 390, "height": 888, "type": "Screen", "description": "Ghi chú điều kiện thực tế (địa hình sình lầy, nguồn nước, giếng khoan)" },
+        { "id": "32:3605", "name": "Del / 11 - Delivery Confirmation", "width": 390, "height": 844, "type": "Screen", "description": "Biên bản nghiệm thu giao hàng hoàn tất (POD) và phát sinh mã điện tử" },
+        { "id": "32:3687", "name": "Del / 12 - Offline Sync", "width": 390, "height": 1094, "type": "Screen", "description": "Quản lý hàng đợi đồng bộ khi giao hàng tại khu vực mất sóng viễn thông" },
+        { "id": "32:3886", "name": "Del / 13 - Delivery Timeline", "width": 390, "height": 1160, "type": "Screen", "description": "Dòng thời gian các mốc: Xuất kho ➔ Đến nơi ➔ Quét sê-ri ➔ Ký nhận ➔ Hoàn tất" },
+        { "id": "32:4037", "name": "Del / 14 - Dashboard Widgets", "width": 390, "height": 1003, "type": "Screen", "description": "Các widget KPI ca làm việc: Số kiện hoàn thành, thời gian trung bình, điểm hài lòng" },
+        { "id": "32:4137", "name": "Del / 15 - Bottom Sheets", "width": 390, "height": 1347, "type": "Screen", "description": "Các bảng trượt điều khiển: Tùy chọn sự cố, yêu cầu hỗ trợ kỹ thuật nhanh" },
+        { "id": "32:4394", "name": "Del / 16 - Dialogs", "width": 390, "height": 1145, "type": "Screen", "description": "Các hộp thoại cảnh báo: Hủy đơn, chuyển ca, xác nhận đổi hàng lỗi sê-ri" },
+        { "id": "35:4461", "name": "Del / 17 - Empty States", "width": 390, "height": 1269, "type": "Screen", "description": "Màn hình rỗng: Không có chuyến giao, đã giao hết kiện trong ngày" },
+        { "id": "35:4515", "name": "Del / 18 - Error States", "width": 390, "height": 1135, "type": "Screen", "description": "Màn hình lỗi: Sai mã sê-ri, không tìm thấy địa chỉ, mất định vị GPS" }
+      ]
+    },
+    {
+      "name": "System, Loading & Accessibility Standards",
+      "screens": [
+        { "id": "36:4633", "name": "Screen-19-Loading-States", "width": 390, "height": 1208, "type": "Screen", "description": "Hiệu ứng Shimmer Loading, bộ đếm phần trăm nạp dữ liệu" },
+        { "id": "36:4707", "name": "Screen-20-Accessibility", "width": 390, "height": 1412, "type": "Screen", "description": "Chế độ tương phản cao, kích thước chữ lớn cho nông dân lớn tuổi" }
+      ]
+    }
+  ]
+}

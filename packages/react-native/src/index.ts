@@ -9,6 +9,7 @@ export * from './components/atoms/StatusChip';
 
 // Molecules
 export * from './components/molecules/OfflineBanner';
+export * from './components/molecules/OfflineSyncStatusBadge';
 
 // Organisms
 export * from './components/organisms/PumpKpiCard';

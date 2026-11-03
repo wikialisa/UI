@@ -83,6 +83,8 @@
         <a href="#tokens" class="hover:text-agri-600 transition">Design Tokens</a>
         <a href="#components" class="hover:text-agri-600 transition">Atomic Components</a>
         <a href="#simulator" class="hover:text-agri-600 transition">390px Simulator</a>
+        <a href="#screens" class="hover:text-agri-600 transition">49 Màn Hình</a>
+        <a href="#offline" class="hover:text-agri-600 transition">Offline Sync</a>
         <a href="#export" class="hover:text-agri-600 transition">Export Codes</a>
       </nav>
 
@@ -824,7 +826,127 @@ class PumpKpiCard extends StatelessWidget {
     </div>
   </section>
 
-  <!-- Section 4: Export & Deployment Guide -->
+
+  <!-- Section 4: 49 Mobile Screens Catalog (Figma Page 9:78) -->
+  <section id="screens" class="py-16 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-agri-100 dark:bg-agri-950 text-agri-700 dark:text-agri-300 text-xs font-semibold mb-3 border border-agri-200 dark:border-agri-800">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            <span>Figma Canvas 9:78 • 49 Screens</span>
+          </div>
+          <h2 class="text-2xl font-bold tracking-tight">4. 49 Màn Hình Di Động Chuẩn 390px (High-Fidelity)</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Đồng bộ chính xác từ file Figma <code class="font-mono text-agri-600">eq0EA9dRSWfS2ivuFohJdg</code>, phân tách 4 cụm nghiệp vụ thực địa.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="./pages/06-High-Fidelity-UI/screens-catalog.json" download class="px-3.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-semibold flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+            <i data-lucide="download" class="w-4 h-4 text-agri-600"></i> Tải screens-catalog.json
+          </a>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        <button onclick="filterScreens('all')" id="btn-scr-all" class="px-3 py-1.5 rounded-full text-xs font-bold bg-agri-600 text-white shadow-sm transition">Tất Cả (49)</button>
+        <button onclick="filterScreens('auth')" id="btn-scr-auth" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">1. Auth & Security (10)</button>
+        <button onclick="filterScreens('roles')" id="btn-scr-roles" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">2. Role Matrix (5)</button>
+        <button onclick="filterScreens('delivery')" id="btn-scr-delivery" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">3. Delivery Journey Del 01-18 (19)</button>
+        <button onclick="filterScreens('system')" id="btn-scr-system" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">4. System & A11y (15)</button>
+      </div>
+
+      <!-- Screens Grid -->
+      <div id="screens-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Offline-First Sync Engine Playground -->
+  <section id="offline" class="py-16 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-xs font-semibold mb-3 border border-emerald-200 dark:border-emerald-800">
+          <i data-lucide="database" class="w-3.5 h-3.5"></i>
+          <span>Offline-First Engine • SQLite / Local Queue</span>
+        </div>
+        <h2 class="text-2xl font-bold tracking-tight">5. Bộ Máy Đồng Bộ Ngoại Tuyến (Offline-First Sync Engine)</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Cơ chế lưu trữ đệm và đồng bộ dữ liệu thực địa ngoài đồng ruộng khi mất sóng viễn thông 4G.</p>
+      </div>
+
+      <!-- Engine Interactive Playground Box -->
+      <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl max-w-4xl mx-auto space-y-6">
+        
+        <!-- Engine Status Header -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <div class="flex items-center gap-3">
+            <span id="engine-network-indicator" class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span id="engine-network-text">Sóng 4G: ONLINE</span>
+            </span>
+            <span id="engine-pending-badge" class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold">
+              <span id="engine-pending-count">0</span> bản ghi chờ đồng bộ
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="toggleEngineNetwork()" id="btn-toggle-engine-network" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 shadow hover:opacity-90 transition">
+              Ngắt Sóng 4G (Giả Lập Offline)
+            </button>
+          </div>
+        </div>
+
+        <!-- Field Actions to Enqueue Records -->
+        <div class="space-y-2">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Thao Tác Thực Địa Ngoài Đồng Ruộng:</span>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="enqueueSampleRecord('POD')" class="px-3 py-2 rounded-xl bg-agri-50 dark:bg-agri-950/50 border border-agri-200 dark:border-agri-800 text-agri-700 dark:text-agri-300 hover:bg-agri-100 text-xs font-bold flex items-center gap-1.5 transition">
+              <i data-lucide="package-check" class="w-4 h-4"></i> + Thêm POD Giao Bơm #SP-8942
+            </button>
+            <button onclick="enqueueSampleRecord('PHOTO')" class="px-3 py-2 rounded-xl bg-sky-50 dark:bg-sky-950/50 border border-sky-200 dark:border-sky-800 text-sky-700 dark:text-sky-300 hover:bg-sky-100 text-xs font-bold flex items-center gap-1.5 transition">
+              <i data-lucide="camera" class="w-4 h-4"></i> + Chụp Ảnh Giếng Thực Địa (Geo-tag)
+            </button>
+            <button onclick="enqueueSampleRecord('SIGNATURE')" class="px-3 py-2 rounded-xl bg-purple-50 dark:bg-purple-950/50 border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 hover:bg-purple-100 text-xs font-bold flex items-center gap-1.5 transition">
+              <i data-lucide="pen-tool" class="w-4 h-4"></i> + Lưu Chữ Ký Nông Dân Ba Phi
+            </button>
+          </div>
+        </div>
+
+        <!-- Queue Table Visualizer -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-500">
+            <span>Hàng Đợi Bộ Nhớ Cục Bộ (Local Sync Queue):</span>
+            <div class="flex gap-2">
+              <button onclick="triggerEngineSync()" id="btn-engine-sync-now" class="text-agri-600 hover:text-agri-700 font-bold flex items-center gap-1">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Đồng Bộ Ngay
+              </button>
+              <span class="text-slate-300 dark:text-slate-700">|</span>
+              <button onclick="clearEngineQueue()" class="text-slate-400 hover:text-red-500 font-medium">Xóa Hết</button>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50 dark:bg-slate-950">
+            <div class="max-h-60 overflow-y-auto divide-y divide-slate-200 dark:divide-slate-800" id="engine-queue-list">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Conflict Resolution Badge -->
+        <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs space-y-1">
+          <div class="font-bold flex items-center gap-1.5 text-slate-700 dark:text-slate-200">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+            <span>Thuật toán giải quyết xung đột: Last-Write-Wins (LWW) + Ưu tiên phê duyệt QA</span>
+          </div>
+          <p class="text-slate-500 text-[11px] leading-relaxed">
+            Dữ liệu lưu đệm được mã hóa kiểm tra toàn vẹn SHA-256. Khi kết nối lại mạng di động, hệ thống tự động đẩy gói dữ liệu theo lô (Batch of 10), đảm bảo không mất mát thông tin thực địa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Export & Deployment Guide -->
   <section id="export" class="py-16 bg-white dark:bg-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="p-8 rounded-3xl bg-gradient-to-tr from-agri-600 via-agri-700 to-solar-600 text-white shadow-2xl">
