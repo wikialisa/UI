@@ -1,48 +1,413 @@
-/* WikiAlisa Kit — Vanilla CSS Component Styles */
+/* WikiAlisa Kit — Vanilla CSS Component Styles (Parity with Figma eq0EA9dRSWfS2ivuFohJdg) */
 @import url('../../tokens/tokens.css');
 
-.solar-btn {
+/* ==========================================================================
+   1. BUTTONS & CONTROLS
+   ========================================================================== */
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-8);
-  min-height: var(--space-48);
-  padding: 0 var(--space-20);
-  border-radius: var(--radius-full);
-  font-family: var(--font-family-base);
-  font-size: 15px;
+  gap: var(--space-8, 8px);
+  font-family: var(--font-family-base, 'Inter', sans-serif);
   font-weight: 600;
+  border-radius: var(--radius-lg, 8px);
   cursor: pointer;
   border: none;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  user-select: none;
 }
 
-.solar-btn-primary {
-  background-color: var(--color-agri-500);
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Sizes */
+.btn-sm {
+  height: 32px;
+  padding: 6px 12px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.btn-md {
+  height: 40px;
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.btn-lg {
+  height: 48px;
+  padding: 12px 20px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+/* Variants */
+.btn-primary {
+  background-color: var(--color-agri-700, #15803d);
   color: #FFFFFF;
 }
-
-.solar-btn-primary:hover {
-  background-color: var(--color-agri-600);
+.btn-primary:hover {
+  background-color: var(--color-agri-800, #166534);
+}
+.btn-primary:active {
+  background-color: var(--color-agri-900, #14532d);
 }
 
-.solar-btn-solar {
-  background-color: var(--color-solar-500);
+.btn-secondary {
+  background-color: #f9fafb;
+  color: #374151;
+  outline: 1px solid #e5e7eb;
+  outline-offset: -1px;
+}
+.btn-secondary:hover {
+  background-color: #e5e7eb;
+}
+.btn-secondary:active {
+  background-color: #d4d4d4;
+}
+
+.btn-tertiary {
+  background-color: #ffffff;
+  color: #111827;
+  outline: 1px solid #e5e7eb;
+  outline-offset: -1px;
+}
+.btn-tertiary:hover {
+  background-color: #f4f4f5;
+}
+
+.btn-danger {
+  background-color: #dc2626;
   color: #FFFFFF;
 }
-
-.solar-btn-solar:hover {
-  background-color: var(--color-solar-600);
+.btn-danger:hover {
+  background-color: #b91c1c;
+}
+.btn-danger:active {
+  background-color: #991b1b;
 }
 
-.solar-status-chip {
+.btn-accent {
+  background-color: #16a34a;
+  color: #FFFFFF;
+}
+.btn-accent:hover {
+  background-color: #15803d;
+}
+
+.btn-disabled,
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Icon Buttons & FAB */
+.btn-icon-sm {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: var(--radius-lg, 8px);
+  background-color: #f3f4f6;
+  color: #374151;
+}
+.btn-icon-md {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--radius-lg, 8px);
+  background-color: #f3f4f6;
+  color: #374151;
+}
+.btn-icon-lg {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: var(--radius-lg, 8px);
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.btn-fab {
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   display: inline-flex;
   align-items: center;
-  gap: var(--space-4);
-  padding: var(--space-4) var(--space-12);
-  border-radius: var(--radius-full);
-  font-family: var(--font-family-base);
+  justify-content: center;
+}
+.btn-fab-sm { width: 40px; height: 40px; }
+.btn-fab-md { width: 56px; height: 56px; }
+.btn-fab-lg { width: 64px; height: 64px; }
+
+/* ==========================================================================
+   2. FORM INPUTS & SELECTION CONTROLS
+   ========================================================================= */
+.form-field {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-input-container {
+  height: 44px;
+  padding: 10px 12px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  outline: 1px solid #e5e7eb;
+  outline-offset: -1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: outline 0.15s ease;
+}
+
+.form-input-container:focus-within {
+  outline: 2px solid #15803d;
+  outline-offset: -1px;
+}
+
+.form-input-container.is-error {
+  outline: 1px solid #dc2626;
+}
+
+.form-input-container.is-disabled {
+  background-color: #f9fafb;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-input-container.is-readonly {
+  background-color: #f9fafb;
+}
+
+.form-input-control {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #111827;
+  font-family: inherit;
+}
+
+.form-input-control::placeholder {
+  color: #9ca3af;
+}
+
+.form-helper-error {
+  font-size: 12px;
+  color: #dc2626;
+  margin-top: 2px;
+}
+
+/* Checkbox */
+.form-checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.form-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  background-color: #fff;
+}
+
+.form-checkbox.is-checked {
+  background-color: #15803d;
+  border-color: #15803d;
+  color: #FFFFFF;
+}
+
+/* Radio Button */
+.form-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  background-color: #fff;
+}
+
+.form-radio.is-selected {
+  border: 6px solid #15803d;
+}
+
+/* Switch */
+.form-switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #e5e7eb;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-switch-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.form-switch.is-active {
+  background-color: #15803d;
+}
+
+.form-switch.is-active .form-switch-thumb {
+  transform: translateX(20px);
+}
+
+/* ==========================================================================
+   3. STATUS BADGES / PILLS (13 Figma States)
+   ========================================================================== */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
   font-size: 11px;
-  font-weight: 700;
-  border: 1px solid transparent;
+  font-weight: 600;
+  line-height: 14px;
+}
+
+.status-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.pill-delivered    { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+.pill-delivered .status-pill-dot { background-color: #16a34a; }
+
+.pill-pending      { background-color: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+.pill-pending .status-pill-dot { background-color: #f59e0b; }
+
+.pill-progress     { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.pill-progress .status-pill-dot { background-color: #3b82f6; }
+
+.pill-installed    { background-color: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+.pill-installed .status-pill-dot { background-color: #10b981; }
+
+.pill-qa-pending   { background-color: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+.pill-qa-pending .status-pill-dot { background-color: #a855f7; }
+
+.pill-qa-approved  { background-color: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+.pill-qa-approved .status-pill-dot { background-color: #22c55e; }
+
+.pill-qa-rejected  { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+.pill-qa-rejected .status-pill-dot { background-color: #ef4444; }
+
+.pill-complaint-open   { background-color: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
+.pill-complaint-open .status-pill-dot { background-color: #f43f5e; }
+
+.pill-complaint-closed { background-color: #f8fafc; color: #475569; border: 1px solid #e2e8f0; }
+.pill-complaint-closed .status-pill-dot { background-color: #64748b; }
+
+.pill-success      { background-color: #ecfdf5; color: #065f46; border: 1px solid #6ee7b7; }
+.pill-success .status-pill-dot { background-color: #10b981; }
+
+.pill-warning      { background-color: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; }
+.pill-warning .status-pill-dot { background-color: #f97316; }
+
+.pill-error        { background-color: #fef2f2; color: #991b1b; border: 1px solid #fee2e2; }
+.pill-error .status-pill-dot { background-color: #dc2626; }
+
+.pill-info         { background-color: #f0f9ff; color: #0369a1; border: 1px solid #e0f2fe; }
+.pill-info .status-pill-dot { background-color: #0284c7; }
+
+/* ==========================================================================
+   4. MOLECULES & COMPLEX FEEDBACK
+   ========================================================================== */
+.alert-bar-offline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.alert-bar-syncing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.toast-banner {
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.toast-success { background-color: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+.toast-warning { background-color: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+.toast-error   { background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+.toast-info    { background-color: #f0f9ff; color: #075985; border: 1px solid #bae6fd; }
+
+.empty-state-box {
+  width: 100%;
+  max-width: 320px;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px dashed #d1d5db;
+}
+
+.empty-state-icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  margin-bottom: 12px;
 }
