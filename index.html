@@ -773,6 +773,7 @@ class PumpKpiCard extends StatelessWidget {
 
         <!-- Role Selectors -->
         <div class="mt-6 flex flex-wrap justify-center gap-2">
+          <button onclick="setRole('auth')" id="btn-role-auth" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">0. Auth & Onboarding (Figma 213:252)</button>
           <button onclick="setRole('delivery')" id="btn-role-delivery" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-agri-600 text-white shadow-sm transition">1. Delivery Partner</button>
           <button onclick="setRole('install')" id="btn-role-install" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">2. Installation Team</button>
           <button onclick="setRole('qa')" id="btn-role-qa" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition">3. QA Inspector</button>
@@ -1058,7 +1059,7 @@ class PumpKpiCard extends StatelessWidget {
       currentStep = 1;
       otpEntered = '';
       qaDecision = null;
-      ['delivery', 'install', 'qa', 'service', 'farmer'].forEach(r => {
+      ['auth', 'delivery', 'install', 'qa', 'service', 'farmer'].forEach(r => {
         const btn = document.getElementById('btn-role-' + r);
         if (btn) {
           if (r === role) {
@@ -1125,6 +1126,137 @@ class PumpKpiCard extends StatelessWidget {
             <span class="px-1.5 py-0.5 rounded bg-red-200 dark:bg-red-900 text-[10px] font-bold">☁️ 3 Pending</span>
           </div>
         `;
+      }
+
+
+      // =========================
+      // FLOW MAP 01: AUTH & ONBOARDING (Node 213:252)
+      // =========================
+      if (currentRole === 'auth') {
+        if (currentStep === 1) {
+          html += `
+            <div class="h-full flex flex-col justify-between py-8 text-center">
+              <div class="pt-12 space-y-3">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-agri-600 to-solar-500 flex items-center justify-center text-white mx-auto shadow-lg">
+                  <i data-lucide="sun-medium" class="w-9 h-9"></i>
+                </div>
+                <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">WikiAlisa UI</h3>
+                <p class="text-xs text-slate-500">Vận hành năng lượng mặt trời thông minh</p>
+              </div>
+
+              <div class="space-y-4">
+                <div class="flex justify-center">
+                  <div class="w-7 h-7 rounded-full border-2 border-agri-600 border-t-transparent animate-spin"></div>
+                </div>
+                <div class="text-[11px] text-slate-400 space-y-0.5">
+                  <div>v2.4.1 • Nền tảng doanh nghiệp bảo mật</div>
+                  <div>© 2026 WikiAlisa Agriculture Corp</div>
+                </div>
+                <button onclick="goToStep(2)" class="w-full py-3 rounded-full bg-agri-600 hover:bg-agri-700 text-white font-bold text-xs shadow-md transition">
+                  Khám Phá Nền Tảng ➔
+                </button>
+              </div>
+            </div>
+          `;
+        } else if (currentStep === 2) {
+          html += `
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+              <button onclick="goToStep(1)" class="text-xs text-agri-600 font-bold">← Splash</button>
+              <span class="text-[10px] font-bold text-slate-400">auth-welcome (213:292)</span>
+            </div>
+
+            <div class="space-y-1">
+              <h4 class="font-bold text-sm">Hoạt Động Bơm Thông Minh</h4>
+              <p class="text-[11px] text-slate-500">Quản lý giao hàng, lắp đặt, nghiệm thu và dịch vụ trên một nền tảng thống nhất.</p>
+            </div>
+
+            <div class="space-y-1.5 text-xs">
+              <span class="text-[10px] font-bold text-slate-400 uppercase">6 Khả Năng Nền Tảng:</span>
+              <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                <i data-lucide="map-pin" class="w-4 h-4 text-agri-600"></i>
+                <span>Theo dõi GPS thời gian thực</span>
+              </div>
+              <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                <i data-lucide="truck" class="w-4 h-4 text-sky-600"></i>
+                <span>Quản lý giao hàng thực địa</span>
+              </div>
+              <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                <i data-lucide="wrench" class="w-4 h-4 text-solar-600"></i>
+                <span>Quy trình thi công & lắp đặt</span>
+              </div>
+              <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                <i data-lucide="clipboard-check" class="w-4 h-4 text-purple-600"></i>
+                <span>Đảm bảo chất lượng nghiệm thu QA</span>
+              </div>
+              <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600"></i>
+                <span>Giải quyết sự cố bảo hành</span>
+              </div>
+              <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+                <span>Xác thực an toàn & Offline Sync</span>
+              </div>
+            </div>
+
+            <button onclick="goToStep(3)" class="w-full py-3 rounded-full bg-agri-600 hover:bg-agri-700 text-white font-bold text-xs shadow-md transition">
+              Đăng Nhập Ngay ➔
+            </button>
+          `;
+        } else if (currentStep === 3) {
+          html += `
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+              <button onclick="goToStep(2)" class="text-xs text-agri-600 font-bold">← Giới thiệu</button>
+              <span class="text-[10px] font-bold text-slate-400">Auth / 03A (213:356)</span>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
+              <div class="text-center space-y-0.5">
+                <h4 class="font-bold text-sm">Chào Mừng Trở Lại</h4>
+                <p class="text-[11px] text-slate-500">Đăng nhập tài khoản vận hành thực địa</p>
+              </div>
+
+              <!-- Form -->
+              <div class="space-y-2 text-xs">
+                <div>
+                  <label class="font-semibold block mb-1">Mã Nhân Viên (Employee ID)</label>
+                  <input type="text" value="EMP-2024-897" readonly class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 font-mono text-xs">
+                </div>
+                <div>
+                  <label class="font-semibold block mb-1">Mật Khẩu</label>
+                  <input type="password" value="••••••••" readonly class="w-full px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs">
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-slate-500 pt-1">
+                  <label class="flex items-center gap-1"><input type="checkbox" checked class="accent-agri-600"> Ghi nhớ</label>
+                  <span class="text-agri-600 font-medium">Quên mật khẩu?</span>
+                </div>
+              </div>
+
+              <button onclick="goToStep(4)" class="w-full py-2.5 rounded-full bg-agri-600 hover:bg-agri-700 text-white font-bold text-xs shadow-md transition">
+                Đăng Nhập An Toàn (Secure Login) ➔
+              </button>
+            </div>
+          `;
+        } else if (currentStep === 4) {
+          html += `
+            <div class="text-center py-8 space-y-3">
+              <div class="w-14 h-14 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 mx-auto flex items-center justify-center shadow-lg">
+                <i data-lucide="user-check" class="w-8 h-8"></i>
+              </div>
+              <h4 class="font-bold text-base">Nhận Diện Vai Trò Thành Công!</h4>
+              <p class="text-xs text-slate-500 max-w-xs mx-auto">Tài khoản thuộc: <strong>Delivery Partner (Đối tác Giao vận)</strong>. Dữ liệu tuyến đường đã được nạp.</p>
+
+              <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-left text-xs font-mono space-y-1">
+                <div>Nhân viên: Nguyễn Văn A (EMP-2024-897)</div>
+                <div>Trạm phân công: #SP-8942 Đồng Tháp</div>
+                <div>Bảo mật: Mã hóa AES-256 Bit</div>
+              </div>
+
+              <button onclick="setRole('delivery')" class="w-full py-3 rounded-full bg-agri-600 hover:bg-agri-700 text-white font-bold text-xs shadow transition">
+                Vào Bảng Điều Khiển Giao Vận ➔
+              </button>
+            </div>
+          `;
+        }
       }
 
       // =========================

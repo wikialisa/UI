@@ -2,6 +2,8 @@
 
 ## 1. Chuỗi Quy trình Vận hành Toàn diện (20 Bước)
 
+> **Chi tiết Flow Map 01**: Xem đặc tả 14 màn hình đăng nhập & onboarding tại [01-authentication-onboarding-flow.md](file:///c:/Users/Admin/Downloads/wikialisa/user/pages/04-User-Flow/01-authentication-onboarding-flow.md) (Figma Node `213:252`).
+
 ```text
 [01 Bơm được phân công] ➔ [02 Tài xế nhận đơn] ➔ [03 Dẫn đường GPS] ➔ [04 Xác minh OTP] ➔ [05 Giao hàng xong]
          │
