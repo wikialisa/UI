@@ -3,7 +3,7 @@
 Bộ công cụ thiết kế và phát triển giao diện đa nền tảng do **WikiAlisa** nghiên cứu, thiết kế và phát triển. Hệ thống tích hợp sẵn mã nguồn cho **React Native**, **Flutter** và **HTML / Tailwind CSS**, chuẩn hóa theo quy trình thiết kế sáu giai đoạn cho ứng dụng **Agriculture Solar Pump Management System**.
 
 - **Tác giả / Bản quyền**: WikiAlisa (`wikialisa`)
-- **Repository chính thức**: [`https://github.com/wikialisa/kit`](https://github.com/wikialisa/kit)
+- **Repository chính thức**: [`https://github.com/wikialisa/UI`](https://github.com/wikialisa/UI)
 - **Website Showcase Trực tuyến**: [`https://wikialisa.github.io/UI`](https://wikialisa.github.io/UI)
 
 ---
