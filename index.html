@@ -894,20 +894,23 @@ class PumpKpiCard extends StatelessWidget {
         </div>
       </div>
 
-      <!-- Category Filter Pills -->
-      <div class="flex flex-wrap gap-2 mb-6">
-        <button onclick="filterScreens('all')" id="btn-scr-all" class="px-3 py-1.5 rounded-full text-xs font-bold bg-agri-600 text-white shadow-sm transition">Tất Cả (49)</button>
-        <button onclick="filterScreens('auth')" id="btn-scr-auth" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">1. Auth & Security (10)</button>
-        <button onclick="filterScreens('roles')" id="btn-scr-roles" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">2. Role Matrix (5)</button>
-        <button onclick="filterScreens('delivery')" id="btn-scr-delivery" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">3. Delivery Journey Del 01-18 (19)</button>
-        <button onclick="filterScreens('system')" id="btn-scr-system" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">4. System & A11y (15)</button>
+      
+      <!-- Category Filter Pills & Search Input -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterScreens('all')" id="btn-scr-all" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-agri-600 text-white shadow-sm transition">Tất Cả (49)</button>
+          <button onclick="filterScreens('auth')" id="btn-scr-auth" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">1. Auth & Security (10)</button>
+          <button onclick="filterScreens('roles')" id="btn-scr-roles" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">2. Role Matrix (5)</button>
+          <button onclick="filterScreens('delivery')" id="btn-scr-delivery" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">3. Delivery Journey Del 01-18 (19)</button>
+          <button onclick="filterScreens('system')" id="btn-scr-system" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">4. System & A11y (15)</button>
+        </div>
+
+        <div class="relative w-full sm:w-64">
+          <input type="text" id="screenSearchInput" oninput="searchScreens(this.value)" placeholder="Tìm kiếm tên màn hình..." class="w-full pl-9 pr-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs focus:ring-2 focus:ring-agri-500 outline-none">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+        </div>
       </div>
 
-      <!-- Screens Grid -->
-      <div id="screens-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
   </section>
 
   <!-- Section 5: Offline-First Sync Engine Playground -->
@@ -1602,11 +1605,605 @@ function renderPrototype() {
   lucide.createIcons();
 }
 
+
+    // ==========================================
+    // 49 SCREENS CATALOG VIEWER & TESTING PLAYGROUND
+    // ==========================================
+    const allScreensCatalog = [
+  {
+    "id": "19:139",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "auth-otp-verification",
+    "size": "390x844",
+    "img": "assets/img/demo/auth-otp-verification.png",
+    "desc": "Màn hình nhập mã xác thực OTP 6 chữ số, thời gian hết hạn 5 phút, mã hóa AES-256"
+  },
+  {
+    "id": "19:368",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "auth-session-expired",
+    "size": "390x844",
+    "img": "assets/img/demo/auth-session-expired.png",
+    "desc": "Cảnh báo phiên làm việc hết hạn sau 30 phút không hoạt động vì an toàn vận hành"
+  },
+  {
+    "id": "19:398",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "auth-permission-setup",
+    "size": "390x1078",
+    "img": "assets/img/demo/auth-permission-setup.png",
+    "desc": "Thiết lập 5 quyền hệ thống: GPS, Camera, Lưu đệm ngoại tuyến, Thông báo, Bluetooth"
+  },
+  {
+    "id": "19:470",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "auth-role-detection",
+    "size": "390x844",
+    "img": "assets/img/demo/auth-role-detection.png",
+    "desc": "Tự động nhận diện vai trò người dùng thực địa sau khi đăng nhập thành công"
+  },
+  {
+    "id": "19:516",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "auth-data-sync",
+    "size": "390x844",
+    "img": "assets/img/demo/auth-data-sync.png",
+    "desc": "Màn hình đồng bộ dữ liệu ngoại tuyến lần đầu khi tải thông tin ca làm việc"
+  },
+  {
+    "id": "19:695",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "auth-success",
+    "size": "390x855",
+    "img": "assets/img/demo/auth-success.png",
+    "desc": "Chào mừng người dùng vào ca trực, hiển thị tóm tắt kế hoạch trong ngày"
+  },
+  {
+    "id": "19:812",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "auth-loading-states",
+    "size": "390x856",
+    "img": "assets/img/demo/auth-loading-states.png",
+    "desc": "Các trạng thái tải dữ liệu, xoay vòng đồng bộ và skeleton placeholders"
+  },
+  {
+    "id": "19:994",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "You Are Currently Offline",
+    "size": "358x253",
+    "img": "assets/img/demo/You Are Currently Offline.png",
+    "desc": "Hộp thoại thông báo chuyển sang chế độ ngoại tuyến và cơ chế tự lưu SQLite"
+  },
+  {
+    "id": "19:983",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "Session Expiring Soon",
+    "size": "358x235",
+    "img": "assets/img/demo/Session Expiring Soon.png",
+    "desc": "Cảnh báo phiên sắp hết hạn kèm đếm ngược 60 giây an toàn"
+  },
+  {
+    "id": "19:972",
+    "cat": "auth",
+    "catName": "1. Auth & Security",
+    "name": "Confirm Operational Logout?",
+    "size": "358x235",
+    "img": "assets/img/demo/Confirm Operational Logout_.png",
+    "desc": "Xác nhận đăng xuất, kiểm tra xem còn bản ghi chưa đồng bộ hay không"
+  },
+  {
+    "id": "22:169",
+    "cat": "roles",
+    "catName": "2. Role Matrix",
+    "name": "1. Delivery Partner",
+    "size": "358x83",
+    "img": "assets/img/demo/1. Delivery Partner.png",
+    "desc": "Thẻ vai trò Đối tác Giao vận & Bàn giao thiết bị trạm bơm"
+  },
+  {
+    "id": "22:190",
+    "cat": "roles",
+    "catName": "2. Role Matrix",
+    "name": "2. Installation Team",
+    "size": "358x83",
+    "img": "assets/img/demo/2. Installation Team.png",
+    "desc": "Thẻ vai trò Đội ngũ Thi công & Lắp đặt giếng/pin mặt trời"
+  },
+  {
+    "id": "22:209",
+    "cat": "roles",
+    "catName": "2. Role Matrix",
+    "name": "3. QA Inspector",
+    "size": "358x83",
+    "img": "assets/img/demo/3. QA Inspector.png",
+    "desc": "Thẻ vai trò Chuyên viên Nghiệm thu & Kiểm định chất lượng"
+  },
+  {
+    "id": "22:230",
+    "cat": "roles",
+    "catName": "2. Role Matrix",
+    "name": "4. Service Technician",
+    "size": "358x83",
+    "img": "assets/img/demo/4. Service Technician.png",
+    "desc": "Thẻ vai trò Kỹ thuật viên Bảo trì & Sửa chữa sự cố ngoài đồng"
+  },
+  {
+    "id": "22:249",
+    "cat": "roles",
+    "catName": "2. Role Matrix",
+    "name": "5. Farmer (Consumer)",
+    "size": "358x83",
+    "img": "assets/img/demo/5. Farmer (Consumer).png",
+    "desc": "Thẻ vai trò Nông dân chủ hộ sử dụng nước tưới cây trồng"
+  },
+  {
+    "id": "60:63",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Dash / 01 - Delivery Partner",
+    "size": "390x1139",
+    "img": "assets/img/demo/Dash/01 - Delivery Partner.png",
+    "desc": "Bảng điều khiển trung tâm chuyến giao: Đơn cần giao, lộ trình tối ưu"
+  },
+  {
+    "id": "32:2489",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 01 - Delivery List",
+    "size": "390x1012",
+    "img": "assets/img/demo/Del/01 - Delivery List.png",
+    "desc": "Danh sách tất cả các điểm giao hàng theo thứ tự ưu tiên địa lý"
+  },
+  {
+    "id": "32:2620",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 02 - Delivery Details",
+    "size": "390x1232",
+    "img": "assets/img/demo/Del/02 - Delivery Details.png",
+    "desc": "Chi tiết linh kiện máy bơm, 8 tấm pin mặt trời, inverter và số điện thoại chủ hộ"
+  },
+  {
+    "id": "32:2752",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 03 - Route Navigation",
+    "size": "390x844",
+    "img": "assets/img/demo/Del/03 - Route Navigation.png",
+    "desc": "Bản đồ dẫn đường GPS thực địa qua kênh rạch nông thôn"
+  },
+  {
+    "id": "32:2963",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 04 - Farmer Contact",
+    "size": "390x1083",
+    "img": "assets/img/demo/Del/04 - Farmer Contact.png",
+    "desc": "Liên hệ chủ hộ, hướng dẫn chuẩn bị vị trí bốc dỡ linh kiện"
+  },
+  {
+    "id": "32:3062",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 05 - OTP Verification",
+    "size": "390x939",
+    "img": "assets/img/demo/Del/05 - OTP Verification.png",
+    "desc": "Xác nhận mã bảo mật bàn giao thực địa 4 số do nông dân cung cấp"
+  },
+  {
+    "id": "32:3133",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 06 - Serial Verification",
+    "size": "390x1032",
+    "img": "assets/img/demo/Del/06 - Serial Verification.png",
+    "desc": "Quét mã vạch / QR khớp số sê-ri máy bơm và biến tần"
+  },
+  {
+    "id": "32:3296",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 07 - Photo Upload",
+    "size": "390x935",
+    "img": "assets/img/demo/Del/07 - Photo Upload.png",
+    "desc": "Chụp 4 góc ảnh bằng chứng hạ hàng an toàn có gắn watermark tọa độ GPS"
+  },
+  {
+    "id": "32:3376",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 08 - Farmer Signature",
+    "size": "390x844",
+    "img": "assets/img/demo/Del/08 - Farmer Signature.png",
+    "desc": "Bảng ký nhận điện tử trên màn hình cảm ứng của nông dân"
+  },
+  {
+    "id": "32:3430",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 09 - GPS Verification",
+    "size": "390x844",
+    "img": "assets/img/demo/Del/09 - GPS Verification.png",
+    "desc": "Khóa tọa độ địa lý bàn giao để làm căn cứ cấp bảo hành trạm bơm"
+  },
+  {
+    "id": "32:3531",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 10 - Delivery Remarks",
+    "size": "390x888",
+    "img": "assets/img/demo/Del/10 - Delivery Remarks.png",
+    "desc": "Ghi chú điều kiện thực tế (địa hình sình lầy, nguồn nước, giếng khoan)"
+  },
+  {
+    "id": "32:3605",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 11 - Delivery Confirmation",
+    "size": "390x844",
+    "img": "assets/img/demo/Del/11 - Delivery Confirmation.png",
+    "desc": "Biên bản nghiệm thu giao hàng hoàn tất (POD) và phát sinh mã điện tử"
+  },
+  {
+    "id": "32:3687",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 12 - Offline Sync",
+    "size": "390x1094",
+    "img": "assets/img/demo/Del/12 - Offline Sync.png",
+    "desc": "Quản lý hàng đợi đồng bộ khi giao hàng tại khu vực mất sóng viễn thông"
+  },
+  {
+    "id": "32:3886",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 13 - Delivery Timeline",
+    "size": "390x1160",
+    "img": "assets/img/demo/Del/13 - Delivery Timeline.png",
+    "desc": "Dòng thời gian các mốc: Xuất kho ➔ Đến nơi ➔ Quét sê-ri ➔ Ký nhận ➔ Hoàn tất"
+  },
+  {
+    "id": "32:4037",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 14 - Dashboard Widgets",
+    "size": "390x1003",
+    "img": "assets/img/demo/Del/14 - Dashboard Widgets.png",
+    "desc": "Các widget KPI ca làm việc: Số kiện hoàn thành, thời gian trung bình"
+  },
+  {
+    "id": "32:4137",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 15 - Bottom Sheets",
+    "size": "390x1347",
+    "img": "assets/img/demo/Del/15 - Bottom Sheets.png",
+    "desc": "Các bảng trượt điều khiển: Tùy chọn sự cố, yêu cầu hỗ trợ kỹ thuật nhanh"
+  },
+  {
+    "id": "35:4394",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 16 - Dialogs",
+    "size": "390x1145",
+    "img": "assets/img/demo/Del/16 - Dialogs.png",
+    "desc": "Các hộp thoại cảnh báo: Hủy đơn, chuyển ca, xác nhận đổi hàng lỗi sê-ri"
+  },
+  {
+    "id": "35:4461",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 17 - Empty States",
+    "size": "390x1269",
+    "img": "assets/img/demo/Del/17 - Empty States.png",
+    "desc": "Màn hình rỗng: Không có chuyến giao, đã giao hết kiện trong ngày"
+  },
+  {
+    "id": "35:4515",
+    "cat": "delivery",
+    "catName": "3. Delivery Journey",
+    "name": "Del / 18 - Error States",
+    "size": "390x1135",
+    "img": "assets/img/demo/Del/18 - Error States.png",
+    "desc": "Màn hình lỗi: Sai mã sê-ri, không tìm thấy địa chỉ, mất định vị GPS"
+  },
+  {
+    "id": "36:4633",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "Screen-19-Loading-States",
+    "size": "390x1208",
+    "img": "assets/img/demo/Screen-19-Loading-States.png",
+    "desc": "Hiệu ứng Shimmer Loading, bộ đếm phần trăm nạp dữ liệu ca trực"
+  },
+  {
+    "id": "36:4707",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "Screen-20-Accessibility",
+    "size": "390x1412",
+    "img": "assets/img/demo/Screen-20-Accessibility.png",
+    "desc": "Chế độ tương phản cao, kích thước chữ lớn cho nông dân lớn tuổi"
+  },
+  {
+    "id": "213:911",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "State Popup",
+    "size": "390x844",
+    "img": "assets/img/demo/State Popup.png",
+    "desc": "Hộp thoại bật trạng thái cảnh báo khẩn cấp và thông số quá áp"
+  },
+  {
+    "id": "19:763",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "Interactive Overlays",
+    "size": "358x253",
+    "img": "assets/img/demo/Interactive Overlays.png",
+    "desc": "Các lớp phủ tương tác thông tin nhanh trên bản đồ địa hình"
+  },
+  {
+    "id": "19:774",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "Error States Reference",
+    "size": "358x253",
+    "img": "assets/img/demo/Error States Reference.png",
+    "desc": "Bảng quy chiếu các mã lỗi biến tần và cách xử lý nhanh"
+  },
+  {
+    "id": "19:786",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "Floating bottom navigation profiles",
+    "size": "390x844",
+    "img": "assets/img/demo/Floating bottom navigation profiles.png",
+    "desc": "Các biến thể thanh điều hướng đáy theo từng vai trò người dùng"
+  },
+  {
+    "id": "19:797",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "Role-Based Bars",
+    "size": "390x844",
+    "img": "assets/img/demo/Role-Based Bars.png",
+    "desc": "Thanh trạng thái phân màu theo vai trò (Xanh lá, Cam, Tím, Vàng, Đỏ)"
+  },
+  {
+    "id": "213:252",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "FLOW MAP • 01 Auth & Onboarding",
+    "size": "3935x2351",
+    "img": "assets/img/demo/FLOW MAP • 01 — Authentication & Onboarding.png",
+    "desc": "Toàn bộ sơ đồ luồng đăng nhập và phân quyền trên canvas Figma"
+  },
+  {
+    "id": "MOD-01",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "MODULE 01 • Delivery App Flow",
+    "size": "Flow Map",
+    "img": "assets/img/demo/MODULE 01 • Delivery Partner App Flow.png",
+    "desc": "Bản đồ kiến trúc luồng vận hành giao hàng thực địa"
+  },
+  {
+    "id": "MOD-02A",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "MODULE 02 • Installation App Flow",
+    "size": "Flow Map",
+    "img": "assets/img/demo/MODULE 02 • Installation Team App Flow.png",
+    "desc": "Bản đồ kiến trúc luồng thi công và lắp đặt dàn pin mặt trời"
+  },
+  {
+    "id": "MOD-02B",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "MODULE 02 • Installation QA Handoff",
+    "size": "Flow Map",
+    "img": "assets/img/demo/MODULE 02 • Installation execution — checks to QA handoff.png",
+    "desc": "Quy trình bàn giao hồ sơ nghiệm thu sang bộ phận QA"
+  },
+  {
+    "id": "MOD-03",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "MODULE 03 • QA Inspector App Flow",
+    "size": "Flow Map",
+    "img": "assets/img/demo/MODULE 03 • QA Inspector App Flow.png",
+    "desc": "Bản đồ kiến trúc luồng đo kiểm Voc, Imp và cấp phép trạm bơm"
+  },
+  {
+    "id": "MOD-04",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "MODULE 04 • Service App Flow",
+    "size": "Flow Map",
+    "img": "assets/img/demo/MODULE 04 • Service Technician App Flow.png",
+    "desc": "Bản đồ kiến trúc luồng xử lý sự cố báo cạn E-04 và bảo hành trạm"
+  },
+  {
+    "id": "MOD-05",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "MODULE 05 • Farmer App Flow",
+    "size": "Flow Map",
+    "img": "assets/img/demo/MODULE 05 • Farmer App Flow.png",
+    "desc": "Bản đồ kiến trúc cổng giám sát sản lượng nước và báo hỏng của nông dân"
+  },
+  {
+    "id": "268:100",
+    "cat": "system",
+    "catName": "4. System & A11y",
+    "name": "Logo & Brand Identity",
+    "size": "2655x1161",
+    "img": "assets/img/demo/Logo.png",
+    "desc": "Hệ thống logo và nhận diện thương hiệu WikiAlisa Solar Pump"
+  }
+];
+
+    let currentActiveCategory = 'all';
+
+    function filterScreens(cat) {
+      currentActiveCategory = cat;
+      ['all', 'auth', 'roles', 'delivery', 'system'].forEach(c => {
+        const btn = document.getElementById('btn-scr-' + c);
+        if (btn) {
+          if (c === cat) {
+            btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-bold bg-agri-600 text-white shadow-sm transition';
+          } else {
+            btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition';
+          }
+        }
+      });
+      renderScreensGrid();
+    }
+
+    function searchScreens(query) {
+      renderScreensGrid(query.toLowerCase().trim());
+    }
+
+    function renderScreensGrid(searchQuery = '') {
+      const container = document.getElementById('screens-grid-container');
+      if (!container) return;
+
+      let filtered = currentActiveCategory === 'all' 
+        ? allScreensCatalog 
+        : allScreensCatalog.filter(s => s.cat === currentActiveCategory);
+
+      if (searchQuery) {
+        filtered = filtered.filter(s => 
+          s.name.toLowerCase().includes(searchQuery) || 
+          s.id.toLowerCase().includes(searchQuery) ||
+          s.desc.toLowerCase().includes(searchQuery)
+        );
+      }
+
+      container.innerHTML = filtered.map(s => `
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 hover:border-agri-500 hover:shadow-md transition flex flex-col justify-between group">
+          <div class="space-y-2">
+            <!-- Header Tags -->
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[10px] font-mono text-slate-600 dark:text-slate-400 font-bold">${s.id}</span>
+              <span class="px-2 py-0.5 rounded-full bg-agri-50 dark:bg-agri-950 text-agri-700 dark:text-agri-300 text-[10px] font-bold border border-agri-200 dark:border-agri-800">${s.size}</span>
+            </div>
+
+            <!-- Thumbnail Preview -->
+            <div class="h-44 rounded-xl bg-slate-100 dark:bg-slate-950 overflow-hidden relative border border-slate-200 dark:border-slate-800 cursor-pointer group-hover:border-agri-400 transition" onclick="testScreenOnMockup('${s.id}')">
+              <img src="${s.img}" alt="${s.name}" class="w-full h-full object-cover object-top select-none transition-transform duration-300 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-2.5 opacity-90 group-hover:opacity-100 transition">
+                <span class="text-[10px] text-white font-bold flex items-center gap-1">
+                  <i data-lucide="smartphone" class="w-3.5 h-3.5 text-agri-400"></i> Bấm để chiếu 390px
+                </span>
+              </div>
+            </div>
+
+            <!-- Title & Description -->
+            <div>
+              <div class="text-[10px] text-slate-400 font-semibold uppercase">${s.catName}</div>
+              <h4 class="font-bold text-xs text-slate-900 dark:text-white truncate" title="${s.name}">${s.name}</h4>
+              <p class="text-[11px] text-slate-500 leading-relaxed line-clamp-2 mt-0.5">${s.desc}</p>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-2 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-2 text-xs">
+            <button onclick="testScreenOnMockup('${s.id}')" class="py-1.5 rounded-lg bg-agri-600 hover:bg-agri-700 text-white font-bold text-[11px] flex items-center justify-center gap-1 shadow-sm transition">
+              <i data-lucide="play" class="w-3 h-3"></i> Kiểm thử 390px
+            </button>
+            <button onclick="openFigmaLightbox('${s.id}')" class="py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-[11px] flex items-center justify-center gap-1 transition">
+              <i data-lucide="zoom-in" class="w-3 h-3"></i> Xem Full HD
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function testScreenOnMockup(id) {
+      const screen = allScreensCatalog.find(s => s.id === id);
+      if (!screen) return;
+
+      customFigmaImage = {
+        img: screen.img,
+        name: screen.name,
+        next: 1,
+        hint: 'Màn hình kiểm thử [' + screen.id + '] chuẩn 390px'
+      };
+      setDisplayMode('figma');
+
+      // Smooth scroll to phone mockup
+      const sim = document.getElementById('simulator');
+      if (sim) {
+        sim.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function openFigmaLightbox(id) {
+      const screen = allScreensCatalog.find(s => s.id === id);
+      if (!screen) return;
+
+      document.getElementById('lightbox-node-id').textContent = screen.id;
+      document.getElementById('lightbox-title').textContent = screen.name;
+      document.getElementById('lightbox-img').src = screen.img;
+      document.getElementById('lightbox-download-link').href = screen.img;
+
+      document.getElementById('figma-lightbox-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeFigmaLightbox() {
+      document.getElementById('figma-lightbox-modal').classList.add('hidden');
+    }
+
+    // Close lightbox on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeFigmaLightbox();
+    });
+
+
 // Initial render
+filterScreens('all');
 setDisplayMode('figma');
 setRole('delivery');
 lucide.createIcons();
 
   </script>
+
+  <!-- Figma Full HD Lightbox Modal -->
+  <div id="figma-lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="relative max-w-5xl w-full max-h-[90vh] flex flex-col bg-slate-900 rounded-3xl overflow-hidden border border-slate-700 shadow-2xl">
+      <div class="p-4 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between text-white">
+        <div>
+          <span id="lightbox-node-id" class="px-2 py-0.5 rounded bg-agri-600 font-mono text-[11px] font-bold"></span>
+          <span id="lightbox-title" class="font-bold text-sm ml-2"></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <a id="lightbox-download-link" href="#" download class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold flex items-center gap-1.5 transition">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i> Tải Ảnh Gốc
+          </a>
+          <button onclick="closeFigmaLightbox()" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 overflow-auto p-4 flex items-center justify-center bg-slate-950/50">
+        <img id="lightbox-img" src="" alt="Figma Full Screen" class="max-w-full max-h-[75vh] object-contain rounded-xl shadow-2xl">
+      </div>
+    </div>
+  </div>
+  
 </body>
 </html>
