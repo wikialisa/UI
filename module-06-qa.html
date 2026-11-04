@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 06: Kiểm Định Chất Lượng & Tuân Thủ (QA) | WikiAlisa Smart Solar Platform</title>
+  <meta name="description" content="Hệ thống kiểm định hiện trường nghiêm ngặt với xác thực vị trí GPS trong bán kính 50m, bộ tiêu chuẩn an toàn điện TCVN, phê duyệt giải ngân hỗ trợ công nghệ.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen font-sans antialiased selection:bg-emerald-500 selection:text-white">
+
+  
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+              WA
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-slate-900 dark:text-white text-base tracking-tight">WikiAlisa</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Solar Hub v2.4</span>
+              </div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-none">Smart Solar & Pump Lifecycle Platform</p>
+            </div>
+          </a>
+          <div class="hidden md:flex items-center gap-2 pl-4 border-l border-slate-200 dark:border-slate-700">
+            <a href="index.html#modules-grid" class="text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">11 Phân Hệ</a>
+            <span class="text-slate-300 dark:text-slate-600">•</span>
+            <a href="index.html#lifecycle-roadmap" class="text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Vòng Đời 20 Bước</a>
+            <span class="text-slate-300 dark:text-slate-600">•</span>
+            <a href="index.html#architecture" class="text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Kiến Trúc Dual-Surface</a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          
+    <div class="relative inline-block text-left" id="module-dropdown-container">
+      <button type="button" onclick="toggleDropdown()" class="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700/80 transition-all">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Phân hệ: <strong>Module 06</strong></span>
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div id="module-dropdown-menu" class="hidden absolute right-0 mt-2 w-72 origin-top-right rounded-xl bg-white dark:bg-slate-900 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 z-50 p-2 divide-y divide-slate-100 dark:divide-slate-800 focus:outline-none">
+        <div class="py-1">
+          <div class="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">Điều hướng 11 Phân hệ</div>
+          
+            <a href="module-01-auth.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">01</span>
+              <span class="truncate">Xác Thực, Đăng Nhập & Phân Quyền (RBAC)</span>
+            </a>
+          
+            <a href="module-02-navigation.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">02</span>
+              <span class="truncate">Điều Hướng Toàn Cục & Kiến Trúc Vai Trò</span>
+            </a>
+          
+            <a href="module-03-dashboards.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">03</span>
+              <span class="truncate">Bảng Điều Khiển Tác Nghiệp Theo Vai Trò</span>
+            </a>
+          
+            <a href="module-04-delivery.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">04</span>
+              <span class="truncate">Nghiệp Vụ Giao Hàng & Chuỗi Cung Ứng (Del 01–18)</span>
+            </a>
+          
+            <a href="module-05-installation.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">05</span>
+              <span class="truncate">Thi Công Lắp Đặt & Nghiệm Thu Kỹ Thuật</span>
+            </a>
+          
+            <a href="module-06-qa.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-emerald-500 text-white">06</span>
+              <span class="truncate">Kiểm Định Chất Lượng & Tuân Thủ (QA)</span>
+            </a>
+          
+            <a href="module-07-service.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">07</span>
+              <span class="truncate">Bảo Hành, Sửa Chữa & Quản Lý Sự Cố</span>
+            </a>
+          
+            <a href="module-08-farmer.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">08</span>
+              <span class="truncate">Cổng Trải Nghiệm Nông Dân & Quản Lý Nước</span>
+            </a>
+          
+            <a href="module-09-notifications.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">09</span>
+              <span class="truncate">Thông Báo Thời Gian Thực & Phát Sóng Khẩn Cấp</span>
+            </a>
+          
+            <a href="module-10-profile.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">10</span>
+              <span class="truncate">Hồ Sơ Nhân Sự, Chấm Công & An Toàn Lao Động</span>
+            </a>
+          
+            <a href="module-11-edge-cases.html" class="flex items-center gap-2.5 px-3 py-2 text-xs rounded-lg transition-colors text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <span class="w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">11</span>
+              <span class="truncate">Xử Lý Ngoại Lệ, Chế Độ Ngoại Tuyến & Phục Hồi Dữ Liệu</span>
+            </a>
+          
+        </div>
+        <div class="pt-1.5">
+          <a href="index.html" class="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/30">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            Về Trang Chủ Landing WikiAlisa
+          </a>
+        </div>
+      </div>
+    </div>
+  
+          <a href="index.html" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            Trang Chủ Landing
+          </a>
+          <button id="theme-toggle" onclick="toggleTheme()" class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" title="Chuyển chế độ Sáng / Tối">
+            <svg id="theme-icon-dark" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg id="theme-icon-light" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+  
+
+  <!-- MODULE HERO -->
+  <section class="pt-8 pb-12 border-b border-slate-200 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <!-- Module Badge -->
+          <div class="flex items-center gap-2 mb-3">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+              PHÂN HỆ 06 / 11
+            </span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+              Kiểm Định & Pháp Lý
+            </span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400">
+              390 × 844px Mobile First
+            </span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+            Kiểm Định Chất Lượng & Tuân Thủ (QA)
+          </h1>
+          <p class="text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400 mt-1">
+            Quality Assurance & Compliance
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-300 max-w-3xl mt-3 leading-relaxed">
+            Hệ thống kiểm định hiện trường nghiêm ngặt với xác thực vị trí GPS trong bán kính 50m, bộ tiêu chuẩn an toàn điện TCVN, phê duyệt giải ngân hỗ trợ công nghệ.
+          </p>
+        </div>
+
+        <!-- Quick Jump Switcher -->
+        <div class="flex flex-col gap-2 shrink-0">
+          <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Vai Trò Phụ Trách:</div>
+          <div class="flex flex-wrap gap-1 max-w-xs">
+            
+              <span class="text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">
+                Kiểm tra viên QA độc lập
+              </span>
+            
+              <span class="text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">
+                Đại diện cơ quan bảo trợ năng lượng
+              </span>
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Cards Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
+        
+          <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 shadow-sm">
+            <div class="text-xs text-slate-500 dark:text-slate-400">Bán kính Geofence hợp lệ</div>
+            <div class="text-xl font-black text-emerald-600 dark:text-emerald-400 font-mono mt-1">≤ 50 mét</div>
+          </div>
+        
+          <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 shadow-sm">
+            <div class="text-xs text-slate-500 dark:text-slate-400">Số tiêu chí an toàn TCVN</div>
+            <div class="text-xl font-black text-emerald-600 dark:text-emerald-400 font-mono mt-1">18 mục</div>
+          </div>
+        
+          <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 shadow-sm">
+            <div class="text-xs text-slate-500 dark:text-slate-400">Thời gian duyệt hồ sơ</div>
+            <div class="text-xl font-black text-emerald-600 dark:text-emerald-400 font-mono mt-1">< 15 phút</div>
+          </div>
+        
+          <div class="p-3.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 shadow-sm">
+            <div class="text-xs text-slate-500 dark:text-slate-400">Tính toàn vẹn hồ sơ nghiệm thu</div>
+            <div class="text-xl font-black text-emerald-600 dark:text-emerald-400 font-mono mt-1">100% SHA-256</div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE ROADMAP PIPELINE (MOBILE ➔ ADMIN) -->
+  <section class="py-8 bg-slate-100/60 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Roadmap Dữ Liệu Thời Gian Thực</h3>
+          <h2 class="text-base font-bold text-slate-900 dark:text-white">Quy Trình Đồng Bộ 5 Bước: Mobile 390px ➔ Admin Control Tower</h2>
+        </div>
+        <span class="text-xs text-slate-500">Chạm vào từng bước để kiểm tra</span>
+      </div>
+
+      <!-- 5 Steps Road Pipeline -->
+      <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+        <button onclick="setPipelineStep(1)" id="step-btn-1" class="p-3 text-left rounded-xl bg-white dark:bg-slate-800 border-2 border-emerald-500 shadow-sm transition-all">
+          <div class="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400">BƯỚC 01</div>
+          <div class="text-xs font-bold text-slate-900 dark:text-white mt-0.5">Thao Tác Thực Địa</div>
+          <div class="text-[10px] text-slate-500 mt-1">App 390px nhập dữ liệu</div>
+        </button>
+
+        <button onclick="setPipelineStep(2)" id="step-btn-2" class="p-3 text-left rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition-all">
+          <div class="text-[10px] font-mono font-bold text-slate-400">BƯỚC 02</div>
+          <div class="text-xs font-bold text-slate-900 dark:text-white mt-0.5">Xác Thực Cục Bộ</div>
+          <div class="text-[10px] text-slate-500 mt-1">Lưu đệm SQLite an toàn</div>
+        </button>
+
+        <button onclick="setPipelineStep(3)" id="step-btn-3" class="p-3 text-left rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-purple-500 transition-all">
+          <div class="text-[10px] font-mono font-bold text-slate-400">BƯỚC 03</div>
+          <div class="text-xs font-bold text-slate-900 dark:text-white mt-0.5">Mã Hóa & Gửi Broker</div>
+          <div class="text-[10px] text-slate-500 mt-1">REST / MQTT 5.0 TLS</div>
+        </button>
+
+        <button onclick="setPipelineStep(4)" id="step-btn-4" class="p-3 text-left rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-amber-500 transition-all">
+          <div class="text-[10px] font-mono font-bold text-slate-400">BƯỚC 04</div>
+          <div class="text-xs font-bold text-slate-900 dark:text-white mt-0.5">Xử Lý Nghiệp Vụ Admin</div>
+          <div class="text-[10px] text-slate-500 mt-1">Cập nhật bảng điều khiển</div>
+        </button>
+
+        <button onclick="setPipelineStep(5)" id="step-btn-5" class="p-3 text-left rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-teal-500 transition-all">
+          <div class="text-[10px] font-mono font-bold text-slate-400">BƯỚC 05</div>
+          <div class="text-xs font-bold text-slate-900 dark:text-white mt-0.5">Kích Hoạt Tự Động</div>
+          <div class="text-[10px] text-slate-500 mt-1">Chuyển sang vai trò tiếp theo</div>
+        </button>
+      </div>
+
+      <div id="pipeline-desc" class="mt-3 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-800 dark:text-emerald-300">
+        <strong>Bước 1 (Thao tác thực địa):</strong> Người dùng thực hiện thao tác trực tiếp trên khung màn hình di động 390px (nhập số liệu, quét mã QR hoặc ký số).
+      </div>
+    </div>
+  </section>
+
+  <!-- DUAL-SURFACE LIVE DEMO WORKSPACE -->
+  <section class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Không Gian Tương Tác Kép</span>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Live Simulator: Mobile 390px ⇄ Tháp Chỉ Huy Admin</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="clearEventLog()" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 text-slate-700 dark:text-slate-300 transition-colors">
+            Xóa Nhật Ký Sự Kiện
+          </button>
+        </div>
+      </div>
+
+      <!-- 3 Columns Layout: Mobile Simulator | Event Stream | Admin Control Tower -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- COLUMN 1: 390px Mobile Simulator (5 Cols on LG) -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="w-[390px] h-[780px] bg-white dark:bg-slate-900 rounded-[44px] shadow-2xl border-[8px] border-slate-800 dark:border-slate-800 flex flex-col overflow-hidden relative ring-1 ring-slate-900/10 dark:ring-white/10">
+            
+            <!-- iOS Dynamic Notch & Status Bar -->
+            <div class="h-10 bg-white dark:bg-slate-900 flex items-center justify-between px-6 pt-2 shrink-0 select-none z-10 border-b border-slate-100 dark:border-slate-800">
+              <span class="text-xs font-bold font-mono text-slate-900 dark:text-white">09:41</span>
+              <div class="w-20 h-4 bg-slate-900 dark:bg-slate-800 rounded-full"></div>
+              <div class="flex items-center gap-1.5 text-slate-900 dark:text-white">
+                <span class="text-[10px] font-bold">5G</span>
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+              </div>
+            </div>
+
+            <!-- Mobile App Bar Header -->
+            <div class="px-4 py-2.5 bg-slate-50 dark:bg-slate-800/90 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between shrink-0">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-emerald-500 text-white flex items-center justify-center font-bold text-xs">WA</div>
+                <div>
+                  <div class="text-xs font-bold text-slate-900 dark:text-white leading-none">Kiểm Định Chất Lượng (QA)</div>
+                  <div class="text-[10px] text-slate-400 leading-none mt-0.5">QA Inspector App</div>
+                </div>
+              </div>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 font-mono font-bold">ONLINE</span>
+            </div>
+
+            <!-- Mobile Scrollable Body Content -->
+            <div class="flex-1 overflow-y-auto">
+              
+          <div class="p-4 space-y-3">
+            <div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/30">
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="font-bold text-purple-700 dark:text-purple-400">Hàng Đợi Kiểm Định #QA-412</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500 text-white font-bold">AUDIT QUEUE</span>
+              </div>
+              <div class="text-xs font-semibold text-slate-800 dark:text-white">Trạm Bơm Solar #248 (Cư M'gar, Đắk Lắk)</div>
+            </div>
+
+            <!-- GPS Geofence Check -->
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="font-bold text-slate-700 dark:text-slate-200">Xác Thực Vị Trí Geofence GPS</span>
+                <span id="qa-gps-fix" class="text-[10px] font-mono text-slate-400">Chưa đối chiếu</span>
+              </div>
+              <button onclick="verifyQaGeofence()" class="w-full py-2 px-3 rounded-lg bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white text-xs font-semibold">
+                📍 Đối Chiếu Tọa Độ Thực Tế (&le; 50m)
+              </button>
+            </div>
+
+            <!-- TCVN Checklist -->
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-2 text-xs">
+              <div class="font-bold text-slate-700 dark:text-slate-200">Tiêu Chuẩn Kỹ Thuật TCVN:</div>
+              <label class="flex items-center gap-2"><input type="checkbox" checked class="text-purple-600"> Tiêu chuẩn chống sét lan truyền Type II</label>
+              <label class="flex items-center gap-2"><input type="checkbox" checked class="text-purple-600"> Cầu dao DC cách ly an toàn 1000V</label>
+              <label class="flex items-center gap-2"><input type="checkbox" checked class="text-purple-600"> Chống chạy khô (Dry-Run Protection)</label>
+            </div>
+
+            <!-- Approve / Reject Buttons -->
+            <div class="grid grid-cols-2 gap-2 pt-2">
+              <button onclick="handleQaApprove()" class="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md shadow-emerald-600/20">
+                ✓ Phê Duyệt Nghiệm Thu
+              </button>
+              <button onclick="handleQaReject()" class="py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-md shadow-red-600/20">
+                ✕ Yêu Cầu Khắc Phục
+              </button>
+            </div>
+          </div>
+        
+            </div>
+
+            <!-- Role-Specific Bottom Tab Bar -->
+            <div class="h-14 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center justify-around px-2 shrink-0 select-none">
+              <button class="flex flex-col items-center text-emerald-600 dark:text-emerald-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                <span class="text-[9px] font-bold mt-0.5">Trang chủ</span>
+              </button>
+              <button class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                <span class="text-[9px] font-bold mt-0.5">Tác vụ</span>
+              </button>
+              <button class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                <span class="text-[9px] font-bold mt-0.5">Bản đồ</span>
+              </button>
+              <button class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                <span class="text-[9px] font-bold mt-0.5">Cảnh báo</span>
+              </button>
+              <button class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                <span class="text-[9px] font-bold mt-0.5">Hồ sơ</span>
+              </button>
+            </div>
+
+            <!-- iOS Home Indicator -->
+            <div class="h-4 bg-white dark:bg-slate-900 flex justify-center items-center pb-1 shrink-0">
+              <div class="w-32 h-1 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: Real-time Event Stream Bus & Admin Desk (7 Cols on LG) -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <!-- Event Bus Telemetry Stream -->
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-white shadow-xl">
+            <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                <span class="text-xs font-mono font-bold text-emerald-400">EVENT_BUS_STREAM (WebSocket MQTT 5.0)</span>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">TLS 1.3 / Latency &lt; 45ms</span>
+            </div>
+            
+            <div id="event-bus-log" class="space-y-2 max-h-48 overflow-y-auto">
+              <div class="text-xs text-slate-500 italic p-2 text-center">Đang chờ sự kiện tương tác từ Mobile Simulator 390px...</div>
+            </div>
+          </div>
+
+          <!-- Enterprise Admin Control Tower -->
+          <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl">
+            
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white">Hội Đồng Nghiệm Thu & Giải Ngân Trợ Cấp Năng Lượng</h4>
+                <p class="text-xs text-slate-500">Giám sát tính pháp lý và tính toàn vẹn chữ ký số SHA-256</p>
+              </div>
+              <span class="text-xs font-mono px-2 py-1 rounded bg-purple-500/10 text-purple-600 border border-purple-500/20">Compliance Audit</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-800 dark:text-white">Hồ Sơ Nghiệm Thu Trạm #248:</span>
+                <span id="admin-qa-status-pill" class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-600">CHỜ QA KIỂM TRA</span>
+              </div>
+              <div class="text-xs text-slate-500" id="admin-qa-log-desc">
+                Đang chờ chuyên viên QA đối chiếu tọa độ GPS thực tế và duyệt danh mục an toàn điện...
+              </div>
+            </div>
+          </div>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIGMA HI-FI SCREENS CATALOG FOR THIS MODULE -->
+  <section class="py-16 bg-white dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">Đối Chiếu Thiết Kế Gốc</span>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Bộ Màn Hình Figma Hi-Fi Thuộc Phân Hệ 06</h2>
+        </div>
+        <span class="text-xs font-mono text-slate-500">File: eq0EA9dRSWfS2ivuFohJdg</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+          <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-64 bg-slate-200 dark:bg-slate-700 overflow-hidden relative group">
+              <img src="assets/img/demo/MODULE 03   QA Inspector App Flow.png" alt="QA Inspection Queue" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" onerror="this.src='assets/img/demo/1. Delivery Partner.png'">
+            </div>
+            <div class="p-4">
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="font-bold text-slate-900 dark:text-white truncate">QA Inspection Queue</span>
+                <span class="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">Node: 250:10</span>
+              </div>
+              <p class="text-xs text-slate-500">Màn hình tiêu chuẩn 390 × 844px kiểm định qua Chromatic.</p>
+            </div>
+          </div>
+        
+          <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-64 bg-slate-200 dark:bg-slate-700 overflow-hidden relative group">
+              <img src="assets/img/demo/Frame-5.png" alt="GPS Geofence Radius Verification" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" onerror="this.src='assets/img/demo/1. Delivery Partner.png'">
+            </div>
+            <div class="p-4">
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="font-bold text-slate-900 dark:text-white truncate">GPS Geofence Radius Verification</span>
+                <span class="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">Node: 250:30</span>
+              </div>
+              <p class="text-xs text-slate-500">Màn hình tiêu chuẩn 390 × 844px kiểm định qua Chromatic.</p>
+            </div>
+          </div>
+        
+          <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-64 bg-slate-200 dark:bg-slate-700 overflow-hidden relative group">
+              <img src="assets/img/demo/Frame-6.png" alt="TCVN Electrical Standard Checklist" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" onerror="this.src='assets/img/demo/1. Delivery Partner.png'">
+            </div>
+            <div class="p-4">
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="font-bold text-slate-900 dark:text-white truncate">TCVN Electrical Standard Checklist</span>
+                <span class="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">Node: 250:50</span>
+              </div>
+              <p class="text-xs text-slate-500">Màn hình tiêu chuẩn 390 × 844px kiểm định qua Chromatic.</p>
+            </div>
+          </div>
+        
+          <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-64 bg-slate-200 dark:bg-slate-700 overflow-hidden relative group">
+              <img src="assets/img/demo/Frame-7.png" alt="Approve & Subsidy Disbursement" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" onerror="this.src='assets/img/demo/1. Delivery Partner.png'">
+            </div>
+            <div class="p-4">
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="font-bold text-slate-900 dark:text-white truncate">Approve & Subsidy Disbursement</span>
+                <span class="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">Node: 250:70</span>
+              </div>
+              <p class="text-xs text-slate-500">Màn hình tiêu chuẩn 390 × 844px kiểm định qua Chromatic.</p>
+            </div>
+          </div>
+        
+          <div class="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-64 bg-slate-200 dark:bg-slate-700 overflow-hidden relative group">
+              <img src="assets/img/demo/Frame-8.png" alt="Rework Ticket Dispatch" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300" onerror="this.src='assets/img/demo/1. Delivery Partner.png'">
+            </div>
+            <div class="p-4">
+              <div class="flex items-center justify-between text-xs mb-1">
+                <span class="font-bold text-slate-900 dark:text-white truncate">Rework Ticket Dispatch</span>
+                <span class="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">Node: 250:90</span>
+              </div>
+              <p class="text-xs text-slate-500">Màn hình tiêu chuẩn 390 × 844px kiểm định qua Chromatic.</p>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+  
+    <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 pt-16 pb-12 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-12 border-b border-slate-800 mb-12">
+            <div>
+              
+                <a href="module-05-installation.html" class="flex items-center gap-3 p-4 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 transition-all group">
+                  <div class="w-10 h-10 rounded-lg bg-slate-700 flex items-center justify-center text-slate-300 group-hover:text-emerald-400 group-hover:bg-slate-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Phân Hệ Trước</div>
+                    <div class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">05. Thi Công Lắp Đặt & Nghiệm Thu Kỹ Thuật</div>
+                  </div>
+                </a>
+              
+            </div>
+            <div>
+              
+                <a href="module-07-service.html" class="flex items-center justify-end gap-3 p-4 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 transition-all group text-right">
+                  <div>
+                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Phân Hệ Tiếp Theo</div>
+                    <div class="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">07. Bảo Hành, Sửa Chữa & Quản Lý Sự Cố</div>
+                  </div>
+                  <div class="w-10 h-10 rounded-lg bg-slate-700 flex items-center justify-center text-slate-300 group-hover:text-emerald-400 group-hover:bg-slate-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                  </div>
+                </a>
+              
+            </div>
+          </div>
+        
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-9 h-9 rounded-lg bg-emerald-500 flex items-center justify-center text-white font-bold">WA</div>
+              <span class="font-bold text-white text-lg tracking-tight">WikiAlisa Smart Solar Platform</span>
+            </div>
+            <p class="text-sm text-slate-400 max-w-md leading-relaxed mb-4">
+              Nền tảng chuyển đổi số toàn diện cho hệ thống máy bơm nước năng lượng mặt trời phục vụ nông nghiệp thông minh. Kết nối đồng bộ thời gian thực từ ứng dụng di động 390px ngoài hiện trường đến tháp chỉ huy Enterprise Admin.
+            </p>
+            <div class="flex items-center gap-3 text-xs text-slate-400">
+              <span class="px-2.5 py-1 rounded bg-slate-800 border border-slate-700 text-emerald-400 font-mono">Figma: eq0EA9dRSWfS2ivuFohJdg</span>
+              <span class="px-2.5 py-1 rounded bg-slate-800 border border-slate-700 text-blue-400 font-mono">49 Screens</span>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">11 Phân Hệ Nền Tảng</h4>
+            <ul class="space-y-1.5 text-xs text-slate-400">
+              
+                <li><a href="module-01-auth.html" class="hover:text-emerald-400 transition-colors">01. Authentication, Onboarding & RBAC</a></li>
+              
+                <li><a href="module-02-navigation.html" class="hover:text-emerald-400 transition-colors">02. Global Navigation & Role Architecture</a></li>
+              
+                <li><a href="module-03-dashboards.html" class="hover:text-emerald-400 transition-colors">03. Operational Role Dashboards</a></li>
+              
+                <li><a href="module-04-delivery.html" class="hover:text-emerald-400 transition-colors">04. Delivery Operations & Supply Chain</a></li>
+              
+                <li><a href="module-05-installation.html" class="hover:text-emerald-400 transition-colors">05. Installation Operations & Engineering</a></li>
+              
+                <li><a href="module-06-qa.html" class="hover:text-emerald-400 transition-colors">06. Quality Assurance & Compliance</a></li>
+              
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Mở Rộng & Vận Hành</h4>
+            <ul class="space-y-1.5 text-xs text-slate-400">
+              
+                <li><a href="module-07-service.html" class="hover:text-emerald-400 transition-colors">07. Service, Maintenance & SLA Ticketing</a></li>
+              
+                <li><a href="module-08-farmer.html" class="hover:text-emerald-400 transition-colors">08. Farmer Consumer Portal & Water Quotas</a></li>
+              
+                <li><a href="module-09-notifications.html" class="hover:text-emerald-400 transition-colors">09. Real-time Notifications & Emergency Broadcast</a></li>
+              
+                <li><a href="module-10-profile.html" class="hover:text-emerald-400 transition-colors">10. Workforce Profile, Shift & Field Safety</a></li>
+              
+                <li><a href="module-11-edge-cases.html" class="hover:text-emerald-400 transition-colors">11. Edge Cases, Offline SQLite & Data Resilience</a></li>
+              
+              <li class="pt-2"><a href="index.html" class="text-emerald-400 font-semibold hover:underline">→ Trang Chủ Tổng Quan</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <div>© 2026 WikiAlisa (<a href="https://github.com/wikialisa/UI" target="_blank" class="hover:text-slate-300 underline">wikialisa/UI</a>). All rights reserved. Tiêu chuẩn thiết kế 390 × 844px Mobile First.</div>
+          <div class="flex items-center gap-4">
+            <span class="inline-flex items-center gap-1.5 text-emerald-400">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              100% Client-Side Interactive
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+
+  
+    <script>
+      // Dropdown toggle
+      function toggleDropdown() {
+        const menu = document.getElementById('module-dropdown-menu');
+        if (menu) menu.classList.toggle('hidden');
+      }
+
+      // Close dropdown when clicking outside
+      window.addEventListener('click', function(e) {
+        const container = document.getElementById('module-dropdown-container');
+        const menu = document.getElementById('module-dropdown-menu');
+        if (container && !container.contains(e.target) && menu && !menu.classList.contains('hidden')) {
+          menu.classList.add('hidden');
+        }
+      });
+
+      // Dark mode toggle
+      function initTheme() {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+          document.getElementById('theme-icon-dark')?.classList.remove('hidden');
+          document.getElementById('theme-icon-light')?.classList.add('hidden');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.getElementById('theme-icon-dark')?.classList.add('hidden');
+          document.getElementById('theme-icon-light')?.classList.remove('hidden');
+        }
+      }
+
+      function toggleTheme() {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.theme = 'light';
+          document.getElementById('theme-icon-dark')?.classList.add('hidden');
+          document.getElementById('theme-icon-light')?.classList.remove('hidden');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.theme = 'dark';
+          document.getElementById('theme-icon-dark')?.classList.remove('hidden');
+          document.getElementById('theme-icon-light')?.classList.add('hidden');
+        }
+      }
+
+      initTheme();
+
+      // Broadcast event bus simulation
+      function logEvent(source, eventName, payload) {
+        const bus = document.getElementById('event-bus-log');
+        if (!bus) return;
+        const now = new Date().toLocaleTimeString('vi-VN', { hour12: false });
+        const entry = document.createElement('div');
+        entry.className = 'font-mono text-[11px] p-2 rounded bg-slate-900 border border-slate-800 text-slate-300 leading-relaxed animate-fadeIn';
+        entry.innerHTML = `
+          <div class="flex items-center justify-between text-[10px] text-slate-500 mb-1">
+            <span class="text-emerald-400 font-bold">[${source}]</span>
+            <span>${now}</span>
+          </div>
+          <div class="text-amber-300 font-semibold">${eventName}</div>
+          <pre class="text-[10px] text-slate-400 overflow-x-auto mt-1">${JSON.stringify(payload, null, 2)}</pre>
+        `;
+        bus.prepend(entry);
+        // keep at most 8 items
+        while (bus.children.length > 8) {
+          bus.removeChild(bus.lastChild);
+        }
+      }
+
+      function clearEventLog() {
+        const bus = document.getElementById('event-bus-log');
+        if (bus) bus.innerHTML = '<div class="text-xs text-slate-500 italic p-3 text-center">Đang chờ sự kiện tương tác từ Mobile Simulator...</div>';
+      }
+    </script>
+  
+
+  <script>
+    // Pipeline Step Explanations
+    const stepExplanations = {
+      1: '<strong>Bước 1 (Thao tác thực địa):</strong> Người dùng thực hiện thao tác trực tiếp trên khung màn hình di động 390px (nhập số liệu, quét mã QR hoặc ký số).',
+      2: '<strong>Bước 2 (Xác thực cục bộ & SQLite):</strong> Thiết bị di động kiểm tra định vị GPS trong bán kính cho phép, mã hóa dữ liệu và lưu vào cơ sở dữ liệu SQLite cục bộ.',
+      3: '<strong>Bước 3 (Mã hóa & Gửi Broker):</strong> Gói tin JSON được gắn chữ ký số SHA-256, truyền qua kênh bảo mật TLS đến máy chủ MQTT / REST API.',
+      4: '<strong>Bước 4 (Xử lý nghiệp vụ Admin):</strong> Tháp chỉ huy tiếp nhận dữ liệu, cập nhật bảng hiển thị theo thời gian thực và kích hoạt các chỉ số KPI tương ứng.',
+      5: '<strong>Bước 5 (Kích hoạt tự động):</strong> Hệ thống tự động chuyển tiếp hồ sơ sang phân hệ tiếp theo (VD: Giao hàng xong tự động giao việc cho Đội lắp đặt).'
+    };
+
+    function setPipelineStep(step) {
+      for (let i = 1; i <= 5; i++) {
+        const btn = document.getElementById('step-btn-' + i);
+        if (btn) {
+          if (i === step) {
+            btn.className = 'p-3 text-left rounded-xl bg-white dark:bg-slate-800 border-2 border-emerald-500 shadow-sm transition-all';
+            btn.querySelector('.font-mono').className = 'text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400';
+          } else {
+            btn.className = 'p-3 text-left rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-slate-400 transition-all';
+            btn.querySelector('.font-mono').className = 'text-[10px] font-mono font-bold text-slate-400';
+          }
+        }
+      }
+      document.getElementById('pipeline-desc').innerHTML = stepExplanations[step] || '';
+      logEvent('PIPELINE_INSPECTOR', 'STEP_' + step + '_SELECTED', { step: step, activeModule: '06' });
+    }
+
+    
+          function verifyQaGeofence() {
+            const fix = document.getElementById('qa-gps-fix');
+            fix.innerText = '✓ Sai số 4.2m (HỢP LỆ)';
+            fix.className = 'text-[10px] font-mono font-bold text-emerald-600';
+            logEvent('MOBILE_QA', 'GEOFENCE_VERIFIED', { stationId: 'STATION-248', distanceMeters: 4.2, pass: true });
+          }
+
+          function handleQaApprove() {
+            const pill = document.getElementById('admin-qa-status-pill');
+            const desc = document.getElementById('admin-qa-log-desc');
+            pill.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500 text-white animate-pulse';
+            pill.innerText = 'ĐÃ DUYỆT (APPROVED)';
+            desc.innerHTML = '<span class="text-emerald-500 font-bold">✓ Hồ sơ đã được ký số! Hệ thống tự động kích hoạt tài khoản Nông dân (Module 08) và mở khóa giải ngân trợ cấp.</span>';
+            logEvent('MOBILE_QA', 'INSPECTION_APPROVED', { stationId: 'STATION-248', inspector: 'QA-LE-VAN-MINH', subsidyStatus: 'READY_TO_DISBURSE' });
+          }
+
+          function handleQaReject() {
+            const pill = document.getElementById('admin-qa-status-pill');
+            const desc = document.getElementById('admin-qa-log-desc');
+            pill.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-red-500 text-white';
+            pill.innerText = 'YÊU CẦU SỬA (REWORK)';
+            desc.innerHTML = '<span class="text-red-500 font-bold">✕ Đã tạo phiếu yêu cầu khắc phục gửi ngược lại tổ đội thi công (Module 05).</span>';
+            logEvent('MOBILE_QA', 'INSPECTION_REJECTED', { stationId: 'STATION-248', reason: 'Dây nối đất chưa siết chặt' });
+          }
+        
+  </script>
+</body>
+</html>

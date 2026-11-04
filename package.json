@@ -2,18 +2,32 @@
   "name": "@wikialisa/ui",
   "version": "1.0.0",
   "description": "WikiAlisa UI — Agriculture Solar Pump Design System, 390px Mobile Simulator & Atomic Components",
+  "type": "module",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
     "chromatic": "chromatic --exit-zero-on-changes",
     "chromatic:ci": "chromatic --exit-zero-on-changes --auto-accept-changes",
     "test:visual": "npm run chromatic",
     "test": "echo \"Running test suite...\" && exit 0"
   },
   "devDependencies": {
-    "chromatic": "^11.18.0"
+    "@tailwindcss/vite": "^4.3.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "autoprefixer": "^10.6.2",
+    "chromatic": "^11.18.0",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^4.3.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
   },
   "repository": {
     "type": "git",
@@ -30,5 +44,10 @@
     "visual-regression"
   ],
   "author": "WikiAlisa Team",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^1.67.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  }
 }

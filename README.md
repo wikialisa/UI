@@ -14,6 +14,29 @@ Bộ công cụ thiết kế và phát triển giao diện đa nền tảng do *
 
 ---
 
+## 🛠️ Lập Trình Với Framework TypeScript / TSX & Đóng Gói Tĩnh Bằng `pnpm`
+
+Dự án được xây dựng trên kiến trúc Single Page Application bằng **React 19**, **TypeScript**, **TSX**, **Tailwind CSS v4** và **Vite**. Dữ liệu được đóng gói tối ưu ra thư mục tĩnh `dist/` phục vụ triển khai linh hoạt:
+
+```bash
+# 1. Cài đặt các thư viện phụ thuộc bằng pnpm
+pnpm install
+
+# 2. Khởi chạy môi trường phát triển (Vite Dev Server với HMR)
+pnpm dev
+
+# 3. Kiểm tra kiểu dữ liệu tĩnh TypeScript
+pnpm type-check
+
+# 4. Đóng gói ra thư mục tĩnh dist/ phục vụ production
+pnpm build
+
+# 5. Xem thử bản dựng tĩnh trên local server
+pnpm preview
+```
+
+---
+
 ## 🛠️ Tự Động Hóa CI/CD & Kiểm Thử Thị Giác (Chromatic)
 
 Hệ thống tích hợp sẵn 2 pipeline tự động hóa qua GitHub Actions:
