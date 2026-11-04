@@ -273,6 +273,210 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onSelectModule }) => {
         </div>
       </section>
 
+      {/* GIAI ĐOẠN 01 — KHÁM PHÁ SẢN PHẨM & NỀN TẢNG NGHIỆP VỤ */}
+      <section className="py-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          
+          <div className="text-center max-w-3xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+              Giai Đoạn 01 — Khám Phá Sản Phẩm
+            </span>
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mt-2">
+              Năm Vai Trò, Một Ứng Dụng Di Động Duy Nhất
+            </h2>
+            <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+              Mỗi người dùng đăng nhập vào cùng một ứng dụng di động nhưng thấy các tính năng và thẩm quyền khác nhau theo phân quyền RBAC.
+            </p>
+          </div>
+
+          {/* 5 Field Roles Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            
+            {/* Role 1: Delivery */}
+            <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500 text-white">
+                  VAI TRÒ 1
+                </span>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mt-2">
+                  Đối Tác Giao Hàng
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                  Vận chuyển bơm được phân công đến tận trang trại của nông dân.
+                </p>
+                <div className="mt-3 text-[11px] font-semibold text-amber-700 dark:text-amber-400">
+                  10 Thẩm Quyền Cốt Lõi:
+                </div>
+                <ul className="text-[10px] text-slate-500 space-y-0.5 mt-1 list-disc pl-3">
+                  <li>Xem đơn phân công</li>
+                  <li>GPS dẫn đường</li>
+                  <li>Xác minh SMS OTP</li>
+                  <li>Quét sê-ri QR/Barcode</li>
+                  <li>Ký số POD điện tử</li>
+                </ul>
+              </div>
+              <button 
+                onClick={() => onSelectModule('module-04-delivery')}
+                className="mt-4 w-full py-1.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs"
+              >
+                Xem M04 Delivery ➔
+              </button>
+            </div>
+
+            {/* Role 2: Install */}
+            <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-blue-500 text-white">
+                  VAI TRÒ 2
+                </span>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mt-2">
+                  Nhóm Lắp Đặt
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                  Thi công lắp ráp giàn pin, biến tần và bơm thử nước đạt 35 m³/h.
+                </p>
+                <div className="mt-3 text-[11px] font-semibold text-blue-700 dark:text-blue-400">
+                  9 Thẩm Quyền Cốt Lõi:
+                </div>
+                <ul className="text-[10px] text-slate-500 space-y-0.5 mt-1 list-disc pl-3">
+                  <li>Checklist 4 tiêu chuẩn</li>
+                  <li>Xác minh vật liệu</li>
+                  <li>Ảnh trước/sau thi công</li>
+                  <li>Đo lưu lượng m³/h</li>
+                  <li>Chữ ký nghiệm thu</li>
+                </ul>
+              </div>
+              <button 
+                onClick={() => onSelectModule('module-05-installation')}
+                className="mt-4 w-full py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs"
+              >
+                Xem M05 Install ➔
+              </button>
+            </div>
+
+            {/* Role 3: QA */}
+            <div className="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-purple-500 text-white">
+                  VAI TRÒ 3
+                </span>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mt-2">
+                  Kiểm Tra Viên QA
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                  Xác minh độc lập chất lượng lắp đặt và cấp chứng chỉ an toàn.
+                </p>
+                <div className="mt-3 text-[11px] font-semibold text-purple-700 dark:text-purple-400">
+                  9 Thẩm Quyền Cốt Lõi:
+                </div>
+                <ul className="text-[10px] text-slate-500 space-y-0.5 mt-1 list-disc pl-3">
+                  <li>Hàng đợi kiểm định</li>
+                  <li>Khóa Geofence GPS</li>
+                  <li>Kiểm định 18 TCVN</li>
+                  <li>Phê duyệt (Approve)</li>
+                  <li>Yêu cầu sửa (Rework)</li>
+                </ul>
+              </div>
+              <button 
+                onClick={() => onSelectModule('module-06-qa')}
+                className="mt-4 w-full py-1.5 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs"
+              >
+                Xem M06 QA ➔
+              </button>
+            </div>
+
+            {/* Role 4: Service */}
+            <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/30 flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-red-500 text-white">
+                  VAI TRÒ 4
+                </span>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mt-2">
+                  Kỹ Thuật Viên Dịch Vụ
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                  Xử lý sự cố, chẩn đoán lỗi biến tần và bảo hành lưu động SLA 24h.
+                </p>
+                <div className="mt-3 text-[11px] font-semibold text-red-700 dark:text-red-400">
+                  8 Thẩm Quyền Cốt Lõi:
+                </div>
+                <ul className="text-[10px] text-slate-500 space-y-0.5 mt-1 list-disc pl-3">
+                  <li>Tiếp nhận phiếu sự cố</li>
+                  <li>Chẩn đoán lỗi EEPROM</li>
+                  <li>Xuất kho linh kiện</li>
+                  <li>Thay thế tại ruộng</li>
+                  <li>Đánh giá 5★ CSAT</li>
+                </ul>
+              </div>
+              <button 
+                onClick={() => onSelectModule('module-07-service')}
+                className="mt-4 w-full py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs"
+              >
+                Xem M07 Service ➔
+              </button>
+            </div>
+
+            {/* Role 5: Farmer */}
+            <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-600 text-white">
+                  VAI TRÒ 5
+                </span>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mt-2">
+                  Hộ Nông Dân
+                </h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                  Giám sát lưu lượng nước, bật/tắt bơm 1 chạm và gửi khiếu nại.
+                </p>
+                <div className="mt-3 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">
+                  7 Thẩm Quyền Cốt Lõi:
+                </div>
+                <ul className="text-[10px] text-slate-500 space-y-0.5 mt-1 list-disc pl-3">
+                  <li>Bật/tắt bơm 1 chạm</li>
+                  <li>Xem kWh và m³/ngày</li>
+                  <li>Gửi khiếu nại lỗi E-04</li>
+                  <li>Theo dõi kỹ thuật viên</li>
+                  <li>Lịch bảo dưỡng định kỳ</li>
+                </ul>
+              </div>
+              <button 
+                onClick={() => onSelectModule('module-08-farmer')}
+                className="mt-4 w-full py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs"
+              >
+                Xem M08 Farmer ➔
+              </button>
+            </div>
+          </div>
+
+          {/* Scope Comparison Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                  Phạm Vi Di Động Hiện Tại (10 Tính Năng In-Scope)
+                </h4>
+              </div>
+              <p className="text-xs text-slate-600 dark:text-slate-400">
+                Quản lý giao hàng, lắp đặt, QA, dịch vụ khiếu nại, thông báo đẩy, theo dõi GPS, tải ảnh hiện trường, chữ ký điện tử, xác minh OTP, và hỗ trợ ngoại tuyến SQLite/IndexedDB.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                  Phạm Vi Bảng Quản Trị Web (4 Nội Dung Out-of-Scope)
+                </h4>
+              </div>
+              <p className="text-xs text-slate-600 dark:text-slate-400">
+                Bảng điều khiển quản trị web (Web Admin Console), bảng phân tích vận hành nâng cao, quản lý nhà cung cấp, và quản lý kho hàng nhập xuất tồn.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 20-STEP END-TO-END LIFECYCLE ROADMAP */}
       <section className="py-16 bg-slate-100/70 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
