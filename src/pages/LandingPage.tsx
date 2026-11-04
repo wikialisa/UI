@@ -2,6 +2,7 @@
 import React from 'react';
 import { MODULES_DATA } from '../data/modulesData';
 import { LIFECYCLE_STEPS, SYSTEM_STATES } from '../data/lifecycleData';
+import { SolarAfciDashboard } from '../components/telemetry/SolarAfciDashboard';
 import { 
   ArrowRight, 
   Smartphone, 
@@ -156,6 +157,31 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onSelectModule }) => {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SMART SOLAR & AFCI REAL-TIME TELEMETRY SYSTEM SECTION (FIGMA 153:15417) */}
+      <section className="py-12 bg-slate-100/60 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                Tiêu Chuẩn UL 1699B / IEC 63027 • Node 153:15417
+              </span>
+              <h2 className="text-3xl font-black text-slate-900 dark:text-white mt-2">
+                Hệ Thống Giám Sát Năng Lượng & Cắt Mạch Hồ Quang AFCI
+              </h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl">
+                Kiến trúc Microservices phân tán với giao thức MQTT 5.0 qua TLS 1.3, cơ sở dữ liệu chuỗi thời gian TimescaleDB và bộ ngắt mạch hồ quang điện tử thời gian thực &lt; 50ms.
+              </p>
+            </div>
+            <div className="text-xs font-mono text-slate-500">
+              Figma Node: 153:15417
+            </div>
+          </div>
+
+          <SolarAfciDashboard />
         </div>
       </section>
 

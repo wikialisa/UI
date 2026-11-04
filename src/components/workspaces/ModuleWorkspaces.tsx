@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { usePrototype } from '../../context/PrototypeContext';
 import { MODULES_DATA } from '../../data/modulesData';
+import { SolarAfciDashboard } from '../telemetry/SolarAfciDashboard';
 import { 
   ShieldCheck, 
   CheckCircle2, 
@@ -284,27 +285,7 @@ export const useModuleWorkspaces = ({ moduleId }: WorkspaceProps): WorkspaceResu
           </div>
         ),
         admin: (
-          <div className="space-y-4">
-            <h4 className="text-sm font-bold text-slate-900 dark:text-white">Trung Tâm Điều Hành Tổng Thể (Central Command)</h4>
-            <div className="grid grid-cols-4 gap-3 text-center">
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <div className="text-xl font-bold text-emerald-600 font-mono">248</div>
-                <div className="text-[10px] text-slate-400">Trạm Đang Chạy</div>
-              </div>
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <div className="text-xl font-bold text-amber-600 font-mono">14</div>
-                <div className="text-[10px] text-slate-400">Đang Vận Chuyển</div>
-              </div>
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <div className="text-xl font-bold text-blue-600 font-mono">8</div>
-                <div className="text-[10px] text-slate-400">Đang Lắp Đặt</div>
-              </div>
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                <div className="text-xl font-bold text-purple-600 font-mono">6</div>
-                <div className="text-[10px] text-slate-400">Chờ Nghiệm Thu</div>
-              </div>
-            </div>
-          </div>
+          <SolarAfciDashboard />
         )
       };
 

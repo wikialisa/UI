@@ -6,6 +6,25 @@ import { MODULES_DATA } from '../data/modulesData';
 
 export type ClusterType = 'cluster-1' | 'cluster-2' | 'cluster-3';
 
+export interface SolarTelemetryState {
+  siteId: string;
+  deviceId: string;
+  vDc: number;       // V
+  iDc: number;       // A
+  pDc: number;       // W
+  vAc: number;       // V
+  iAc: number;       // A
+  pAc: number;       // W
+  frequency: number; // Hz
+  dailyYield: number;// kWh
+  temperature: number;// °C
+  afciStatus: 0 | 1 | 2; // 0: Normal, 1: Warning, 2: Tripped (Arc Fault Detected)
+  afciTripTimestamp: string | null;
+  afciResponseTimeMs: number;
+  mqttBrokerConnected: boolean;
+  timescaleDbLatencyMs: number;
+}
+
 export interface OrderState {
   id: string;
   pumpModel: string;
@@ -52,6 +71,7 @@ interface PrototypeContextType {
   networkMode: 'online' | 'offline' | 'syncing';
   isAutoPlaying: boolean;
   order: OrderState;
+  solarTelemetry: SolarTelemetryState;
   events: TelemetryEvent[];
   handoverMessage: string | null;
   setModule: (id: string) => void;
@@ -69,6 +89,8 @@ interface PrototypeContextType {
   resetEntireFlow: () => void;
   toggleAutoPlay: () => void;
   updateOrder: (updates: Partial<OrderState>) => void;
+  triggerAfciFault: (severity: 1 | 2) => void;
+  resetAfciFault: () => void;
 }
 
 const initialOrder: OrderState = {
@@ -107,6 +129,25 @@ const initialOrder: OrderState = {
   offlineQueueCount: 0,
 };
 
+const initialSolarTelemetry: SolarTelemetryState = {
+  siteId: 'SITE-CANTHO-001',
+  deviceId: 'INV-AFCI-7K5-VN99',
+  vDc: 580.4,
+  iDc: 12.8,
+  pDc: 7429.1,
+  vAc: 228.6,
+  iAc: 31.5,
+  pAc: 7198.5,
+  frequency: 50.02,
+  dailyYield: 38.64,
+  temperature: 46.5,
+  afciStatus: 0, // Normal
+  afciTripTimestamp: null,
+  afciResponseTimeMs: 38,
+  mqttBrokerConnected: true,
+  timescaleDbLatencyMs: 14
+};
+
 const PrototypeContext = createContext<PrototypeContextType | undefined>(undefined);
 
 export const PrototypeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -119,6 +160,7 @@ export const PrototypeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [networkMode, setNetworkMode] = useState<'online' | 'offline' | 'syncing'>('online');
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(false);
   const [order, setOrder] = useState<OrderState>(initialOrder);
+  const [solarTelemetry, setSolarTelemetry] = useState<SolarTelemetryState>(initialSolarTelemetry);
   const [handoverMessage, setHandoverMessage] = useState<string | null>(
     '🚚 Đối tác Giao Hàng đang di chuyển đến trang trại Thốt Nốt theo lộ trình GPS tối ưu.'
   );
@@ -167,6 +209,61 @@ export const PrototypeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const updateOrder = (updates: Partial<OrderState>) => {
     setOrder(prev => ({ ...prev, ...updates }));
+  };
+
+  // AFCI Trigger
+  const triggerAfciFault = (severity: 1 | 2) => {
+    const tripTime = new Date().toLocaleTimeString('vi-VN');
+    const responseMs = Math.floor(28 + Math.random() * 15); // e.g. 28-43ms (< 50ms)
+
+    if (severity === 2) {
+      // Emergency Cutoff
+      setSolarTelemetry(prev => ({
+        ...prev,
+        afciStatus: 2,
+        afciTripTimestamp: tripTime,
+        afciResponseTimeMs: responseMs,
+        iDc: 0.0,
+        pDc: 0.0,
+        iAc: 0.0,
+        pAc: 0.0,
+      }));
+
+      emitEvent('AFCI_ARC_FAULT_TRIPPED', {
+        severity: 'CRITICAL',
+        standard: 'UL1699B / IEC 63027',
+        edgeCutoffResponseTimeMs: responseMs,
+        tripTimestamp: tripTime,
+        actionTaken: 'DC_ISOLATOR_OPENED_EMERGENCY_CUTOFF',
+        inverterId: solarTelemetry.deviceId,
+        siteId: solarTelemetry.siteId
+      }, 'AFCI_EDGE_SENSOR');
+
+      setHandoverMessage(`🚨 [AFCI TRIP < 50ms] Phát hiện hồ quang điện DC! Biến tần đã tự động ngắt mạch trong ${responseMs}ms để chống cháy nổ!`);
+    } else {
+      setSolarTelemetry(prev => ({
+        ...prev,
+        afciStatus: 1
+      }));
+
+      emitEvent('AFCI_ARC_NOISE_WARNING', {
+        severity: 'WARNING',
+        inverterId: solarTelemetry.deviceId,
+        noiseFreqKhz: 142.5
+      }, 'AFCI_EDGE_SENSOR');
+
+      setHandoverMessage('⚠️ [AFCI Cảnh Báo] Phát hiện nhiễu xung hồ quang vi mô trên String #2. Tiếp tục giám sát.');
+    }
+  };
+
+  const resetAfciFault = () => {
+    setSolarTelemetry(initialSolarTelemetry);
+    emitEvent('AFCI_BREAKER_RESET', {
+      inverterId: initialSolarTelemetry.deviceId,
+      restoredAt: new Date().toLocaleTimeString('vi-VN'),
+      status: 'NORMAL'
+    }, 'AFCI_MANAGEMENT');
+    setHandoverMessage('✓ Rơ-le AFCI đã được phục hồi. Đóng cầu dao DC và khôi phục dòng điện biến tần.');
   };
 
   // Switch cluster helper
@@ -288,6 +385,7 @@ export const PrototypeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const resetEntireFlow = () => {
     setOrder(initialOrder);
+    setSolarTelemetry(initialSolarTelemetry);
     setActiveModuleId('04');
     setActiveCluster('cluster-2');
     setActiveRole('delivery');
@@ -353,6 +451,7 @@ export const PrototypeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         networkMode,
         isAutoPlaying,
         order,
+        solarTelemetry,
         events,
         handoverMessage,
         setModule,
@@ -370,6 +469,8 @@ export const PrototypeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         resetEntireFlow,
         toggleAutoPlay,
         updateOrder,
+        triggerAfciFault,
+        resetAfciFault
       }}
     >
       {children}
