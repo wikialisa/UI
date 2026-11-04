@@ -1,6 +1,7 @@
 // src/pages/ModuleDetailPage.tsx
-import React, { useState } from 'react';
-import { ModuleDefinition, TelemetryEvent } from '../types';
+import React from 'react';
+import { ModuleDefinition } from '../types';
+import { usePrototype } from '../context/PrototypeContext';
 import { RoadmapPipeline } from '../components/RoadmapPipeline';
 import { MobileSimulatorFrame } from '../components/MobileSimulatorFrame';
 import { EventBusStream } from '../components/EventBusStream';
@@ -12,38 +13,10 @@ interface ModuleDetailPageProps {
 }
 
 export const ModuleDetailPage: React.FC<ModuleDetailPageProps> = ({ module }) => {
-  const [events, setEvents] = useState<TelemetryEvent[]>([
-    {
-      id: 'init-1',
-      timestamp: new Date().toLocaleTimeString('vi-VN'),
-      source: `MODULE_${module.id}_CLIENT`,
-      eventName: 'SURFACE_INITIALIZED',
-      payload: {
-        moduleId: module.id,
-        screenStandard: '390x844px',
-        telemetryReady: true
-      }
-    }
-  ]);
-
-  const handleEmitEvent = (eventName: string, payload: Record<string, unknown>, source?: string) => {
-    const newEvent: TelemetryEvent = {
-      id: 'evt-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
-      timestamp: new Date().toLocaleTimeString('vi-VN'),
-      source: source || `MOBILE_MODULE_${module.id}`,
-      eventName,
-      payload
-    };
-    setEvents(prev => [newEvent, ...prev]);
-  };
-
-  const handleClearEvents = () => {
-    setEvents([]);
-  };
+  const { events, emitEvent, clearEvents } = usePrototype();
 
   const workspaces = useModuleWorkspaces({
-    moduleId: module.id,
-    onEmitEvent: handleEmitEvent
+    moduleId: module.id
   });
 
   return (
@@ -108,7 +81,7 @@ export const ModuleDetailPage: React.FC<ModuleDetailPageProps> = ({ module }) =>
       {/* ROADMAP PIPELINE (MOBILE ➔ ADMIN) */}
       <RoadmapPipeline 
         moduleId={module.id} 
-        onEmitEvent={handleEmitEvent} 
+        onEmitEvent={emitEvent} 
       />
 
       {/* DUAL-SURFACE LIVE DEMO WORKSPACE */}
@@ -147,7 +120,7 @@ export const ModuleDetailPage: React.FC<ModuleDetailPageProps> = ({ module }) =>
               {/* Event Bus Stream */}
               <EventBusStream 
                 events={events}
-                onClear={handleClearEvents}
+                onClear={clearEvents}
               />
 
               {/* Enterprise Admin Desk */}
