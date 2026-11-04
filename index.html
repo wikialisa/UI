@@ -1334,9 +1334,14 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
             <button onclick="setScenario('error')" id="btn-scenario-error" class="px-3 py-1 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300 transition">Error Path</button>
             <button onclick="setScenario('offline')" id="btn-scenario-offline" class="px-3 py-1 rounded-full text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300 transition">Offline Path</button>
           </div>
-          <button onclick="resetPrototype()" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 flex items-center gap-1 transition">
-            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset Flow
-          </button>
+          <div class="flex items-center gap-2">
+            <button onclick="openLifecycleModal()" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 flex items-center gap-1.5 transition active:scale-95" title="Xem chi tiết 20 bước và 7 trạng thái cốt lõi">
+              <i data-lucide="workflow" class="w-3.5 h-3.5"></i> 20 Bước & 7 Trạng Thái
+            </button>
+            <button onclick="resetPrototype()" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 flex items-center gap-1 transition">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset Flow
+            </button>
+          </div>
         </div>
 
         <!-- Quick Jump to any Del 01-18 Screen -->
@@ -4947,6 +4952,20 @@ const styles = StyleSheet.create({
 
     let activeReactRole = 'delivery';
 
+    
+    function openLifecycleModal() {
+      const modal = document.getElementById('lifecycleModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function closeLifecycleModal() {
+      const modal = document.getElementById('lifecycleModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
     function openReactCodeModal(targetRole = null) {
       const modal = document.getElementById('reactCodeModal');
       if (!modal) return;
@@ -5026,5 +5045,189 @@ const styles = StyleSheet.create({
     </div>
   </div>
   
+
+  <!-- Modal: 20 Bước Vòng Đời & 7 Trạng Thái Cốt Lõi (Giai Đoạn 01 & 02) -->
+  <div id="lifecycleModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+    <div class="w-full max-w-5xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:px-6 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-agri-600 text-white flex items-center justify-center shadow-md">
+            <i data-lucide="workflow" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center gap-2">
+              <span>Đặc Tả Giai Đoạn 01 & 02 — Chu Trình 20 Bước & 7 Trạng Thái Cốt Lõi</span>
+              <span class="px-2 py-0.5 rounded-full bg-agri-100 dark:bg-agri-950 text-agri-700 dark:text-agri-300 text-[10px] font-mono font-bold">Figma Canvas 9:78</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">WikiAlisa Smart Solar Pump Platform • Kiến trúc vòng đời sản phẩm từ xuất kho đến bảo trì thực địa.</p>
+          </div>
+        </div>
+        <button onclick="closeLifecycleModal()" class="w-8 h-8 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+        
+        <!-- SECTION 1: GIAI ĐOẠN 01 -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold font-mono text-xs">GIAI ĐOẠN 01</span>
+            <span class="font-bold text-sm text-slate-900 dark:text-white">Khám Phá Sản Phẩm (Product Discovery)</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <span class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] block">Mục Tiêu Kinh Doanh:</span>
+              <ul class="space-y-1 list-disc list-inside text-slate-600 dark:text-slate-400">
+                <li><strong>100% Paperless:</strong> Xóa bỏ hoàn toàn biên bản giấy bàn giao và nhật ký sửa chữa dễ rách ướt ngoài đồng ruộng.</li>
+                <li><strong>Truy xuất nguồn gốc:</strong> Định danh mã sê-ri QR/Barcode từng tấm pin, biến tần và bơm hỏa tiễn từ xuất xưởng đến bảo trì.</li>
+                <li><strong>Chống gian lận:</strong> Khóa tọa độ định vị GPS giếng khoan thực địa và xác thực OTP 4 số từ SMS nông dân.</li>
+                <li><strong>Rút ngắn chu kỳ:</strong> Giảm thời gian từ giao hàng đến cấp phép kích hoạt từ 15 ngày xuống dưới 48 giờ.</li>
+              </ul>
+            </div>
+
+            <div class="space-y-1.5">
+              <span class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] block">5 Nhóm Vai Trò Thực Địa:</span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+                <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border">
+                  <span class="font-bold text-agri-600 block">1. Đối tác giao hàng</span>
+                  <span class="text-slate-500">3 kiện xe tải, quét QR, OTP 4 số, ký POD.</span>
+                </div>
+                <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border">
+                  <span class="font-bold text-amber-600 block">2. Nhóm lắp đặt</span>
+                  <span class="text-slate-500">Giàn pin 15 độ, tiếp địa R &lt; 4 Ohm, đo nước 35m³/h.</span>
+                </div>
+                <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border">
+                  <span class="font-bold text-purple-600 block">3. Kiểm tra viên QA</span>
+                  <span class="text-slate-500">Khóa GPS geofence, TCVN, cấp phép vận hành.</span>
+                </div>
+                <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border">
+                  <span class="font-bold text-rose-600 block">4. Kỹ thuật viên DV</span>
+                  <span class="text-slate-500">Xử lý sự cố E-04, thay phụ tùng, CSAT 5 sao.</span>
+                </div>
+                <div class="p-2 rounded-xl bg-white dark:bg-slate-900 border sm:col-span-2">
+                  <span class="font-bold text-emerald-600 block">5. Nông dân (Tùy chọn MVP)</span>
+                  <span class="text-slate-500">Bật/tắt bơm từ xa 1 chạm, theo dõi lưu lượng m³/h & sản lượng điện PV.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: GIAI ĐOẠN 02 - 20 BƯỚC -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+            <span class="px-2.5 py-1 rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300 font-bold font-mono text-xs">GIAI ĐOẠN 02</span>
+            <span class="font-bold text-sm text-slate-900 dark:text-white">Hành Trình Xuyên Suốt 20 Bước (End-to-End Lifecycle)</span>
+          </div>
+
+          <!-- 4 Stages Timeline -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <!-- Stage 1 -->
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 text-[10px] font-bold uppercase font-mono">Chặng 1: Giao Hàng (Del)</span>
+              <div class="space-y-1 text-[11px]">
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">01</span><span>Bơm được phân công</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">02</span><span>Đối tác giao hàng nhận</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">03</span><span>Di chuyển theo GPS</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">04</span><span>Quét QR & Xác minh OTP</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">05</span><span>Giao hàng hoàn tất (POD)</span></div>
+              </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 text-[10px] font-bold uppercase font-mono">Chặng 2: Lắp Đặt (Install)</span>
+              <div class="space-y-1 text-[11px]">
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">06</span><span>Nhóm lắp đặt nhận</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">07</span><span>Đến địa điểm giếng</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">08</span><span>Lắp đặt giàn pin & bơm</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">09</span><span>Tải ảnh & đo nước 35m³/h</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">10</span><span>Hoàn tất lắp đặt</span></div>
+              </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-700 text-[10px] font-bold uppercase font-mono">Chặng 3: Thẩm Định (QA)</span>
+              <div class="space-y-1 text-[11px]">
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">11</span><span>QA nhận nhiệm vụ</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">12</span><span>Xác minh GPS & TCVN</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">13</span><span>Phê duyệt (Approve)</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">14</span><span>Kích hoạt bảo hành điện tử</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">15</span><span>Nông dân sử dụng bơm</span></div>
+              </div>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-700 text-[10px] font-bold uppercase font-mono">Chặng 4: Dịch Vụ (Service)</span>
+              <div class="space-y-1 text-[11px]">
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">16</span><span>Gửi khiếu nại (Lỗi E-04)</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">17</span><span>Kỹ thuật viên nhận phiếu</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">18</span><span>Đến gặp nông dân</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">19</span><span>Sửa chữa & thay phụ tùng</span></div>
+                <div class="flex items-center gap-1.5"><span class="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-[9px]">20</span><span>Đóng phiếu & CSAT 5 sao</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: 7 TRẠNG THÁI CỐT LÕI -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+            <span class="px-2.5 py-1 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300 font-bold font-mono text-xs">7 TRẠNG THÁI CỐT LÕI</span>
+            <span class="font-bold text-sm text-slate-900 dark:text-white">Ma Trận Trạng Thái Giao Diện & Phản Hồi Hệ Thống</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border space-y-1">
+              <span class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-slate-400"></span> 1. Đang tải (Loading)</span>
+              <p class="text-[11px] text-slate-500">Shimmer Skeleton giữ khung 390px, thanh tiến trình upload ảnh 0–100% không gây giật màn hình.</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border space-y-1">
+              <span class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-slate-300"></span> 2. Trống (Empty)</span>
+              <p class="text-[11px] text-slate-500">Minh họa trực quan: Hết chuyến giao, Hộp thư rỗng, Không có sự cố; kèm nút bấm làm mới.</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border space-y-1">
+              <span class="font-bold text-emerald-600 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 3. Thành công (Success)</span>
+              <p class="text-[11px] text-slate-500">Huy hiệu xanh #15803D, mã chứng nhận số, mã băm SHA-256, rung haptic feedback an tâm.</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border space-y-1">
+              <span class="font-bold text-red-600 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500"></span> 4. Lỗi (Error)</span>
+              <p class="text-[11px] text-slate-500">Viền đỏ #DC2626, chỉ dẫn cụ thể (Sai OTP, sê-ri không khớp, mất GPS), giữ nguyên dữ liệu đã gõ.</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border space-y-1">
+              <span class="font-bold text-amber-600 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> 5. Ngoại tuyến (Offline)</span>
+              <p class="text-[11px] text-slate-500">Banner đỏ cảnh báo, tự động lưu biên bản vào SQLite cục bộ, huy hiệu đếm "☁️ X Chờ sync".</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border space-y-1">
+              <span class="font-bold text-blue-600 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-500"></span> 6. Cấp quyền (Permissions)</span>
+              <p class="text-[11px] text-slate-500">Hộp thoại giải thích rõ ràng lý do cần GPS (khóa giếng), Camera (quét QR) và Bộ nhớ máy.</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border space-y-1 sm:col-span-2 lg:col-span-3">
+              <span class="font-bold text-purple-600 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-purple-500"></span> 7. Đang đồng bộ (Syncing)</span>
+              <p class="text-[11px] text-slate-500">Tự động kích hoạt khi có sóng 4G/Wi-Fi, biểu tượng xoay nền, giải quyết xung đột thông minh (Server-Authoritative), Toast báo hoàn tất.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-[11px] text-slate-500">Chuẩn hóa theo tài liệu thiết kế Figma eq0EA9dRSWfS2ivuFohJdg</span>
+        <button onclick="closeLifecycleModal()" class="px-4 py-2 rounded-xl bg-agri-600 hover:bg-agri-700 text-white font-bold text-xs shadow-md transition">
+          Đóng Cửa Sổ
+        </button>
+      </div>
+
+    </div>
+  </div>
+
 </body>
 </html>
