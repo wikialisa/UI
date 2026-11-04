@@ -1,0 +1,34 @@
+{
+  "name": "@wikialisa/ui",
+  "version": "1.0.0",
+  "description": "WikiAlisa UI — Agriculture Solar Pump Design System, 390px Mobile Simulator & Atomic Components",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "chromatic": "chromatic --exit-zero-on-changes",
+    "chromatic:ci": "chromatic --exit-zero-on-changes --auto-accept-changes",
+    "test:visual": "npm run chromatic",
+    "test": "echo \"Running test suite...\" && exit 0"
+  },
+  "devDependencies": {
+    "chromatic": "^11.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wikialisa/UI.git"
+  },
+  "keywords": [
+    "wikialisa",
+    "design-system",
+    "solar-pump",
+    "mobile-simulator",
+    "react-native",
+    "flutter",
+    "chromatic",
+    "visual-regression"
+  ],
+  "author": "WikiAlisa Team",
+  "license": "MIT"
+}

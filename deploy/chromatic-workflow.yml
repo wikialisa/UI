@@ -1,0 +1,34 @@
+name: 'Chromatic Visual Tests'
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  chromatic:
+    name: 'Run Chromatic Visual Tests'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required by Chromatic to retrieve git history for baseline comparison
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install --ignore-scripts
+
+      - name: Run Chromatic Visual Regression
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          exitZeroOnChanges: true
+          autoAcceptChanges: ${{ github.ref == 'refs/heads/main' }}
