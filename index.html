@@ -2090,6 +2090,10 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
       }
 
       syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
     }
 
     function togglePumpAction() {
@@ -2122,6 +2126,10 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
 
       showAtomicToast('info', `Đã chuyển cấu hình: Bơm ${hp} HP (${WikiAlisaState.pumpPower} kW, ${WikiAlisaState.pumpFlow} m³/h)`);
       syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
     }
 
     function handleSerialInput(val) {
@@ -2155,6 +2163,10 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
       }
 
       syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
     }
 
     function clearSerialField() {
@@ -2187,6 +2199,10 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
         }
       }
       syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
     }
 
     function confirmHandoverAction() {
@@ -2212,6 +2228,10 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
 
       showAtomicToast('success', '🎉 Chúc mừng! Đã hoàn tất biên bản bàn giao trạm bơm #SP-2024-0847!');
       syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
     }
 
     function triggerQuickApprove() {
@@ -2227,6 +2247,10 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
         }
         showAtomicToast('info', `Đã chuyển sang chặng ${WikiAlisaState.stepperStep}/4`);
         syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
       } else {
         showAtomicToast('success', 'Toàn bộ 4 bước quy trình bàn giao đã hoàn tất xuất sắc!');
       }
@@ -2260,6 +2284,10 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
       setPumpHpRadio(5);
       showAtomicToast('info', 'Đã đặt lại toàn bộ trạng thái prototype về mặc định.');
       syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
     }
 
     function projectStateToSimulator() {
@@ -2328,6 +2356,10 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
       }
       showAtomicToast('error', '🚨 NGẮT KHẨN CẤP: Rơ-le quá dòng đã kích hoạt ngắt trạm bơm!');
       syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
     }
 
     function simulatePdfExport() {
@@ -2347,6 +2379,10 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
       if (chkPin) chkPin.className = 'w-5 h-5 rounded-sm bg-green-700 flex items-center justify-center text-white transition';
       showAtomicToast('success', '✓ Kiểm tra QA hoàn tất: Tấm pin & biến tần đạt chuẩn TCVN.');
       syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
     }
 
     function simulatePhotoCapture() {
@@ -2420,19 +2456,31 @@ class _SolarPumpInspectionViewState extends State&lt;SolarPumpInspectionView&gt;
         if (offBadge) offBadge.textContent = 'OFFLINE • 0 CHỜ';
         showAtomicToast('success', '✓ Toàn bộ bản ghi hiện trường đã được đồng bộ an toàn.');
         syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
       }, 1000);
     }
 
     // Initialize logic on page load
     document.addEventListener('DOMContentLoaded', () => {
       syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      }
       if (typeof setDisplayMode === 'function') setDisplayMode('code');
       if (typeof setRole === 'function') setRole('delivery');
       if (typeof renderPrototype === 'function') renderPrototype();
     });
     // Call once immediately if DOM already parsed
     setTimeout(() => { 
-      syncAllComponents(); 
+      syncAllComponents();
+      if (typeof pumpIsOn !== 'undefined') {
+        pumpIsOn = WikiAlisaState.pumpRunning;
+        if (typeof renderPrototype === 'function') renderPrototype();
+      } 
       if (typeof setDisplayMode === 'function') setDisplayMode('code');
       if (typeof setRole === 'function') setRole('delivery');
       if (typeof renderPrototype === 'function') renderPrototype();
@@ -2641,36 +2689,119 @@ function setScenario(sc) {
   renderPrototype();
 }
 
+
+// ==========================================
+// PROTOTYPE INTERACTIVE LOGIC & NAVIGATION CONTROLLER
+// ==========================================
+
+let navHistory = [];
+let activeBottomTab = 'home';
+let hasFarmerSigned = false;
+let deliveryPhotos = { inverter: true, panels: true, pump: false, panorama: false };
+installChecks = { check1: true, check2: true, check3: false };
+let qaChecks = { q1: true, q2: true, q3: true, q4: false };
+let localOfflineQueue = [];
+let qrScanningActive = false;
+
 function setRole(role) {
+  navHistory.push({ role: currentRole, step: currentStep, tab: activeBottomTab });
+  if (navHistory.length > 20) navHistory.shift();
   currentRole = role;
   currentStep = 1;
+  activeBottomTab = 'home';
   otpEntered = '';
   qaDecision = null;
   customFigmaImage = null;
+  updateRoleSelectorUI();
+  if (typeof updateFlowStepper === 'function') updateFlowStepper();
+  renderPrototype();
+}
 
+function updateRoleSelectorUI() {
   ['auth', 'delivery', 'install', 'qa', 'service', 'farmer'].forEach(r => {
     const btn = document.getElementById('btn-role-' + r);
     if (btn) {
-      if (r === role) {
+      if (r === currentRole) {
         btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-agri-600 text-white shadow-sm transition';
       } else {
         btn.className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition';
       }
     }
   });
-  renderPrototype();
 }
 
 function goToStep(step) {
+  navHistory.push({ role: currentRole, step: currentStep, tab: activeBottomTab });
+  if (navHistory.length > 20) navHistory.shift();
   currentStep = step;
   customFigmaImage = null;
+  activeBottomTab = step === 1 ? 'home' : 'tasks';
+  if (typeof updateFlowStepper === 'function') updateFlowStepper();
   renderPrototype();
+}
+
+function goBack() {
+  if (navHistory.length > 0) {
+    const prev = navHistory.pop();
+    currentRole = prev.role;
+    currentStep = prev.step;
+    activeBottomTab = prev.tab || 'home';
+    customFigmaImage = null;
+    updateRoleSelectorUI();
+    if (typeof updateFlowStepper === 'function') updateFlowStepper();
+    renderPrototype();
+    showAtomicToast('info', 'Quay lại: ' + prev.role.toUpperCase() + ' • Bước ' + prev.step);
+  } else {
+    if (currentStep > 1) {
+      currentStep--;
+      if (typeof updateFlowStepper === 'function') updateFlowStepper();
+      renderPrototype();
+    } else {
+      showAtomicToast('info', 'Đang ở màn hình khởi đầu của vai trò.');
+    }
+  }
+}
+
+function handleBottomTab(tab) {
+  activeBottomTab = tab;
+  if (tab === 'home') {
+    goToStep(1);
+    showAtomicToast('info', 'Chuyển tab: Trang Chủ (' + currentRole.toUpperCase() + ')');
+  } else if (tab === 'tasks') {
+    const taskStepMap = { delivery: 2, install: 1, qa: 2, service: 2, farmer: 2, auth: 2 };
+    goToStep(taskStepMap[currentRole] || 2);
+    showAtomicToast('info', 'Chuyển tab: Danh Sách Nhiệm Vụ');
+  } else if (tab === 'scan') {
+    simulateQrScanInSimulator();
+  } else if (tab === 'notifications') {
+    activeBottomTab = 'notifications';
+    renderPrototype();
+    showAtomicToast('info', 'Chuyển tab: Trung Tâm Thông Báo');
+  } else if (tab === 'profile') {
+    activeBottomTab = 'profile';
+    renderPrototype();
+    showAtomicToast('info', 'Chuyển tab: Hồ Sơ Cá Nhân & Ca Làm Việc');
+  }
 }
 
 function enterOtp(digit) {
   if (otpEntered.length < 4) {
     otpEntered += digit;
     renderPrototype();
+    if (otpEntered.length === 4) {
+      if (otpEntered === '8942' || currentScenario !== 'error') {
+        showAtomicToast('success', '✓ Mã OTP chính xác (8942)! Nông dân Bác Ba Phi đã xác thực.');
+        setTimeout(() => {
+          goToStep(8);
+        }, 700);
+      } else {
+        showAtomicToast('danger', '✗ Mã OTP không đúng. Vui lòng kiểm tra SMS của nông dân.');
+        setTimeout(() => {
+          otpEntered = '';
+          renderPrototype();
+        }, 1200);
+      }
+    }
   }
 }
 
@@ -2679,29 +2810,109 @@ function clearOtp() {
   renderPrototype();
 }
 
+function simulateQrScanInSimulator() {
+  qrScanningActive = true;
+  showAtomicToast('info', '📷 Đang quét mã QR trên vỏ biến tần & thân máy bơm...');
+  renderPrototype();
+  setTimeout(() => {
+    qrScanningActive = false;
+    WikiAlisaState.serial = 'SPC-2024-08471';
+    WikiAlisaState.isValidSerial = true;
+    showAtomicToast('success', '✓ Đã nhận diện sê-ri: SPC-2024-08471 (SolarPump Pro 5.5kW)');
+    if (currentRole === 'delivery') {
+      goToStep(7);
+    } else {
+      renderPrototype();
+    }
+  }, 1100);
+}
+
+function toggleDeliveryPhoto(slotKey) {
+  deliveryPhotos[slotKey] = !deliveryPhotos[slotKey];
+  const names = { inverter: 'Biến Tần 5.5kW', panels: '8 Tấm Pin Mono', pump: 'Bơm Hỏa Tiễn', panorama: 'Toàn Cảnh Bờ Ruộng' };
+  if (deliveryPhotos[slotKey]) {
+    showAtomicToast('success', '📷 Đã chụp ảnh ' + names[slotKey] + ' (4.2 MB • GPS: 10.76262 N, 106.66017 E)');
+  } else {
+    showAtomicToast('info', 'Đã hủy ảnh ' + names[slotKey]);
+  }
+  renderPrototype();
+}
+
+function autoCaptureAllPhotos() {
+  deliveryPhotos = { inverter: true, panels: true, pump: true, panorama: true };
+  showAtomicToast('success', '📷 Đã hoàn tất chụp 4/4 góc kiểm định thiết bị thực địa!');
+  renderPrototype();
+}
+
+function signFarmerCanvas() {
+  hasFarmerSigned = true;
+  showAtomicToast('success', '✍️ Nông dân Bác Ba Phi đã ký nhận biên bản POD (SHA-256 Hash: 7e2f...a109)');
+  renderPrototype();
+}
+
+function clearFarmerSignature() {
+  hasFarmerSigned = false;
+  showAtomicToast('info', 'Đã xóa chữ ký. Nông dân có thể ký lại.');
+  renderPrototype();
+}
+
 function toggleCheckItem(id) {
   installChecks[id] = !installChecks[id];
   renderPrototype();
 }
 
+function toggleQaCheck(id) {
+  qaChecks[id] = !qaChecks[id];
+  renderPrototype();
+}
+
 function togglePumpPower() {
   pumpIsOn = !pumpIsOn;
+  WikiAlisaState.pumpRunning = pumpIsOn;
+  if (pumpIsOn) {
+    WikiAlisaState.pumpPower = 5.4;
+    WikiAlisaState.pumpFlow = 35.4;
+    showAtomicToast('success', '⚡ Trạm bơm đã khởi động! Lưu lượng đạt 35.4 m³/h • Áp suất 8.1 Bar');
+  } else {
+    WikiAlisaState.pumpPower = 0.0;
+    WikiAlisaState.pumpFlow = 0.0;
+    showAtomicToast('warning', 'Đã ngắt nguồn máy bơm năng lượng mặt trời.');
+  }
+  if (typeof syncAllComponents === 'function') syncAllComponents();
   renderPrototype();
 }
 
 function makeQaDecision(decision) {
   qaDecision = decision;
-  renderPrototype();
+  if (decision === 'approve') {
+    showAtomicToast('success', '🏆 QA ĐÃ PHÊ DUYỆT CHÍNH THỨC! Cấp chứng nhận vận hành #QA-CERT-8942');
+    goToStep(8);
+  } else if (decision === 'rework') {
+    showAtomicToast('warning', '⚠️ Đã gửi yêu cầu khắc phục (Rework) đến Đội Lắp Đặt: Xiết lại bu-lông cọc tiếp địa.');
+  } else {
+    showAtomicToast('danger', '❌ Đã từ chối cấp phép. Lập biên bản sai lệch thiết kế giàn pin.');
+  }
 }
 
 function resetPrototype() {
+  navHistory = [];
   currentStep = 1;
+  activeBottomTab = 'home';
   otpEntered = '';
   qaDecision = null;
   customFigmaImage = null;
-  installChecks = { check1: false, check2: false, check3: false };
+  hasFarmerSigned = false;
+  deliveryPhotos = { inverter: true, panels: true, pump: false, panorama: false };
+  installChecks = { check1: true, check2: true, check3: false };
+  qaChecks = { q1: true, q2: true, q3: true, q4: false };
   pumpIsOn = true;
+  WikiAlisaState.pumpRunning = true;
+  WikiAlisaState.pumpPower = 5.4;
+  WikiAlisaState.pumpFlow = 35.4;
+  if (typeof syncAllComponents === 'function') syncAllComponents();
+  if (typeof updateFlowStepper === 'function') updateFlowStepper();
   renderPrototype();
+  showAtomicToast('info', 'Đã đặt lại quy trình trải nghiệm về trạng thái ban đầu.');
 }
 
 // ==========================================
@@ -2768,11 +2979,11 @@ function renderPrototype() {
   }
 
   // Top App Bar Generator
-  const renderTopAppBar = (title, subtitle, backStep = null) => `
+  const renderTopAppBar = (title, subtitle, hasBack = true) => `
     <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200 dark:border-slate-800 -mx-1 px-1">
       <div class="flex items-center gap-2">
-        ${backStep !== null ? `
-          <button onclick="goToStep(${backStep})" class="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 flex items-center justify-center text-slate-700 dark:text-slate-300 transition" title="Quay lại">
+        ${hasBack ? `
+          <button onclick="goBack()" class="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 transition" title="Quay lại">
             <i data-lucide="chevron-left" class="w-4 h-4"></i>
           </button>
         ` : `
@@ -2786,9 +2997,41 @@ function renderPrototype() {
         </div>
       </div>
       <div class="flex items-center gap-1.5">
+        <button onclick="handleBottomTab('notifications')" class="w-6 h-6 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center text-slate-500 relative transition" title="Thông báo">
+          <i data-lucide="bell" class="w-3.5 h-3.5"></i>
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500 absolute top-0.5 right-0.5"></span>
+        </button>
         <span class="px-2 py-0.5 rounded-full bg-agri-100 dark:bg-agri-950 text-agri-700 dark:text-agri-300 text-[9px] font-bold uppercase">
           ${currentRole.toUpperCase()}
         </span>
+      </div>
+    </div>
+  `;
+
+  // Bottom Navigation Bar Generator (5 Tabs with Center Elevated FAB)
+  const renderBottomNav = () => `
+    <div class="pt-2.5 mt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-around text-slate-400 text-[10px] select-none bg-white dark:bg-slate-950 -mx-4 -mb-4 px-2 py-1 sticky bottom-0 z-10 shadow-lg">
+      <div onclick="handleBottomTab('home')" class="flex flex-col items-center gap-0.5 cursor-pointer transition ${activeBottomTab === 'home' ? 'text-agri-600 font-bold' : 'hover:text-slate-600'}">
+        <i data-lucide="home" class="w-4 h-4"></i>
+        <span>Trang chủ</span>
+      </div>
+      <div onclick="handleBottomTab('tasks')" class="flex flex-col items-center gap-0.5 cursor-pointer transition ${activeBottomTab === 'tasks' ? 'text-agri-600 font-bold' : 'hover:text-slate-600'}">
+        <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+        <span>Nhiệm vụ</span>
+      </div>
+      <div onclick="handleBottomTab('scan')" class="flex flex-col items-center cursor-pointer group" title="Quét QR Sê-ri Bơm">
+        <div class="w-9 h-9 -mt-4 rounded-full bg-agri-600 text-white flex items-center justify-center shadow-lg hover:bg-agri-700 active:scale-95 transition">
+          <i data-lucide="qr-code" class="w-4 h-4"></i>
+        </div>
+        <span class="text-[9px] font-bold text-agri-600 mt-0.5">Quét QR</span>
+      </div>
+      <div onclick="handleBottomTab('notifications')" class="flex flex-col items-center gap-0.5 cursor-pointer transition ${activeBottomTab === 'notifications' ? 'text-agri-600 font-bold' : 'hover:text-slate-600'}">
+        <i data-lucide="bell" class="w-4 h-4"></i>
+        <span>Thông báo</span>
+      </div>
+      <div onclick="handleBottomTab('profile')" class="flex flex-col items-center gap-0.5 cursor-pointer transition ${activeBottomTab === 'profile' ? 'text-agri-600 font-bold' : 'hover:text-slate-600'}">
+        <i data-lucide="user" class="w-4 h-4"></i>
+        <span>Cá nhân</span>
       </div>
     </div>
   `;
@@ -2798,9 +3041,109 @@ function renderPrototype() {
     html += `
       <div class="p-2.5 rounded-xl bg-red-50 dark:bg-red-950/70 border border-red-200 dark:border-red-900 text-red-800 dark:text-red-200 text-[11px] flex items-center justify-between shadow-xs mb-3">
         <span class="flex items-center gap-1.5 font-bold"><i data-lucide="wifi-off" class="w-3.5 h-3.5 text-red-600"></i> Mất sóng 4G (Ngoại Tuyến)</span>
-        <span class="px-2 py-0.5 rounded bg-red-200 dark:bg-red-900 text-[10px] font-bold">☁️ 1 Chờ sync</span>
+        <button onclick="triggerEngineSync()" class="px-2 py-0.5 rounded bg-red-200 dark:bg-red-900 text-[10px] font-bold hover:bg-red-300">☁️ ${localOfflineQueue.length || 1} Chờ sync</button>
       </div>
     `;
+  }
+
+  // -------------------------------------------------------------------------
+  // OVERLAY TAB: NOTIFICATIONS VIEW
+  // -------------------------------------------------------------------------
+  if (activeBottomTab === 'notifications') {
+    html += renderTopAppBar('Trung Tâm Thông Báo', 'Cập nhật hệ thống & thời tiết');
+    html += `
+      <div class="space-y-2.5">
+        <div class="flex gap-1 overflow-x-auto pb-1 text-[11px]">
+          <span class="px-2.5 py-0.5 rounded-full bg-agri-600 text-white font-bold">Tất cả (3)</span>
+          <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600">Khẩn cấp</span>
+          <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600">Thời tiết</span>
+        </div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-900 dark:text-white">
+            <span class="flex items-center gap-1.5"><i data-lucide="sun" class="w-3.5 h-3.5 text-amber-500"></i> Nắng gắt cực đại (11h-14h)</span>
+            <span class="text-[10px] text-slate-400">10 phút trước</span>
+          </div>
+          <p class="text-[11px] text-slate-500">Bức xạ PV đạt 980 W/m². Khuyến nghị tăng tần suất chạy bơm để tưới đủ ruộng.</p>
+        </div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-900 dark:text-white">
+            <span class="flex items-center gap-1.5"><i data-lucide="truck" class="w-3.5 h-3.5 text-agri-600"></i> Lệnh điều động giao hàng #SP-0847</span>
+            <span class="text-[10px] text-slate-400">35 phút trước</span>
+          </div>
+          <p class="text-[11px] text-slate-500">Xe chở 3 kiện hàng đã rời kho trung tâm đến Thôn 3 Làng Rajpur.</p>
+        </div>
+        <button onclick="handleBottomTab('home')" class="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs hover:bg-slate-200 transition">
+          Quay Lại Màn Hình Chính ➔
+        </button>
+      </div>
+    `;
+    html += renderBottomNav();
+    container.innerHTML = html;
+    if (window.lucide) lucide.createIcons();
+    return;
+  }
+
+  // -------------------------------------------------------------------------
+  // OVERLAY TAB: PROFILE & WORK SHIFT VIEW
+  // -------------------------------------------------------------------------
+  if (activeBottomTab === 'profile') {
+    html += renderTopAppBar('Hồ Sơ Cá Nhân', 'Nhân sự thực địa WikiAlisa');
+    html += `
+      <div class="space-y-3">
+        <div class="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-agri-100 text-agri-700 font-extrabold flex items-center justify-center text-base">
+            NV
+          </div>
+          <div>
+            <h4 class="font-bold text-xs text-slate-900 dark:text-white">Nguyễn Văn Bình</h4>
+            <p class="text-[10px] text-slate-400 font-mono">Mã NV: EMP-DEL-2024-047</p>
+            <span class="inline-block mt-0.5 px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[9px] font-bold">ĐANG TRONG CA LÀM VIỆC</span>
+          </div>
+        </div>
+
+        <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2 text-xs">
+          <div class="flex justify-between text-slate-600 dark:text-slate-400"><span>Vai trò hệ thống:</span><span class="font-bold text-slate-900 dark:text-white uppercase">${currentRole}</span></div>
+          <div class="flex justify-between text-slate-600 dark:text-slate-400"><span>Chứng chỉ kỹ thuật:</span><span class="font-bold text-emerald-600">Thợ Điện PV Cấp 3</span></div>
+          <div class="flex justify-between text-slate-600 dark:text-slate-400"><span>Bộ nhớ đệm SQLite:</span><span class="font-bold text-slate-900 dark:text-white">4.8 MB (Đã sẵn sàng)</span></div>
+        </div>
+
+        <button onclick="setRole('auth'); showAtomicToast('warning', 'Đã kết thúc ca làm việc an toàn.');" class="w-full py-2.5 rounded-xl border border-red-300 text-red-600 hover:bg-red-50 font-bold text-xs transition flex items-center justify-center gap-1.5">
+          <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Kết Thúc Ca Làm Việc
+        </button>
+      </div>
+    `;
+    html += renderBottomNav();
+    container.innerHTML = html;
+    if (window.lucide) lucide.createIcons();
+    return;
+  }
+
+  // -------------------------------------------------------------------------
+  // OVERLAY SCREEN: QR SCANNING CAMERA SIMULATION
+  // -------------------------------------------------------------------------
+  if (qrScanningActive) {
+    html += `
+      <div class="h-full flex flex-col justify-between py-4 text-white text-center">
+        <div class="flex justify-between items-center px-2 text-xs">
+          <button onclick="qrScanningActive=false; renderPrototype();" class="p-1 rounded-full bg-white/20">✕</button>
+          <span class="font-bold">Quét Mã QR Thiết Bị</span>
+          <button onclick="simulateQrScanInSimulator()" class="text-agri-400 font-bold text-[10px]">Đèn Flash</button>
+        </div>
+        <div class="w-56 h-56 mx-auto rounded-3xl border-2 border-agri-400 relative overflow-hidden flex items-center justify-center bg-black/40 shadow-2xl">
+          <div class="w-full h-1 bg-gradient-to-r from-transparent via-agri-400 to-transparent absolute top-0 animate-bounce"></div>
+          <i data-lucide="qr-code" class="w-24 h-24 text-white/40"></i>
+        </div>
+        <div class="space-y-2">
+          <p class="text-xs text-slate-300">Hướng camera vào mã QR in trên vỏ động cơ bơm hoặc biến tần</p>
+          <button onclick="simulateQrScanInSimulator()" class="w-full py-3 rounded-xl bg-agri-600 font-bold text-xs text-white shadow-lg active:scale-95 transition">
+            ✓ Giả Lập Nhận Mã: SPC-2024-08471
+          </button>
+        </div>
+      </div>
+    `;
+    container.innerHTML = html;
+    if (window.lucide) lucide.createIcons();
+    return;
   }
 
   // =========================================================================
@@ -2808,7 +3151,6 @@ function renderPrototype() {
   // =========================================================================
   if (currentRole === 'auth') {
     if (currentStep === 1) {
-      // 1. Splash Screen
       html += `
         <div class="h-full flex flex-col justify-between py-6 text-center">
           <div class="pt-8 space-y-3">
@@ -2829,8 +3171,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 2) {
-      // 2. Welcome & Onboarding
-      html += renderTopAppBar('Chào Mừng Bạn', 'WikiAlisa Smart Solar Platform', 1);
+      html += renderTopAppBar('Chào Mừng Bạn', 'WikiAlisa Smart Solar Platform');
       html += `
         <div class="space-y-4">
           <div class="p-4 rounded-2xl bg-gradient-to-br from-agri-500/10 to-solar-500/10 border border-agri-200 dark:border-agri-900 text-center space-y-2">
@@ -2856,8 +3197,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 3) {
-      // 3. Login Form
-      html += renderTopAppBar('Đăng Nhập Thực Địa', 'Nhập tài khoản nhân sự được cấp', 2);
+      html += renderTopAppBar('Đăng Nhập Thực Địa', 'Nhập tài khoản nhân sự được cấp');
       html += `
         <div class="space-y-3">
           <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3">
@@ -2876,8 +3216,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 4) {
-      // 4. OTP Verification
-      html += renderTopAppBar('Xác Thực OTP', 'Mã xác thực gửi về +84 912 *** 847', 3);
+      html += renderTopAppBar('Xác Thực OTP', 'Mã xác thực gửi về +84 912 *** 847');
       html += `
         <div class="space-y-4 text-center">
           <div class="flex justify-center gap-2 my-2">
@@ -2893,7 +3232,7 @@ function renderPrototype() {
             `).join('')}
             <button onclick="clearOtp()" class="h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs text-slate-500 font-bold">Xóa</button>
             <button onclick="enterOtp('0')" class="h-10 rounded-xl bg-white dark:bg-slate-800 font-bold text-sm text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700">0</button>
-            <button onclick="otpEntered='8942'; renderPrototype();" class="h-10 rounded-xl bg-agri-50 text-agri-700 font-bold text-xs">Auto</button>
+            <button onclick="otpEntered='8942'; enterOtp('');" class="h-10 rounded-xl bg-agri-50 text-agri-700 font-bold text-xs">Auto 8942</button>
           </div>
           <button onclick="goToStep(5)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
             Xác Nhận OTP ➔
@@ -2901,8 +3240,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 5) {
-      // 5. Permission Setup
-      html += renderTopAppBar('Cấp Quyền Thiết Bị', 'Yêu cầu 3 quyền cơ bản', 4);
+      html += renderTopAppBar('Cấp Quyền Thiết Bị', 'Yêu cầu 3 quyền cơ bản');
       html += `
         <div class="space-y-3">
           <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
@@ -2923,8 +3261,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 6) {
-      // 6. Role Detection
-      html += renderTopAppBar('Nhận Diện Vai Trò', 'Hệ thống định tuyến tự động', 5);
+      html += renderTopAppBar('Nhận Diện Vai Trò', 'Hệ thống định tuyến tự động');
       html += `
         <div class="text-center py-6 space-y-3">
           <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center shadow-md">
@@ -2938,8 +3275,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 7) {
-      // 7. Sync Configuration
-      html += renderTopAppBar('Đồng Bộ Ban Đầu', 'Tải danh mục 3 trạm bơm', 6);
+      html += renderTopAppBar('Đồng Bộ Ban Đầu', 'Tải danh mục 3 trạm bơm');
       html += `
         <div class="space-y-4 text-center py-4">
           <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center mx-auto">
@@ -2955,7 +3291,6 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 8) {
-      // 8. Work Shift Ready
       html += `
         <div class="text-center py-8 space-y-4">
           <div class="w-16 h-16 rounded-full bg-agri-100 text-agri-600 mx-auto flex items-center justify-center shadow-lg">
@@ -2976,8 +3311,7 @@ function renderPrototype() {
   // =========================================================================
   else if (currentRole === 'delivery') {
     if (currentStep === 1) {
-      // 1. Delivery Dashboard
-      html += renderTopAppBar('Delivery Dashboard', 'Ca hôm nay: 3 đơn giao');
+      html += renderTopAppBar('Delivery Dashboard', 'Ca hôm nay: 3 đơn giao', false);
       html += `
         <div class="grid grid-cols-3 gap-2 text-center text-xs">
           <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
@@ -3002,8 +3336,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 2) {
-      // 2. Assigned Delivery List
-      html += renderTopAppBar('Danh Sách Điểm Giao', 'Chuyến giao thực địa', 1);
+      html += renderTopAppBar('Danh Sách Điểm Giao', 'Chuyến giao thực địa');
       html += `
         <div onclick="goToStep(3)" class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border-2 border-agri-500/80 shadow-xs cursor-pointer hover:border-agri-600 transition space-y-2">
           <div class="flex items-center justify-between">
@@ -3023,8 +3356,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 3) {
-      // 3. Delivery Details & Manifest
-      html += renderTopAppBar('Chi Tiết Kiện Hàng', 'Đơn #SP-2024-0847', 2);
+      html += renderTopAppBar('Chi Tiết Kiện Hàng', 'Đơn #SP-2024-0847');
       html += `
         <div class="space-y-3">
           <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2 text-xs">
@@ -3039,8 +3371,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 4) {
-      // 4. GPS Route Navigation
-      html += renderTopAppBar('Dẫn Đường GPS', 'Đến Thôn 3, Làng Rajpur', 3);
+      html += renderTopAppBar('Dẫn Đường GPS', 'Đến Thôn 3, Làng Rajpur');
       html += `
         <div class="space-y-3">
           <div class="h-36 rounded-xl bg-slate-800 relative overflow-hidden flex flex-col justify-between p-3 text-white border border-slate-700">
@@ -3056,8 +3387,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 5) {
-      // 5. Farmer Contact Details
-      html += renderTopAppBar('Thông Tin Chủ Hộ', 'Bác Ba Phi (Ramesh Kumar)', 4);
+      html += renderTopAppBar('Thông Tin Chủ Hộ', 'Bác Ba Phi (Ramesh Kumar)');
       html += `
         <div class="space-y-3">
           <div class="p-3.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2 text-xs">
@@ -3073,41 +3403,52 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 6) {
-      // 6. QR / Serial Scan
-      html += renderTopAppBar('Quét QR / Sê-ri', 'Đối chiếu thiết bị thực tế', 5);
+      html += renderTopAppBar('Quét QR / Sê-ri', 'Đối chiếu thiết bị thực tế');
       html += `
         <div class="space-y-3 text-center">
-          <div class="w-full h-36 bg-slate-900 rounded-xl border-2 border-dashed border-agri-500 flex flex-col items-center justify-center text-white space-y-2">
+          <div class="w-full h-36 bg-slate-900 rounded-xl border-2 border-dashed border-agri-500 flex flex-col items-center justify-center text-white space-y-2 cursor-pointer hover:bg-slate-800 transition" onclick="simulateQrScanInSimulator()">
             <i data-lucide="scan" class="w-8 h-8 text-agri-400 animate-pulse"></i>
-            <span class="text-xs font-bold">Đang quét mã QR trên biến tần...</span>
+            <span class="text-xs font-bold">Chạm để Quét Mã QR Biến Tần</span>
             <span class="text-[10px] text-slate-400">SPC-2024-08471</span>
           </div>
-          <button onclick="goToStep(7)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
+          <button onclick="simulateQrScanInSimulator()" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
             Khớp Sê-ri ➔ Sang Bước OTP
           </button>
         </div>
       `;
     } else if (currentStep === 7) {
-      // 7. OTP Handover Verification
-      html += renderTopAppBar('Xác Thực Bàn Giao', 'Yêu cầu OTP từ nông dân', 6);
+      html += renderTopAppBar('Xác Thực Bàn Giao', 'Yêu cầu OTP từ nông dân');
       html += `
         <div class="space-y-3 text-center">
-          <div class="text-xs text-slate-500">Nhập mã OTP 4 số từ tin nhắn SMS của nông dân:</div>
-          <div class="text-lg font-bold font-mono tracking-widest p-2 bg-slate-100 dark:bg-slate-800 rounded-lg">8 9 4 2</div>
-          <button onclick="goToStep(8)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
+          <div class="text-xs text-slate-500">Nhập mã OTP 4 số từ SMS của nông dân (Mặc định: <strong>8942</strong>):</div>
+          <div class="flex justify-center gap-2 my-1">
+            ${[0, 1, 2, 3].map(i => `
+              <div class="w-10 h-10 rounded-xl border-2 ${otpEntered.length > i ? 'border-agri-600 bg-agri-50 dark:bg-agri-950 font-bold' : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900'} flex items-center justify-center text-slate-900 dark:text-white font-mono text-base">
+                ${otpEntered[i] || '•'}
+              </div>
+            `).join('')}
+          </div>
+          <div class="grid grid-cols-3 gap-1.5 max-w-[210px] mx-auto text-xs">
+            ${[1,2,3,4,5,6,7,8,9].map(n => `
+              <button onclick="enterOtp('${n}')" class="h-8 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 font-bold text-slate-900 dark:text-white border shadow-2xs">${n}</button>
+            `).join('')}
+            <button onclick="clearOtp()" class="h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-[10px] text-slate-500 font-bold">Xóa</button>
+            <button onclick="enterOtp('0')" class="h-8 rounded-lg bg-white dark:bg-slate-800 font-bold text-slate-900 dark:text-white border">0</button>
+            <button onclick="otpEntered='8942'; enterOtp('');" class="h-8 rounded-lg bg-agri-50 text-agri-700 font-bold text-[10px]">8942</button>
+          </div>
+          <button onclick="goToStep(8)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition mt-2">
             Xác Thực Thành Công ➔ Khóa GPS
           </button>
         </div>
       `;
     } else if (currentStep === 8) {
-      // 8. GPS Boundary Verification
-      html += renderTopAppBar('Khóa Tọa Độ GPS', 'Xác thực vị trí giếng khoan', 7);
+      html += renderTopAppBar('Khóa Tọa Độ GPS', 'Xác thực vị trí giếng khoan');
       html += `
         <div class="space-y-3">
-          <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-1">
-            <div class="font-bold text-slate-800 dark:text-white">Tọa độ thực địa giếng:</div>
-            <div class="font-mono text-emerald-600 font-bold">Lat: 10.76262 • Lng: 106.66017</div>
-            <div class="text-[10px] text-slate-400">Độ chính xác GPS: ±2.5m (Hợp lệ)</div>
+          <div class="p-3.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-1.5">
+            <div class="font-bold text-slate-800 dark:text-white">Tọa độ thực địa giếng khoan:</div>
+            <div class="font-mono text-emerald-600 font-bold text-sm">Lat: 10.76262 • Lng: 106.66017</div>
+            <div class="text-[10px] text-slate-400">Độ chính xác GPS: ±2.5m (Hợp lệ trong vùng giao hàng)</div>
           </div>
           <button onclick="goToStep(9)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
             Chụp Ảnh Bàn Giao ➔
@@ -3115,43 +3456,59 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 9) {
-      // 9. Upload Delivery Photos
-      html += renderTopAppBar('Chụp Ảnh Hạ Kiện', '4 góc thiết bị nguyên vẹn', 8);
+      const photosCount = Object.values(deliveryPhotos).filter(Boolean).length;
+      html += renderTopAppBar('Chụp Ảnh Hạ Kiện', `Đã chụp ${photosCount}/4 góc kiểm định`);
       html += `
         <div class="grid grid-cols-2 gap-2 text-xs">
-          <div class="h-20 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold">
-            <i data-lucide="check" class="w-4 h-4"></i> Biến Tần
+          <div onclick="toggleDeliveryPhoto('inverter')" class="p-2.5 rounded-xl border cursor-pointer transition ${deliveryPhotos.inverter ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-400 text-emerald-800 dark:text-emerald-300' : 'bg-white dark:bg-slate-900 border-slate-200 text-slate-600'}">
+            <div class="flex justify-between items-center"><span class="font-bold">1. Biến Tần</span>${deliveryPhotos.inverter ? '<span class="text-emerald-600 font-bold">✓</span>' : '<span class="text-slate-400">+</span>'}</div>
+            <div class="text-[9px] text-slate-400 mt-1">${deliveryPhotos.inverter ? '4.2 MB • Geotag' : 'Chạm để chụp'}</div>
           </div>
-          <div class="h-20 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold">
-            <i data-lucide="check" class="w-4 h-4"></i> Pin Mặt Trời
+          <div onclick="toggleDeliveryPhoto('panels')" class="p-2.5 rounded-xl border cursor-pointer transition ${deliveryPhotos.panels ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-400 text-emerald-800 dark:text-emerald-300' : 'bg-white dark:bg-slate-900 border-slate-200 text-slate-600'}">
+            <div class="flex justify-between items-center"><span class="font-bold">2. Pin Mono</span>${deliveryPhotos.panels ? '<span class="text-emerald-600 font-bold">✓</span>' : '<span class="text-slate-400">+</span>'}</div>
+            <div class="text-[9px] text-slate-400 mt-1">${deliveryPhotos.panels ? '3.8 MB • Geotag' : 'Chạm để chụp'}</div>
           </div>
-          <div class="h-20 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold">
-            <i data-lucide="check" class="w-4 h-4"></i> Máy Bơm
+          <div onclick="toggleDeliveryPhoto('pump')" class="p-2.5 rounded-xl border cursor-pointer transition ${deliveryPhotos.pump ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-400 text-emerald-800 dark:text-emerald-300' : 'bg-white dark:bg-slate-900 border-slate-200 text-slate-600'}">
+            <div class="flex justify-between items-center"><span class="font-bold">3. Bơm Chìm</span>${deliveryPhotos.pump ? '<span class="text-emerald-600 font-bold">✓</span>' : '<span class="text-slate-400">+</span>'}</div>
+            <div class="text-[9px] text-slate-400 mt-1">${deliveryPhotos.pump ? '4.1 MB • Geotag' : 'Chạm để chụp'}</div>
           </div>
-          <div class="h-20 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-300 dark:border-emerald-800 flex flex-col items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold">
-            <i data-lucide="check" class="w-4 h-4"></i> Toàn Cảnh
+          <div onclick="toggleDeliveryPhoto('panorama')" class="p-2.5 rounded-xl border cursor-pointer transition ${deliveryPhotos.panorama ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-400 text-emerald-800 dark:text-emerald-300' : 'bg-white dark:bg-slate-900 border-slate-200 text-slate-600'}">
+            <div class="flex justify-between items-center"><span class="font-bold">4. Toàn Cảnh</span>${deliveryPhotos.panorama ? '<span class="text-emerald-600 font-bold">✓</span>' : '<span class="text-slate-400">+</span>'}</div>
+            <div class="text-[9px] text-slate-400 mt-1">${deliveryPhotos.panorama ? '5.0 MB • Geotag' : 'Chạm để chụp'}</div>
           </div>
         </div>
-        <button onclick="goToStep(10)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition mt-3">
-          Lấy Chữ Ký Nông Dân ➔
-        </button>
-      `;
-    } else if (currentStep === 10) {
-      // 10. Farmer Signature
-      html += renderTopAppBar('Chữ Ký Điện Tử', 'Nông dân ký nhận cảm ứng', 9);
-      html += `
-        <div class="space-y-3">
-          <div class="h-28 bg-white dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-400 font-cursive text-2xl font-bold">
-            Ramesh Kumar
-          </div>
-          <button onclick="goToStep(11)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
-            Ghi Chú Hiện Trường ➔
+        <div class="flex gap-2 mt-3">
+          <button onclick="autoCaptureAllPhotos()" class="flex-1 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs hover:bg-slate-200 transition">
+            Chụp Nhanh Cả 4 Ảnh
+          </button>
+          <button onclick="goToStep(10)" class="flex-1 py-2 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
+            Lấy Chữ Ký Nông Dân ➔
           </button>
         </div>
       `;
+    } else if (currentStep === 10) {
+      html += renderTopAppBar('Chữ Ký Điện Tử', 'Nông dân ký nhận cảm ứng');
+      html += `
+        <div class="space-y-3">
+          <div onclick="signFarmerCanvas()" class="h-28 bg-white dark:bg-slate-900 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 flex flex-col items-center justify-center cursor-pointer hover:border-agri-500 transition">
+            ${hasFarmerSigned ? `
+              <span class="font-cursive text-2xl font-bold text-slate-800 dark:text-slate-200">Ramesh Kumar (Ba Phi)</span>
+              <span class="text-[9px] font-mono text-emerald-600 font-bold mt-1">✓ SHA-256: 7e2f91a0c4...b9</span>
+            ` : `
+              <span class="text-xs text-slate-400 font-bold">Chạm vào đây để nông dân ký tên</span>
+              <span class="text-[10px] text-slate-300">Hỗ trợ cảm ứng số</span>
+            `}
+          </div>
+          <div class="flex gap-2">
+            <button onclick="clearFarmerSignature()" class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 text-xs font-bold">Xóa Ký</button>
+            <button onclick="goToStep(11)" class="flex-1 py-2.5 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
+              Ghi Chú Hiện Trường ➔
+            </button>
+          </div>
+        </div>
+      `;
     } else if (currentStep === 11) {
-      // 11. Delivery Remarks
-      html += renderTopAppBar('Ghi Chú Giao Nhận', 'Lưu ý thực địa', 10);
+      html += renderTopAppBar('Ghi Chú Giao Nhận', 'Lưu ý thực địa');
       html += `
         <div class="space-y-3">
           <textarea class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-xs bg-white dark:bg-slate-900" rows="3">Đường đất hẹp xe tải 2.5T vào được. Đã kiểm tra 3 kiện nguyên vẹn, bàn giao đầy đủ cho Bác Ba Phi.</textarea>
@@ -3161,7 +3518,6 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 12) {
-      // 12. POD Confirmation & Success
       html += `
         <div class="text-center py-6 space-y-3">
           <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center shadow-lg">
@@ -3169,6 +3525,11 @@ function renderPrototype() {
           </div>
           <h4 class="font-bold text-base text-slate-900 dark:text-white">Giao Hàng Thành Công!</h4>
           <p class="text-xs text-slate-500 font-mono">Biên bản POD #POD-DEL-8942</p>
+          <div class="p-3 bg-slate-100 dark:bg-slate-800/60 rounded-xl text-[11px] text-slate-600 dark:text-slate-400 space-y-1 text-left">
+            <div>Chủ hộ: <strong>Ramesh Kumar (Bác Ba Phi)</strong></div>
+            <div>Thiết bị: <strong>SolarPump Pro 5.5kW + 8 Tấm Pin Mono</strong></div>
+            <div>Trạng thái: <strong class="text-emerald-600">Đã lưu trữ đám mây an toàn</strong></div>
+          </div>
           <button onclick="goToStep(1)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
             Quay Về Dashboard Giao Vận
           </button>
@@ -3193,7 +3554,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 2) {
-      html += renderTopAppBar('Thông Số Kỹ Thuật', 'Độ sâu 35m • Dây cáp 40m', 1);
+      html += renderTopAppBar('Thông Số Kỹ Thuật', 'Độ sâu 35m • Dây cáp 40m');
       html += `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-1">
           <div>Điện áp PV danh định: <span class="font-bold font-mono">380 VDC</span></div>
@@ -3204,7 +3565,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 3) {
-      html += renderTopAppBar('Kiểm Tra Vật Tư', '3 Bên đồng kiểm', 2);
+      html += renderTopAppBar('Kiểm Tra Vật Tư', '3 Bên đồng kiểm');
       html += `
         <div class="space-y-2 text-xs">
           <div class="p-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold flex justify-between"><span>Biến Tần SolarPump Pro</span><span>✓ Đạt</span></div>
@@ -3215,14 +3576,16 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 4) {
-      html += renderTopAppBar('Checklist Thi Công', '3 Tiêu chí an toàn', 3);
+      html += renderTopAppBar('Checklist Thi Công', '3 Tiêu chí an toàn');
       html += `
         <div class="space-y-2 text-xs">
-          <div class="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2">
-            <input type="checkbox" checked class="accent-agri-600"> <span>Khảo sát nền móng giếng & khoảng hở giàn pin</span>
+          <div onclick="toggleCheckItem('check1')" class="p-2.5 rounded-lg bg-white dark:bg-slate-900 border cursor-pointer flex items-center justify-between">
+            <span>Khảo sát nền móng giếng & khoảng hở giàn pin</span>
+            <span class="${installChecks.check1 ? 'text-emerald-600 font-bold' : 'text-slate-300'}">${installChecks.check1 ? '✓ Đạt' : 'Chưa'}</span>
           </div>
-          <div class="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2">
-            <input type="checkbox" checked class="accent-agri-600"> <span>Nối cọc tiếp địa chống sét R &lt; 4 Ohm</span>
+          <div onclick="toggleCheckItem('check2')" class="p-2.5 rounded-lg bg-white dark:bg-slate-900 border cursor-pointer flex items-center justify-between">
+            <span>Nối cọc tiếp địa chống sét R &lt; 4 Ohm</span>
+            <span class="${installChecks.check2 ? 'text-emerald-600 font-bold' : 'text-slate-300'}">${installChecks.check2 ? '✓ Đạt' : 'Chưa'}</span>
           </div>
         </div>
         <button onclick="goToStep(5)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition mt-3">
@@ -3230,7 +3593,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 5) {
-      html += renderTopAppBar('Ảnh Hiện Trạng', 'Chụp miệng giếng & vị trí dựng pin', 4);
+      html += renderTopAppBar('Ảnh Hiện Trạng', 'Chụp miệng giếng & vị trí dựng pin');
       html += `
         <div class="h-28 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center text-xs text-slate-500 font-bold">
           📷 2 Ảnh đã chụp (Đã gắn Geotag)
@@ -3240,7 +3603,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 6) {
-      html += renderTopAppBar('Đấu Nối Biến Tần', 'Cài đặt thông số V/F', 5);
+      html += renderTopAppBar('Đấu Nối Biến Tần', 'Cài đặt thông số V/F');
       html += `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-1">
           <div>Công suất cực đại: <span class="font-bold text-agri-600">5.5 kW</span></div>
@@ -3251,7 +3614,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 7) {
-      html += renderTopAppBar('Chạy Thử Máy Bơm', 'Đo đạc lưu lượng thực tế', 6);
+      html += renderTopAppBar('Chạy Thử Máy Bơm', 'Đo đạc lưu lượng thực tế');
       html += `
         <div class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-center space-y-1">
           <div class="text-2xl font-mono font-extrabold text-emerald-700 dark:text-emerald-300">35.2 m³/h</div>
@@ -3262,7 +3625,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 8) {
-      html += renderTopAppBar('Ảnh Hoàn Thiện', 'Trạm bơm đã đi vào hoạt động', 7);
+      html += renderTopAppBar('Ảnh Hoàn Thiện', 'Trạm bơm đã đi vào hoạt động');
       html += `
         <div class="h-28 bg-emerald-100 dark:bg-emerald-950/40 rounded-xl flex items-center justify-center text-xs font-bold text-emerald-700 dark:text-emerald-300">
           ✓ Đã chụp trạm bơm và giàn pin hoàn chỉnh
@@ -3272,7 +3635,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 9) {
-      html += renderTopAppBar('Ký Nghiệm Thu', 'Xác nhận của chủ hộ', 8);
+      html += renderTopAppBar('Ký Nghiệm Thu', 'Xác nhận của chủ hộ');
       html += `
         <div class="h-24 bg-white dark:bg-slate-900 border border-dashed rounded-xl flex items-center justify-center font-cursive text-xl font-bold text-slate-500">
           Ramesh Kumar (Ba Phi)
@@ -3282,7 +3645,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 10) {
-      html += renderTopAppBar('Báo Cáo Nghiệm Thu', 'Biên bản số BB-NT-8942', 9);
+      html += renderTopAppBar('Báo Cáo Nghiệm Thu', 'Biên bản số BB-NT-8942');
       html += `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-1">
           <div>Trạm bơm: <span class="font-bold">5 HP Nông Nghiệp</span></div>
@@ -3323,7 +3686,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 2) {
-      html += renderTopAppBar('Hàng Đợi QA', 'Danh sách hồ sơ kiểm định', 1);
+      html += renderTopAppBar('Hàng Đợi QA', 'Danh sách hồ sơ kiểm định');
       html += `
         <div onclick="goToStep(3)" class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-purple-300 dark:border-purple-800 text-xs cursor-pointer">
           <div class="font-bold text-purple-700 dark:text-purple-300">#SP-2024-0847 • Bác Ba Phi</div>
@@ -3331,7 +3694,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 3) {
-      html += renderTopAppBar('Hồ Sơ Kiểm Định', 'Đơn #SP-2024-0847', 2);
+      html += renderTopAppBar('Hồ Sơ Kiểm Định', 'Đơn #SP-2024-0847');
       html += `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-1">
           <div>Thiết bị: Biến tần 5.5kW + Bơm 5 HP</div>
@@ -3342,7 +3705,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 4) {
-      html += renderTopAppBar('Thẩm Định GPS', 'Đối chiếu bản đồ quy hoạch', 3);
+      html += renderTopAppBar('Thẩm Định GPS', 'Đối chiếu bản đồ quy hoạch');
       html += `
         <div class="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-300 text-xs font-bold text-emerald-700">
           ✓ Tọa độ nằm chính xác trong vùng tưới nông nghiệp (Sai số 0.002%)
@@ -3352,7 +3715,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 5) {
-      html += renderTopAppBar('Thẩm Định Ảnh', 'Ảnh biến tần & giếng khoan', 4);
+      html += renderTopAppBar('Thẩm Định Ảnh', 'Ảnh biến tần & giếng khoan');
       html += `
         <div class="h-28 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center text-xs font-bold text-slate-500">
           ✓ 4 Ảnh chụp đạt chuẩn độ phân giải và góc chụp
@@ -3362,14 +3725,16 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 6) {
-      html += renderTopAppBar('Checklist Tiêu Chuẩn', 'TCVN Điện Nông Nghiệp', 5);
+      html += renderTopAppBar('Checklist Tiêu Chuẩn', 'TCVN Điện Nông Nghiệp');
       html += `
         <div class="space-y-1.5 text-xs">
-          <div class="p-2 rounded bg-white dark:bg-slate-900 border flex items-center gap-2">
-            <span class="text-emerald-600 font-bold">✓</span> <span>Tiếp địa & chống sét lan truyền</span>
+          <div onclick="toggleQaCheck('q1')" class="p-2 rounded bg-white dark:bg-slate-900 border flex items-center justify-between cursor-pointer">
+            <span>Tiếp địa & chống sét lan truyền R &lt; 4 Ohm</span>
+            <span class="${qaChecks.q1 ? 'text-emerald-600 font-bold' : 'text-slate-300'}">${qaChecks.q1 ? '✓ Đạt' : 'Chưa'}</span>
           </div>
-          <div class="p-2 rounded bg-white dark:bg-slate-900 border flex items-center gap-2">
-            <span class="text-emerald-600 font-bold">✓</span> <span>Độ dốc thoát nước giàn pin đạt 15 độ</span>
+          <div onclick="toggleQaCheck('q2')" class="p-2 rounded bg-white dark:bg-slate-900 border flex items-center justify-between cursor-pointer">
+            <span>Độ dốc thoát nước giàn pin đạt 15 độ</span>
+            <span class="${qaChecks.q2 ? 'text-emerald-600 font-bold' : 'text-slate-300'}">${qaChecks.q2 ? '✓ Đạt' : 'Chưa'}</span>
           </div>
         </div>
         <button onclick="goToStep(7)" class="w-full py-3 rounded-xl bg-purple-600 text-white font-bold text-xs shadow-md transition mt-3">
@@ -3377,13 +3742,13 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 7) {
-      html += renderTopAppBar('Quyết Định QA', 'Phê duyệt cấp phép vận hành', 6);
+      html += renderTopAppBar('Quyết Định QA', 'Phê duyệt cấp phép vận hành');
       html += `
         <div class="space-y-2">
-          <button onclick="goToStep(8)" class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs shadow-md transition">
+          <button onclick="makeQaDecision('approve')" class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs shadow-md transition">
             ✓ Phê Duyệt Đạt Chuẩn (Approve)
           </button>
-          <button onclick="alert('Yêu cầu sửa chữa đã được gửi');" class="w-full py-2.5 rounded-xl border border-amber-500 text-amber-600 font-bold text-xs transition">
+          <button onclick="makeQaDecision('rework')" class="w-full py-2.5 rounded-xl border border-amber-500 text-amber-600 font-bold text-xs transition">
             ⚠ Yêu Cầu Sửa Chữa (Rework)
           </button>
         </div>
@@ -3395,7 +3760,7 @@ function renderPrototype() {
             <i data-lucide="award" class="w-8 h-8"></i>
           </div>
           <h4 class="font-bold text-base text-slate-900 dark:text-white">Cấp Chứng Nhận Vận Hành Thành Công!</h4>
-          <p class="text-xs text-slate-500">Trạm bơm đã được đấu nối vào mạng lưới điều phối vùng.</p>
+          <p class="text-xs text-slate-500 font-mono">Chứng chỉ số: QA-CERT-2024-8942</p>
           <button onclick="setRole('service')" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
             Chuyển Sang Service Tech ➔
           </button>
@@ -3417,7 +3782,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 2) {
-      html += renderTopAppBar('Danh Sách Sự Cố', 'Khiếu nại từ nông dân', 1);
+      html += renderTopAppBar('Danh Sách Sự Cố', 'Khiếu nại từ nông dân');
       html += `
         <div onclick="goToStep(3)" class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-red-300 text-xs cursor-pointer space-y-1">
           <div class="font-bold text-red-600">#TK-2024-019 • Lỗi E-04 Dry Run</div>
@@ -3425,7 +3790,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 3) {
-      html += renderTopAppBar('Chi Tiết Báo Lỗi', 'Mã lỗi E-04 (Bảo vệ chạy khô)', 2);
+      html += renderTopAppBar('Chi Tiết Báo Lỗi', 'Mã lỗi E-04 (Bảo vệ chạy khô)');
       html += `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 text-xs space-y-2">
           <div class="font-bold">Hiện tượng: Bơm tự ngắt sau 30 giây khởi động</div>
@@ -3436,7 +3801,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 4) {
-      html += renderTopAppBar('Dẫn Đường Đến Trạm', 'Cách vị trí hiện tại 4.2 km', 3);
+      html += renderTopAppBar('Dẫn Đường Đến Trạm', 'Cách vị trí hiện tại 4.2 km');
       html += `
         <div class="h-32 bg-slate-800 rounded-xl flex items-center justify-center text-white text-xs font-bold">
           📍 Đang dẫn đường đến bờ ruộng Bác Ba Phi
@@ -3446,7 +3811,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 5) {
-      html += renderTopAppBar('Khảo Sát Thực Địa', 'Đo đạc thông số điện trở', 4);
+      html += renderTopAppBar('Khảo Sát Thực Địa', 'Đo đạc thông số điện trở');
       html += `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border text-xs space-y-1">
           <div>Điện áp pin: <span class="font-bold text-emerald-600">385 VDC (Tốt)</span></div>
@@ -3457,7 +3822,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 6) {
-      html += renderTopAppBar('Reset Biến Tần', 'Khắc phục sự cố', 5);
+      html += renderTopAppBar('Reset Biến Tần', 'Khắc phục sự cố');
       html += `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border text-xs">
           Đã vệ sinh đầu giắc cắm và xóa mã lỗi E-04 trong bộ nhớ EEPROM.
@@ -3467,7 +3832,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 7) {
-      html += renderTopAppBar('Thay Phụ Tùng', 'Kho linh kiện trên xe', 6);
+      html += renderTopAppBar('Thay Phụ Tùng', 'Kho linh kiện trên xe');
       html += `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border text-xs flex justify-between items-center">
           <div><div class="font-bold">Cảm Biến Dòng Chảy FS-02 Pro</div><div class="text-[10px] text-slate-400">Sê-ri: FS-2024-9912</div></div>
@@ -3478,7 +3843,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 8) {
-      html += renderTopAppBar('Ảnh Bằng Chứng', 'Chụp linh kiện mới đã thay', 7);
+      html += renderTopAppBar('Ảnh Bằng Chứng', 'Chụp linh kiện mới đã thay');
       html += `
         <div class="h-28 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center text-xs font-bold text-slate-500">
           📷 Đã lưu 2 ảnh chứng từ sửa chữa
@@ -3488,7 +3853,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 9) {
-      html += renderTopAppBar('Đánh Giá Dịch Vụ', 'Khách hàng chấm điểm CSAT', 8);
+      html += renderTopAppBar('Đánh Giá Dịch Vụ', 'Khách hàng chấm điểm CSAT');
       html += `
         <div class="text-center py-3 space-y-2">
           <div class="text-amber-400 text-2xl font-bold">★★★★★</div>
@@ -3519,12 +3884,13 @@ function renderPrototype() {
   // =========================================================================
   else if (currentRole === 'farmer') {
     if (currentStep === 1) {
-      html += renderTopAppBar('Trang Chủ Nông Dân', 'Trạm bơm ruộng lúa Ba Phi');
+      html += renderTopAppBar('Trang Chủ Nông Dân', 'Trạm bơm ruộng lúa Ba Phi', false);
       html += `
-        <div class="p-4 rounded-2xl ${pumpIsOn ? 'bg-gradient-to-br from-emerald-600 to-agri-700 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'} text-center space-y-3 shadow-md">
+        <div class="p-4 rounded-2xl ${pumpIsOn ? 'bg-gradient-to-br from-emerald-600 to-agri-700 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'} text-center space-y-3 shadow-md transition-colors">
           <div class="text-xs font-bold uppercase tracking-wider">${pumpIsOn ? 'MÁY BƠM ĐANG CHẠY' : 'MÁY BƠM ĐÃ TẮT'}</div>
           <div class="text-3xl font-extrabold font-mono">${pumpIsOn ? '35.4 m³/h' : '0.0 m³/h'}</div>
-          <button onclick="togglePumpPower()" class="w-full py-2.5 rounded-xl ${pumpIsOn ? 'bg-red-600 text-white' : 'bg-emerald-600 text-white'} font-bold text-xs shadow-sm transition">
+          <div class="text-[11px] opacity-90">${pumpIsOn ? 'Công suất PV: 5.4 kW • Áp suất: 8.1 Bar' : 'Đang chờ nông dân khởi động'}</div>
+          <button onclick="togglePumpPower()" class="w-full py-2.5 rounded-xl ${pumpIsOn ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-emerald-600 hover:bg-emerald-700 text-white'} font-bold text-xs shadow-sm transition active:scale-95">
             ${pumpIsOn ? 'Tắt Máy Bơm' : 'Bật Máy Bơm'}
           </button>
         </div>
@@ -3533,15 +3899,15 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 2) {
-      html += renderTopAppBar('Chỉ Số Vận Hành', 'Theo dõi thời gian thực', 1);
+      html += renderTopAppBar('Chỉ Số Vận Hành', 'Theo dõi thời gian thực');
       html += `
         <div class="grid grid-cols-2 gap-2 text-center text-xs">
           <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border">
-            <span class="text-base font-extrabold text-agri-600">5.4 kW</span>
+            <span class="text-base font-extrabold text-agri-600">${pumpIsOn ? '5.4 kW' : '0.0 kW'}</span>
             <span class="text-[10px] text-slate-400 block font-bold">Công Suất Pin</span>
           </div>
           <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border">
-            <span class="text-base font-extrabold text-sky-600">8.1 Bar</span>
+            <span class="text-base font-extrabold text-sky-600">${pumpIsOn ? '8.1 Bar' : '0.0 Bar'}</span>
             <span class="text-[10px] text-slate-400 block font-bold">Áp Suất Đường Ống</span>
           </div>
         </div>
@@ -3550,12 +3916,12 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 3) {
-      html += renderTopAppBar('Báo Hỏng Trạm Bơm', 'Gửi yêu cầu hỗ trợ', 2);
+      html += renderTopAppBar('Báo Hỏng Trạm Bơm', 'Gửi yêu cầu hỗ trợ');
       html += `
         <div class="space-y-3">
           <select class="w-full p-2.5 rounded-xl border text-xs bg-white dark:bg-slate-900">
             <option>Nước chảy yếu bất thường</option>
-            <option>Biến tần kêu tít tít báo lỗi</option>
+            <option>Biến tần kêu tít tít báo lỗi E-04</option>
             <option>Dàn pin bị bám bụi / nứt</option>
           </select>
           <button onclick="goToStep(4)" class="w-full py-3 rounded-xl bg-agri-600 text-white font-bold text-xs shadow-md transition">
@@ -3564,7 +3930,7 @@ function renderPrototype() {
         </div>
       `;
     } else if (currentStep === 4) {
-      html += renderTopAppBar('Tiến Độ Xử Lý', 'Kỹ thuật viên đang đến', 3);
+      html += renderTopAppBar('Tiến Độ Xử Lý', 'Kỹ thuật viên đang đến');
       html += `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border text-xs space-y-2">
           <div class="font-bold text-emerald-600">Đã tiếp nhận yêu cầu #TK-2024-019</div>
@@ -3576,7 +3942,7 @@ function renderPrototype() {
         </button>
       `;
     } else if (currentStep === 5) {
-      html += renderTopAppBar('Lịch Sử Bảo Dưỡng', 'Sổ theo dõi thiết bị', 4);
+      html += renderTopAppBar('Lịch Sử Bảo Dưỡng', 'Sổ theo dõi thiết bị');
       html += `
         <div class="space-y-2 text-xs">
           <div class="p-2.5 bg-white dark:bg-slate-900 rounded-lg border flex justify-between">
@@ -3593,27 +3959,8 @@ function renderPrototype() {
     }
   }
 
-  // Bottom Fixed Navigation Bar (5 Tabs)
-  html += `
-    <div class="pt-3 mt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-around text-slate-400 text-[10px] select-none">
-      <div onclick="goToStep(1)" class="flex flex-col items-center gap-0.5 cursor-pointer ${currentStep === 1 ? 'text-agri-600 font-bold' : ''}">
-        <i data-lucide="home" class="w-4 h-4"></i>
-        <span>Trang chủ</span>
-      </div>
-      <div onclick="goToStep(2)" class="flex flex-col items-center gap-0.5 cursor-pointer ${currentStep === 2 ? 'text-agri-600 font-bold' : ''}">
-        <i data-lucide="clipboard-list" class="w-4 h-4"></i>
-        <span>Nhiệm vụ</span>
-      </div>
-      <div onclick="goToStep(Math.min(currentStep + 1, (roleFlows[currentRole] ? roleFlows[currentRole].steps.length : 3)))" class="flex flex-col items-center gap-0.5 cursor-pointer">
-        <i data-lucide="play-circle" class="w-4 h-4"></i>
-        <span>Tiếp theo</span>
-      </div>
-      <div onclick="resetPrototype()" class="flex flex-col items-center gap-0.5 cursor-pointer">
-        <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-        <span>Làm lại</span>
-      </div>
-    </div>
-  `;
+  // Always append standard 5-tab bottom navigation
+  html += renderBottomNav();
 
   container.innerHTML = html;
   if (window.lucide) lucide.createIcons();
