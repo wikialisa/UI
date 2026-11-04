@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+.env.local
+# Dependencies
+node_modules/
+
+# Storybook build output
+storybook-static/
+
+# OS
+.DS_Store
+Thumbs.db
