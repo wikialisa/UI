@@ -8,9 +8,9 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "vite",
-    "app:dev": "vite",
-    "build": "vite build",
+    "dev": "vite template.html",
+    "app:dev": "vite template.html",
+    "build": "vite build && node scripts/build_pages.js",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "tokens:sync": "node scripts/tokens/sync.js",
