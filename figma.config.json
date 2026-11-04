@@ -1,8 +1,8 @@
 {
   "codeConnect": {
     "include": [
-      "packages/**/*.figma.ts",
-      "packages/**/*.figma.tsx"
+      "src/ui/**/*.figma.ts",
+      "packages/**/*.figma.ts"
     ]
   }
 }

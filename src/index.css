@@ -1,4 +1,5 @@
 /* src/index.css */
+@import "./theme.css";
 @import "tailwindcss";
 
 @layer base {
