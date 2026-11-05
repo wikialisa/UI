@@ -6,23 +6,31 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { LandingPage } from './pages/LandingPage';
 import { ModuleDetailPage } from './pages/ModuleDetailPage';
+import { BrandToolkitPage } from './pages/BrandToolkitPage';
 import { InteractivePrototypeBar } from './components/InteractivePrototypeBar';
+import { ConfigurationDrawer } from './components/ConfigurationDrawer';
 
 const AppContent: React.FC = () => {
   const { activeModuleId, setModule } = usePrototype();
   const [currentModuleSlug, setCurrentModuleSlug] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<'landing' | 'brand-toolkit'>('landing');
 
   // Sync with URL Hash
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (hash.startsWith('module-')) {
+      if (hash === 'brand-toolkit') {
+        setCurrentPage('brand-toolkit');
+        setCurrentModuleSlug(null);
+      } else if (hash.startsWith('module-')) {
+        setCurrentPage('landing');
         setCurrentModuleSlug(hash);
         const found = MODULES_DATA.find(m => m.slug === hash);
         if (found) {
           setModule(found.id);
         }
       } else {
+        setCurrentPage('landing');
         setCurrentModuleSlug(null);
       }
     };
@@ -56,7 +64,9 @@ const AppContent: React.FC = () => {
       <InteractivePrototypeBar />
 
       <main className="flex-1">
-        {activeModule ? (
+        {currentPage === 'brand-toolkit' ? (
+          <BrandToolkitPage />
+        ) : activeModule ? (
           <ModuleDetailPage module={activeModule} />
         ) : (
           <LandingPage onSelectModule={handleSelectModule} />
@@ -67,6 +77,9 @@ const AppContent: React.FC = () => {
         currentModuleId={activeModule ? activeModule.id : null}
         onSelectModule={handleSelectModule}
       />
+
+      {/* Expandable Configuration & Communication Drawer */}
+      <ConfigurationDrawer onSelectModule={handleSelectModule} />
     </div>
   );
 };

@@ -48,12 +48,14 @@ export const useModuleWorkspaces = ({ moduleId }: WorkspaceProps): WorkspaceResu
     networkMode,
     setNetworkMode,
     emitEvent,
-    jumpToHandover
+    jumpToHandover,
+    activeRole,
+    setRole
   } = usePrototype();
 
   // Local interaction states
-  const [authRole, setAuthRole] = useState('delivery');
-  const [authPhone, setAuthPhone] = useState('0918 842 901');
+  const [authRole, setAuthRole] = useState(activeRole);
+  const [authPhone, setAuthPhone] = useState(order.farmerPhone || '0918 842 901');
   const [authMsg, setAuthMsg] = useState('');
   const [selectedPart, setSelectedPart] = useState('sensor');
 
@@ -80,7 +82,7 @@ export const useModuleWorkspaces = ({ moduleId }: WorkspaceProps): WorkspaceResu
               </label>
               <select 
                 value={authRole}
-                onChange={e => setAuthRole(e.target.value)}
+                onChange={e => setAuthRole(e.target.value as any)}
                 className="w-full text-xs p-2.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white font-medium outline-none"
               >
                 <option value="delivery">1. Đối tác giao hàng (Delivery Partner)</option>
@@ -117,6 +119,8 @@ export const useModuleWorkspaces = ({ moduleId }: WorkspaceProps): WorkspaceResu
 
             <button 
               onClick={() => {
+                setRole(authRole as any);
+                updateOrder({ farmerPhone: authPhone });
                 setAuthMsg('✓ Đăng nhập thành công! Đã cấp token JWT & đồng bộ quyền RBAC');
                 emitEvent('AUTH_SESSION_CREATED', {
                   phone: authPhone,

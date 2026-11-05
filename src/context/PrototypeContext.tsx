@@ -74,6 +74,9 @@ interface PrototypeContextType {
   solarTelemetry: SolarTelemetryState;
   events: TelemetryEvent[];
   handoverMessage: string | null;
+  isConfigDrawerOpen: boolean;
+  setIsConfigDrawerOpen: (open: boolean) => void;
+  toggleConfigDrawer: () => void;
   setModule: (id: string) => void;
   setCluster: (cluster: ClusterType) => void;
   setRole: (role: RoleType) => void;
@@ -159,6 +162,7 @@ export const PrototypeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [mobileSubScreen, setMobileSubScreen] = useState<string>('default');
   const [networkMode, setNetworkMode] = useState<'online' | 'offline' | 'syncing'>('online');
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(false);
+  const [isConfigDrawerOpen, setIsConfigDrawerOpen] = useState<boolean>(false);
   const [order, setOrder] = useState<OrderState>(initialOrder);
   const [solarTelemetry, setSolarTelemetry] = useState<SolarTelemetryState>(initialSolarTelemetry);
   const [handoverMessage, setHandoverMessage] = useState<string | null>(
@@ -439,6 +443,8 @@ export const PrototypeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     };
   }, [isAutoPlaying]);
 
+  const toggleConfigDrawer = () => setIsConfigDrawerOpen(prev => !prev);
+
   return (
     <PrototypeContext.Provider
       value={{
@@ -450,6 +456,9 @@ export const PrototypeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         mobileSubScreen,
         networkMode,
         isAutoPlaying,
+        isConfigDrawerOpen,
+        setIsConfigDrawerOpen,
+        toggleConfigDrawer,
         order,
         solarTelemetry,
         events,

@@ -34,12 +34,22 @@ export const MobileSimulatorFrame: React.FC<MobileSimulatorFrameProps> = ({
     networkMode, 
     order,
     emitEvent,
-    jumpToHandover
+    jumpToHandover,
+    toggleConfigDrawer
   } = usePrototype();
 
   return (
     <div className="w-[390px] h-[780px] bg-white dark:bg-slate-900 rounded-[44px] shadow-2xl border-[8px] border-slate-800 dark:border-slate-800 flex flex-col overflow-hidden relative ring-1 ring-slate-900/10 dark:ring-white/10 select-none">
       
+      {/* Floating Green Drawer Trigger on Phone Edge */}
+      <button
+        onClick={toggleConfigDrawer}
+        title="Mở menu mở rộng cài đặt cấu hình giao tiếp"
+        className="absolute right-0 top-1/3 -translate-y-1/2 w-2.5 hover:w-4 h-20 bg-gradient-to-b from-emerald-400 to-teal-500 hover:from-emerald-300 hover:to-teal-400 rounded-l-full shadow-lg transition-all duration-200 z-30 cursor-pointer group flex items-center justify-center border-y border-l border-emerald-300/60"
+      >
+        <span className="w-1 h-1 rounded-full bg-white absolute top-2 left-0.5 animate-ping" />
+      </button>
+
       {/* iOS Dynamic Notch & Status Bar */}
       <div className="h-10 bg-white dark:bg-slate-900 flex items-center justify-between px-6 pt-2 shrink-0 z-10 border-b border-slate-100 dark:border-slate-800">
         <span className="text-xs font-bold font-mono text-slate-900 dark:text-white">09:41</span>

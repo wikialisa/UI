@@ -1,7 +1,8 @@
 // src/components/Header.tsx
 import React, { useState, useEffect } from 'react';
 import { MODULES_DATA } from '../data/modulesData';
-import { Sun, Moon, ChevronDown, Home, ExternalLink } from 'lucide-react';
+import { usePrototype } from '../context/PrototypeContext';
+import { Sun, Moon, ChevronDown, Home, ExternalLink, SlidersHorizontal } from 'lucide-react';
 
 interface HeaderProps {
   currentModuleId: string | null;
@@ -11,6 +12,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ currentModuleId, onSelectModule }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const { toggleConfigDrawer } = usePrototype();
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark') ||
@@ -67,6 +69,13 @@ export const Header: React.FC<HeaderProps> = ({ currentModuleId, onSelectModule 
             >
               11 Phân Hệ
             </button>
+            <span className="text-slate-300 dark:text-slate-600">•</span>
+            <a
+              href="#brand-toolkit"
+              className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors whitespace-nowrap"
+            >
+              🎨 Bộ Công Cụ
+            </a>
             <span className="text-slate-300 dark:text-slate-600">•</span>
             <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
               Dual-Surface (390px ⇄ Admin)
@@ -151,6 +160,16 @@ export const Header: React.FC<HeaderProps> = ({ currentModuleId, onSelectModule 
               <span>Trang Chủ</span>
             </button>
           )}
+
+          {/* Configuration Drawer Trigger */}
+          <button
+            onClick={toggleConfigDrawer}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-lg shadow-sm transition-all"
+            title="Mở menu mở rộng cài đặt cấu hình & giao tiếp hai chiều"
+          >
+            <SlidersHorizontal className="w-3.5 h-3.5 text-emerald-500" />
+            <span className="hidden sm:inline">Cài Đặt Cấu Hình</span>
+          </button>
 
           {/* Theme Switcher */}
           <button
