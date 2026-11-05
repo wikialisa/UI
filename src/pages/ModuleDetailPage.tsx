@@ -6,7 +6,6 @@ import { RoadmapPipeline } from '../components/RoadmapPipeline';
 import { MobileSimulatorFrame } from '../components/MobileSimulatorFrame';
 import { EventBusStream } from '../components/EventBusStream';
 import { useModuleWorkspaces } from '../components/workspaces/ModuleWorkspaces';
-import { Sparkles, Layers, Image as ImageIcon } from 'lucide-react';
 
 interface ModuleDetailPageProps {
   module: ModuleDefinition;
@@ -128,58 +127,6 @@ export const ModuleDetailPage: React.FC<ModuleDetailPageProps> = ({ module }) =>
                 {workspaces.admin}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FIGMA HI-FI SCREENS CATALOG */}
-      <section className="py-12 bg-white dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
-                Đối Chiếu Thiết Kế Gốc
-              </span>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Bộ Màn Hình Figma Hi-Fi Thuộc Phân Hệ {module.id}
-              </h2>
-            </div>
-            <span className="text-xs font-mono text-slate-500">
-              File: eq0EA9dRSWfS2ivuFohJdg
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {module.figmaScreens.map((scr, idx) => (
-              <div 
-                key={idx}
-                className="rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="h-64 bg-slate-200 dark:bg-slate-700 overflow-hidden relative group">
-                  <img 
-                    src={`assets/img/demo/${scr.img}`} 
-                    alt={scr.name}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'assets/img/demo/1. Delivery Partner.png';
-                    }}
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="font-bold text-slate-900 dark:text-white truncate">
-                      {scr.name}
-                    </span>
-                    <span className="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">
-                      Node: {scr.node}
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-500">
-                    Màn hình chuẩn 390 × 844px đã đồng bộ trong Design System.
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
